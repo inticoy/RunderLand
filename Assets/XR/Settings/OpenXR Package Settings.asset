@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: FusionFeature Android
   m_EditorClassIdentifier: 
   m_enabled: 0
+  <failedInitialization>k__BackingField: 0
   nameUi: Dual Render Fusion (Experimental)
   version: 0.14.0
   featureIdInternal: com.qualcomm.snapdragon.spaces.fusion
@@ -226,6 +227,12 @@ MonoBehaviour:
   company: Qualcomm
   priority: 0
   required: 1
+  <SessionHandle>k__BackingField: 0
+  <SystemIDHandle>k__BackingField: 0
+  <InstanceHandle>k__BackingField: 0
+  <SpaceHandle>k__BackingField: 0
+  <IsSessionRunning>k__BackingField: 0
+  <SessionState>k__BackingField: 0
   RequireSpacesServices: 0
   ValidateOpenScene: 1
 --- !u!114 &-3381313672014448051
@@ -426,7 +433,6 @@ MonoBehaviour:
   - {fileID: -1043451900885122061}
   - {fileID: -5043838180822611731}
   - {fileID: 63059354046495565}
-  - {fileID: -3531756491718872574}
   - {fileID: 2068084906446772547}
   - {fileID: -7012337017588905120}
   - {fileID: 9122642499469597518}
