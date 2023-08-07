@@ -9,6 +9,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using EasingCore;
+using System.Collections.Generic;
 
 namespace FancyScrollView.Example07
 {
@@ -21,10 +22,11 @@ namespace FancyScrollView.Example07
         [SerializeField] InputField dataCountInputField = default;
         [SerializeField] InputField selectIndexInputField = default;
         [SerializeField] Dropdown alignmentDropdown = default;
+        [SerializeField] FileListManager fileListManager;
 
         void Start()
         {
-            scrollView.OnCellClicked(index => selectIndexInputField.text = index.ToString());
+            scrollView.OnCellClicked(index => fileListManager.UpdateLogInfo(index));
 
             paddingTopInputField.onValueChanged.AddListener(_ =>
                 TryParseValue(paddingTopInputField, 0, 999, value => scrollView.PaddingTop = value));
@@ -38,18 +40,12 @@ namespace FancyScrollView.Example07
                 TryParseValue(spacingInputField, 0, 100, value => scrollView.Spacing = value));
             spacingInputField.text = scrollView.Spacing.ToString();
 
-            alignmentDropdown.AddOptions(Enum.GetNames(typeof(Alignment)).Select(x => new Dropdown.OptionData(x)).ToList());
-            alignmentDropdown.onValueChanged.AddListener(_ => SelectCell());
-            alignmentDropdown.value = (int)Alignment.Middle;
+            //alignmentDropdown.AddOptions(Enum.GetNames(typeof(Ali               vbnbvbvvcv c cv cx  vZZ˛CreateButton(metadata);  ngnment)).Select(x => new Dropdown.OptionData(x)).ToList());
+            //alignmentDropdown.onValueChanged.AddListener(_ => SelectCell());
+            //alignmentDropdown.value = (int)Alignment.Middle;
 
             selectIndexInputField.onValueChanged.AddListener(_ => SelectCell());
             selectIndexInputField.text = "10";
-
-            dataCountInputField.onValueChanged.AddListener(_ =>
-                TryParseValue(dataCountInputField, 1, 99999, GenerateCells));
-            dataCountInputField.text = "20";
-
-            scrollView.JumpTo(10);
         }
 
         void TryParseValue(InputField inputField, int min, int max, Action<int> success)
@@ -79,13 +75,19 @@ namespace FancyScrollView.Example07
                 scrollView.ScrollTo(index, 0.3f, Ease.InOutQuint, (Alignment)alignmentDropdown.value));
         }
 
-        void GenerateCells(int dataCount)
+        public void GenerateCells(List<List<string>> metadatas)
         {
-            var items = Enumerable.Range(0, dataCount)
-                .Select(i => new ItemData($"Cell {i}"))
-                .ToArray();
+                //var items = Enumerable.Range(0, dataCount)
+                //    .Select(i => new ItemData($"Cell {i}"))
+                //    .ToArray();
 
-            scrollView.UpdateData(items);
+            ItemData[] itemDatas = new ItemData[metadatas.Count];
+            for (int i = 0; i < metadatas.Count; i++)
+            {
+                itemDatas[i] = new ItemData(metadatas[i][0]);
+            }
+
+            scrollView.UpdateData(itemDatas);
             SelectCell();
         }
     }
