@@ -6,8 +6,7 @@ using TMPro;
 public class LocationModule : MonoBehaviour
 {
     public double latitude, longitude, altitude;
-    public double prevLatitude, prevLongitude, prevAltitude;
-    public GameObject arrow;
+    public double prevLatitude, prevLongitude, prevAltitude;    
     public Camera arCamera;
     public bool isLocationModuleReady;    
     

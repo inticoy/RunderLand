@@ -21,6 +21,9 @@ public class GPXLogger : MonoBehaviour
     void Start()
     {
         // Continuously log GPS data
+        string path = Application.persistentDataPath + "/running_logs";
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
         gpxFilePath = Path.Combine(Application.persistentDataPath + "/running_logs", fileName);
         int suffix = 1;
         while (System.IO.File.Exists(gpxFilePath))
