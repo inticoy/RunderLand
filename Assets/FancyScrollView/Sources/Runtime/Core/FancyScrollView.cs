@@ -64,7 +64,6 @@ namespace FancyScrollView
         protected abstract GameObject CellPrefab { get; }
         protected abstract GameObject CellPrefab2 { get; }
         protected abstract GameObject CellPrefab3 { get; }
-        protected abstract GameObject CellPrefab4 { get; }
 
         /// <summary>
         /// アイテム一覧のデータ.
@@ -142,10 +141,12 @@ namespace FancyScrollView
             for (var i = 0; i < addCount; i++)
             {
                 var cell = Instantiate(CellPrefab, cellContainer).GetComponent<FancyCell<TItemData, TContext>>();
-                if (i % 2 == 0)
+                if (i == 0)
                     cell = Instantiate(CellPrefab, cellContainer).GetComponent<FancyCell<TItemData, TContext>>();
-                else
+                else if (i == 1)
                     cell = Instantiate(CellPrefab2, cellContainer).GetComponent<FancyCell<TItemData, TContext>>();
+                else
+                    cell = Instantiate(CellPrefab3, cellContainer).GetComponent<FancyCell<TItemData, TContext>>();
                 if (cell == null)
                 {
                     throw new MissingComponentException(string.Format(

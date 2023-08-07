@@ -17,14 +17,12 @@ namespace FancyScrollView.Example02
         [SerializeField] GameObject cellPrefab = default;
         [SerializeField] GameObject cellPrefab2 = default;
         [SerializeField] GameObject cellPrefab3 = default;
-        [SerializeField] GameObject cellPrefab4 = default;
 
         Action<int> onSelectionChanged;
 
         protected override GameObject CellPrefab => cellPrefab;
         protected override GameObject CellPrefab2 => cellPrefab2;
         protected override GameObject CellPrefab3 => cellPrefab3;
-        protected override GameObject CellPrefab4 => cellPrefab4;
 
         protected override void Initialize()
         {
