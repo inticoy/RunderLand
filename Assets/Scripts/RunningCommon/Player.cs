@@ -39,15 +39,7 @@ public class Player : MonoBehaviour
 
 	public void Start()
     {		
-		double latitude = LocationModule.latitude;
-		double longitude = LocationModule.longitude;
-		double altitude = LocationModule.altitude;
-
-		GPSData GPSData = new GPSData(latitude, longitude, altitude);
-		route.Add(Tuple.Create(GPSData, 0d, LocationModule.GetWeightedVector()));
-		prevGPSData = GPSData;
 		isPaused = true;
-		size++;
 		StartCoroutine(startRun());
 	}
 
@@ -57,7 +49,7 @@ public class Player : MonoBehaviour
 		{			
 			yield return new WaitForSecondsRealtime(1f);
 		}
-		prevGPSData = new GPSData(LocationModule.latitude, LocationModule.longitude, LocationModule.altitude);
+		currGPSData = new GPSData(LocationModule.latitude, LocationModule.longitude, LocationModule.altitude);
 		StartCoroutine(UpdateLocation());
 		StartCoroutine(UpdateDistance());
 	}
@@ -77,8 +69,7 @@ public class Player : MonoBehaviour
 		while (true)
 		{	
 			yield return new WaitForSecondsRealtime(1f);
-
-			double decimalDist = totalDist - Math.Floor(totalDist);
+			//double decimalDist = totalDist - Math.Floor(totalDist);
 
             //if (decimalDist >= 0.95 || decimalDist <= 0.05)
             //{
@@ -89,20 +80,25 @@ public class Player : MonoBehaviour
             //else
             //    speedLine.SetActive(false);
 
+			///debug///
             playertext.text = totalDist.ToString();
-			prevTotalDist = totalDist;		
+			///////////            
+
+			//prevTotalDist = totalDist;		
+			prevGPSData = currGPSData;
 
 			latitude = LocationModule.latitude;
 			longitude = LocationModule.longitude;
 			altitude = LocationModule.altitude;
-			
-			currGPSData = new GPSData(latitude, longitude, altitude);			
+			currGPSData = new GPSData(latitude, longitude, altitude);		
 			
 			sectionDist = Math.Abs(GPSUtils.CalculateDistance(prevGPSData, currGPSData));			
 			if (sectionDist >= 5)
             {
-				if (size == 1)
+				if (size < 2)
+				{
 					continue;
+				}
 				else
                 {
 					latitude = route[size - 1].Item1.latitude + (route[size - 1].Item1.latitude - route[size - 2].Item1.latitude);
@@ -115,8 +111,7 @@ public class Player : MonoBehaviour
 				}
             }
 			distUnit = sectionDist * 0.02;
-            route.Add(Tuple.Create(currGPSData, totalDist, LocationModule.GetWeightedVector()));
-			prevGPSData = currGPSData;
+            route.Add(Tuple.Create(currGPSData, totalDist, LocationModule.GetWeightedVector()));			
 			size++;
 			GPXLogger.AppendTrackPointToGPXFile(latitude, longitude, altitude);
         }
