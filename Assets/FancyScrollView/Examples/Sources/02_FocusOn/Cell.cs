@@ -32,7 +32,7 @@ namespace FancyScrollView.Example02
 
             var selected = Context.SelectedIndex == Index;
             image.color = selected
-                ? new Color32(0, 255, 255, 100)
+                ? new Color32(255, 255, 255, 190)
                 : new Color32(255, 255, 255, 77);
         }
 

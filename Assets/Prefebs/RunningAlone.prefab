@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2970055487089762418}
   - component: {fileID: 1156626813382976254}
   m_Layer: 5
-  m_Name: RunningWithRecCard
+  m_Name: RunningAlone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ RectTransform:
   m_GameObject: {fileID: 5947544202490284290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5877317067482621700}
@@ -248,7 +248,7 @@ RectTransform:
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 0, y: 0, z: 276}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5877909792279119586}
   m_Father: {fileID: 5878152245321235238}
@@ -257,7 +257,7 @@ RectTransform:
   m_AnchorMin: {x: -0.2, y: 0.5}
   m_AnchorMax: {x: -0.2, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 450}
+  m_SizeDelta: {x: 300, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5880061825226685838
 CanvasRenderer:
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cdd931d2062ee4ad996083c84c551ee4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e134ae1e5d9d4034a58b08fa727babb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -420,4 +420,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Running With Friend
+  m_Text: 
