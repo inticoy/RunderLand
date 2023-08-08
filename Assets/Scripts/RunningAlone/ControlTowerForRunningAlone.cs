@@ -5,10 +5,10 @@ using TMPro;
 
 public class ControlTowerForRunningAlone : MonoBehaviour
 {
-    //public Toggle avatarToggle;
-    //public Toggle mapToggle;
-    //public Toggle effectToggle;
-    //public Slider slider;
+    public Toggle avatarToggle;
+    public Toggle mapToggle;
+    public Toggle effectToggle;
+    public Slider slider;
     public Player player;
     public RunningInfo runningInfo;
     public AvatarAlone avatarAlone;
@@ -103,31 +103,31 @@ public class ControlTowerForRunningAlone : MonoBehaviour
 
     public void CheckOption()
     {
-        //if (runningSpeed != slider.value)
-        //{
-        //    runningSpeed = slider.value;
-        //    avatarAlone.SetMovePerFrame(slider.value / 180);
-        //}
-        //if (avatarToggleValue != avatarToggle.isOn)
-        //{
-        //    avatarToggleValue = avatarToggle.isOn;
-        //    if (avatarToggleValue == true)
-        //        arCamera.cullingMask |= 1 << LayerMask.NameToLayer("Avatar");
-        //    else
-        //        arCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Avatar"));
-        //}
-        //if (mapToggleValue != mapToggle.isOn)
-        //{
-        //    mapToggleValue = mapToggle.isOn;
-        //    miniMap.SetActive(mapToggleValue);
-        //}
-        //if (effectToggleValue != effectToggle.isOn)
-        //{
-        //    effectToggleValue = effectToggle.isOn;
-        //    if (effectToggleValue == true)
-        //        arCamera.cullingMask |= 1 << LayerMask.NameToLayer("Effect");
-        //    else
-        //        arCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Effect"));
-        //}
+        if (runningSpeed != slider.value)
+        {
+            runningSpeed = slider.value;
+            avatarAlone.SetMovePerFrame(slider.value / 180);
+        }
+        if (avatarToggleValue != avatarToggle.isOn)
+        {
+            avatarToggleValue = avatarToggle.isOn;
+            if (avatarToggleValue == true)
+                arCamera.cullingMask |= 1 << LayerMask.NameToLayer("Avatar");
+            else
+                arCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Avatar"));
+        }
+        if (mapToggleValue != mapToggle.isOn)
+        {
+            //mapToggleValue = mapToggle.isOn;
+            //miniMap.SetActive(mapToggleValue);
+        }
+        if (effectToggleValue != effectToggle.isOn)
+        {
+            effectToggleValue = effectToggle.isOn;
+            if (effectToggleValue == true)
+                arCamera.cullingMask |= 1 << LayerMask.NameToLayer("Effect");
+            else
+                arCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Effect"));
+        }
     }
 }
