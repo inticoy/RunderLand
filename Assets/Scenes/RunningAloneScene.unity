@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &220808845
 Transform:
   m_ObjectHideFlags: 0
@@ -259,9 +259,7 @@ MonoBehaviour:
   GPXLogger: {fileID: 451453256}
   LocationModule: {fileID: 979290811}
   stateBar: {fileID: 1807722781}
-  playertext: {fileID: 0}
-  lattext: {fileID: 0}
-  lontext: {fileID: 0}
+  playertext: {fileID: 621070300}
   size: 0
 --- !u!1 &234031254
 GameObject:
@@ -1672,7 +1670,7 @@ MonoBehaviour:
   prevLongitude: 0
   prevAltitude: 0
   arCamera: {fileID: 1701624973}
-  isLocationModuleReady: 0
+  isLocationModuleReady: 1
 --- !u!4 &979290812
 Transform:
   m_ObjectHideFlags: 0

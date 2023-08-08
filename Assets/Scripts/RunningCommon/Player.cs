@@ -11,8 +11,6 @@ public class Player : MonoBehaviour
 	public LocationModule  							LocationModule;
 	public StateBar									stateBar;
 	public TMP_Text									playertext;
-	public TMP_Text lattext;
-	public TMP_Text lontext;
 	//public GameObject								speedLine;
 	public int										size;
 
@@ -97,12 +95,10 @@ public class Player : MonoBehaviour
 			latitude = LocationModule.latitude;
 			longitude = LocationModule.longitude;
 			altitude = LocationModule.altitude;
-
-			lattext.text = latitude.ToString();
+			
 			currGPSData = new GPSData(latitude, longitude, altitude);			
 			
-			sectionDist = Math.Abs(GPSUtils.CalculateDistance(prevGPSData, currGPSData));
-			lontext.text = sectionDist.ToString();
+			sectionDist = Math.Abs(GPSUtils.CalculateDistance(prevGPSData, currGPSData));			
 			if (sectionDist >= 5)
             {
 				if (size == 1)
