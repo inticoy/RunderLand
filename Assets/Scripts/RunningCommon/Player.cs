@@ -90,9 +90,9 @@ public class Player : MonoBehaviour
 			latitude = LocationModule.latitude;
 			longitude = LocationModule.longitude;
 			altitude = LocationModule.altitude;
-			currGPSData = new GPSData(latitude, longitude, altitude);		
-			
-			sectionDist = Math.Abs(GPSUtils.CalculateDistance(prevGPSData, currGPSData));			
+			currGPSData = new GPSData(latitude, longitude, altitude);
+
+			sectionDist = GPSUtils.CalculateDistance(prevGPSData, currGPSData);
 			if (sectionDist >= 5)
             {
 				if (size < 2)
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
 					sectionDist = route[size - 1].Item2 - route[size - 2].Item2;
 				}
             }
-			distUnit = sectionDist * 0.02;
+			distUnit = Math.Abs(sectionDist * 0.02);
             route.Add(Tuple.Create(currGPSData, totalDist, LocationModule.GetWeightedVector()));			
 			size++;
 			GPXLogger.AppendTrackPointToGPXFile(latitude, longitude, altitude);

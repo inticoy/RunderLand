@@ -5,8 +5,7 @@ using TMPro;
 
 public class LocationModule : MonoBehaviour
 {
-    public double latitude, longitude, altitude;
-    public double prevLatitude, prevLongitude, prevAltitude;    
+    public double latitude, longitude, altitude;   
     public Camera arCamera;
     public bool isLocationModuleReady;    
     
@@ -31,7 +30,6 @@ public class LocationModule : MonoBehaviour
         isLocationModuleReady = false;
         //위치 서비스 초기화
         Input.location.Start(0.1f, 0.1f);
-        //NativeToolkit.StartLocation();
 
         //위치 서비스 활성화 확인
         if (Input.location.isEnabledByUser)
@@ -120,14 +118,9 @@ public class LocationModule : MonoBehaviour
             // 위도와 경도 텍스트 업데이트
             gps_connect++;
 
-            //latitude = Math.Round(NativeToolkit.GetLatitude(), 6);            
-            //longitude = Math.Round(NativeToolkit.GetLongitude(), 6);
             latitude = currentGPSPosition.latitude;
             longitude = currentGPSPosition.longitude;
             altitude = currentGPSPosition.altitude;
-            prevLatitude = latitude;
-            prevLongitude = longitude;
-            prevAltitude = altitude;
 
             isLocationModuleReady = true;
         }
