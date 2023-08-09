@@ -73,16 +73,16 @@ public class StateBar : MonoBehaviour
 				distanceText.text = Mathf.Floor(startTime - Time.time + 1).ToString();
 				LoadingBar.fillAmount = 1 - (startTime - Time.time) + Mathf.Floor(startTime - Time.time);
 
-				//if (countdownText != null)
-				//{
-				//	float newAlpha = (startTime - Time.time) - Mathf.Floor(startTime - Time.time);
-				//	countdownText.text = Mathf.Floor(startTime - Time.time + 1).ToString();
-				//	newAlpha = Mathf.Clamp01(newAlpha);
-				//	countdownText.color = new Color(countdownText.color.r, countdownText.color.g, countdownText.color.b, newAlpha);
-				//	float scale = -newAlpha * 0.02f + 0.05f;
-				//	countdownText.transform.localScale = new Vector3(scale, scale, scale);
-    //            }
-            }
+				if (countdownText != null)
+				{
+					float newAlpha = (startTime - Time.time) - Mathf.Floor(startTime - Time.time);
+					countdownText.text = Mathf.Floor(startTime - Time.time + 1).ToString();
+					newAlpha = Mathf.Clamp01(newAlpha);
+					countdownText.color = new Color(countdownText.color.r, countdownText.color.g, countdownText.color.b, newAlpha);
+					float scale = -newAlpha * 0.002f + 0.005f;
+					countdownText.transform.localScale = new Vector3(scale, scale, scale);
+				}
+			}
 			else
 			{
 				if (countdownText != null && Time.time < startTime + 1)
@@ -91,7 +91,7 @@ public class StateBar : MonoBehaviour
 					countdownText.text = "GO!";
                     newAlpha = Mathf.Clamp01(newAlpha);
                     countdownText.color = new Color(countdownText.color.r, countdownText.color.g, countdownText.color.b, newAlpha);
-                    float scale = -newAlpha * 0.02f + 0.05f;
+                    float scale = -newAlpha * 0.002f + 0.005f;
                     countdownText.transform.localScale = new Vector3(scale, scale, scale);
                 }
 				isCountDownEnd = true;
