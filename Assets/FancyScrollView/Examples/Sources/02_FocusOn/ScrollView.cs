@@ -14,6 +14,7 @@ namespace FancyScrollView.Example02
     class ScrollView : FancyScrollView<ItemData, Context>
     {
         [SerializeField] GameLoadManager GLM;
+        [SerializeField] int idx;
         [SerializeField] Scroller scroller = default;
         [SerializeField] GameObject cellPrefab = default;
         [SerializeField] GameObject cellPrefab2 = default;
@@ -42,6 +43,7 @@ namespace FancyScrollView.Example02
                 return;
             }
             GLM.SetIdx(index);
+            idx = index;
             Context.SelectedIndex = index;
             Refresh();
 
