@@ -114,6 +114,7 @@ public class NaverReverseGeocoding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(location.longitude.ToString() + "," + location.latitude.ToString());
         url += "?coords=" + location.longitude.ToString() + "," + location.latitude.ToString();
         url += "&orders=legalcode&output=json";
         StartCoroutine(GetReverseGeocode());

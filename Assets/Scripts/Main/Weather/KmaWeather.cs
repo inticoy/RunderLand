@@ -86,6 +86,7 @@ public class KmaWeather : MonoBehaviour
         LatXLonY latXlonY = conv.dfs_xy_conv(location.latitude, location.longitude);
 
         Debug.Log(getDate() + getTime());
+        Debug.Log("lat: " + latXlonY.lat.ToString() + ", lon:" + latXlonY.lon.ToString());
         Debug.Log("x: " + latXlonY.x.ToString() + ", y:" + latXlonY.y.ToString());
 
         temparature = "0";
