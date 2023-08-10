@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 402770951484371726}
   m_Layer: 0
-  m_Name: snowflake
+  m_Name: snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

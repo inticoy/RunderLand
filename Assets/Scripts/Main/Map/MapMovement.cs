@@ -20,7 +20,7 @@ public class MapMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //mapRenderer.Center = new Microsoft.Geospatial.LatLon(locationModule.latitude, locationModule.longitude);
-        mapRenderer.Center = new Microsoft.Geospatial.LatLon(37.4885, 127.0655);
+        mapRenderer.Center = new Microsoft.Geospatial.LatLon(locationModule.latitude, locationModule.longitude);
+        //mapRenderer.Center = new Microsoft.Geospatial.LatLon(37.4885, 127.0655);
     }
 }

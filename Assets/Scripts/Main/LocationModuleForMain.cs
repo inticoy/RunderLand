@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class LocationModuleForMain : MonoBehaviour
 {
-    public double latitude, longitude, altitude;
+    public double latitude;
+    public double longitude;
+    public double altitude;
     public bool isLocationModuleReady;
 
     // Start is called before the first frame update
@@ -12,6 +14,10 @@ public class LocationModuleForMain : MonoBehaviour
     {
         isLocationModuleReady = false;
         Input.location.Start(0.1f, 0.1f);
+
+        // Dokdo
+        latitude = 37.24312;
+        longitude = 131.86611;
 
         if (Input.location.isEnabledByUser)
         {

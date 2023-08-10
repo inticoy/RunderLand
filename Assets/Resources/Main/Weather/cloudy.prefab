@@ -318,8 +318,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4484128473119835474}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.077, y: -0.189, z: -0.183}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: 0.077, y: -0.25, z: -0.183}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5097036385670977257}
@@ -495,7 +495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5097036385670977257}
   m_Layer: 0
-  m_Name: Cloud
+  m_Name: cloudy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
