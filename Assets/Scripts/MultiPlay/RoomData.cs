@@ -9,6 +9,9 @@ public class RoomData : MonoBehaviour
 {
     private TMP_Text RoomInfoText;
     private TMP_Text userIdText;
+    [SerializeField] private TMP_Text RoomNameText;
+    [SerializeField] private TMP_Text MaxPlayersText;
+    [SerializeField] private RoomJoinButton roomJoinButton;
     private RoomInfo _roomInfo;
 
     public RoomInfo RoomInfo
@@ -23,15 +26,27 @@ public class RoomData : MonoBehaviour
             //RoomInfoText.text = $"{_roomInfo.Name} ({_roomInfo.PlayerCount}/{_roomInfo.MaxPlayers})";
             RoomInfoText.text = $"({_roomInfo.PlayerCount}/{_roomInfo.MaxPlayers})";
 
-            GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => OnEnterRoom(_roomInfo.Name));
+            GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => OnRoomButtonClicked(_roomInfo));
         }
     }
 
     void Awake()
     {
         TMP_Text[] buttonTextComponent = GetComponentsInChildren<TMP_Text>();
+
+        RoomNameText = GameObject.Find("Room Name Text").GetComponent<TMP_Text>();
+        MaxPlayersText = GameObject.Find("Room Max Players Text").GetComponent<TMP_Text>();
+        roomJoinButton = GameObject.Find("Room Join Button").GetComponent<RoomJoinButton>();
+
         RoomInfoText = buttonTextComponent[1];
         userIdText = buttonTextComponent[0];
+    }
+
+    void OnRoomButtonClicked(RoomInfo roomInfo)
+    {
+        roomJoinButton.roomInfo = roomInfo;
+        RoomNameText.text = "Name: " + roomInfo.Name;
+        MaxPlayersText.text = "Max Players: " + roomInfo.MaxPlayers.ToString();
     }
 
     void OnEnterRoom(string roomName)

@@ -19,10 +19,9 @@ public class MultiRoomListManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public Dictionary<string, GameObject> getRoomDict()
     {
-        
+        return roomDict;
     }
 
     #region Photon Callbacks
@@ -110,6 +109,7 @@ public class MultiRoomListManager : MonoBehaviourPunCallbacks
         ro.IsVisible = true;
         ro.MaxPlayers = 2;
 
-        PhotonNetwork.CreateRoom("Jinhchoi", ro);
+        if (PhotonNetwork.IsConnectedAndReady)
+            PhotonNetwork.CreateRoom("Jinhchoi", ro);
     }
 }

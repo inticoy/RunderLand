@@ -20,7 +20,7 @@ public class GameLoadManager : MonoBehaviour
     public void LoadSceneByName()
     {       
         _interactionManager?.SendHapticImpulse();
-        string sceneName = (idx == 0) ? "RunningAloneScene" : (idx == 1) ? "RunningWithRecordScene" : "RunningWithFriendScene";
+        string sceneName = (idx == 0) ? "RunningAloneScene" : (idx == 1) ? "RunningWithRecordScene" : "MultiListScene";
         SceneManager.LoadScene(sceneName);
     }
 }

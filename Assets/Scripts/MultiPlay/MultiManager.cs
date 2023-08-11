@@ -71,7 +71,7 @@ public class MultiManager : MonoBehaviourPunCallbacks
         else if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             UnityEngine.Debug.Log("PhotonNetwork: Loading Gaming Room");
-            PhotonNetwork.LoadLevel("MultiPlayScene");
+            PhotonNetwork.LoadLevel("RunWithFriendScene");
         }
     }
 
