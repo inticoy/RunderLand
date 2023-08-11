@@ -47,7 +47,7 @@ public class AvatarAlone : MonoBehaviour
     {
         if (avatarFixedLocation == Vector3.zero)
             avatarFixedLocation = transform.position;
-        Vector3 avatarPosition = Vector3.Lerp(avatarFixedLocation, arCamera.transform.position - new Vector3(0, 1.4f, 0) + 0.5f * arCamera.transform.right, time / 3);
+        Vector3 avatarPosition = Vector3.Lerp(avatarFixedLocation, arCamera.transform.position - new Vector3(0, 1.4f, 0), time / 3);
         transform.position = avatarPosition;
     }
 
