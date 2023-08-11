@@ -24,12 +24,12 @@ public class GPXLogger : MonoBehaviour
         string path = Application.persistentDataPath + "/running_logs";
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);
-        gpxFilePath = Path.Combine(Application.persistentDataPath + "/running_logs", fileName);
+        gpxFilePath = Path.Combine(path, fileName);
         int suffix = 1;
         while (System.IO.File.Exists(gpxFilePath))
         {
             fileName = $"log{suffix}.gpx";
-            gpxFilePath = Path.Combine(Application.persistentDataPath, fileName);
+            gpxFilePath = Path.Combine(path, fileName);
             suffix++;
         }
         double latitude = LocationModule.GetComponent<LocationModule>().latitude;
@@ -84,17 +84,17 @@ public class GPXLogger : MonoBehaviour
         XmlElement trkseg = doc.CreateElement("trkseg");
         trk.AppendChild(trkseg);
 
-        XmlElement trkpt = doc.CreateElement("trkpt");
-        trkpt.SetAttribute("lat", latitude.ToString());
-        trkpt.SetAttribute("lon", longitude.ToString());
-        trkseg.AppendChild(trkpt);
+        //XmlElement trkpt = doc.CreateElement("trkpt");
+        //trkpt.SetAttribute("lat", latitude.ToString());
+        //trkpt.SetAttribute("lon", longitude.ToString());
+        //trkseg.AppendChild(trkpt);
 
-        XmlElement ele = doc.CreateElement("ele");
-        ele.InnerText = altitude.ToString();
-        XmlElement time = doc.CreateElement("time");
-        time.InnerText = DateTime.Now.ToString("s") + "Z";
-        trkpt.AppendChild(ele);
-        trkpt.AppendChild(time);
+        //XmlElement ele = doc.CreateElement("ele");
+        //ele.InnerText = altitude.ToString();
+        //XmlElement time = doc.CreateElement("time");
+        //time.InnerText = DateTime.Now.ToString("s") + "Z";
+        //trkpt.AppendChild(ele);
+        //trkpt.AppendChild(time);
 
         
 
