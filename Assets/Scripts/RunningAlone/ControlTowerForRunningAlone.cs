@@ -16,7 +16,7 @@ public class ControlTowerForRunningAlone : MonoBehaviour
     public StateBar stateBar;
     public Camera arCamera;
     public PlayButton playButton;
-    public LocationModule locacationModule;
+    public LocationModule locationModule;
     public GPXLogger GPXLogger;
     public TMP_Text timeText;
     public TMP_Text paceText;
@@ -52,13 +52,14 @@ public class ControlTowerForRunningAlone : MonoBehaviour
         SetAvatarAnime();        
         if (stateBar.GetIsCountDownEnd())
         {
-            timeText.text = time.ToString();
-            paceText.text = (player.GetTotalDist() / time).ToString();
-
             if (time == 0)
             {
-                ToggleIsPaused();
+                player.enabled = true;
+                avatarAlone.enabled = true;
+                runningInfo.ToggleIsPaused();
                 GPXLogger.enabled = true;
+                locationModule.InitializeQueue();
+                isPaused = false;
             }
             if (!isPaused)
                 time += Time.deltaTime;
@@ -69,6 +70,8 @@ public class ControlTowerForRunningAlone : MonoBehaviour
                 runningInfo.ToggleIsPaused();
                 isPauseButtonPressed = false;
             }
+            timeText.text = time.ToString();
+            paceText.text = (player.GetTotalDist() / time).ToString();
         }
         else
         {            
@@ -79,8 +82,6 @@ public class ControlTowerForRunningAlone : MonoBehaviour
 
     public void SetAvatarAnime()
     {
-        if (!stateBar.GetIsCountDownEnd())
-            return;
         if (isPaused)
         {
             avatarAnime.SetBool("isIdle", true);

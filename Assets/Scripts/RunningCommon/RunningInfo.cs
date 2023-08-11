@@ -18,27 +18,26 @@ public class RunningInfo : MonoBehaviour
 
     void Update()
     {
-        if (!stateBar.GetIsCountDownEnd())
-            return;
-        if (isPaused)
+
+        if (locationModule.GetIsValidMovement() || isPaused)
         {
-            transform.position = arCamera.transform.position + dirVectAtPause * 2;
+            transform.position = arCamera.transform.position + arCamera.transform.forward * 2;
             transform.rotation = Quaternion.LookRotation(transform.position - arCamera.transform.position);
-        }
-        else
-        {
-            if (locationModule.GetIsValidMovement())
-            {
-                transform.position = arCamera.transform.position + arCamera.transform.forward * 2;
-                transform.rotation = Quaternion.LookRotation(transform.position - arCamera.transform.position);
-            }
-            else
-            {
-                directionVector = locationModule.GetWeightedVector();
-                transform.position = arCamera.transform.position + directionVector * 2;
-                transform.rotation = Quaternion.LookRotation(transform.position - arCamera.transform.position);
-            }
-        }
+        }        
+        //else
+        //{
+        //    if (locationModule.GetIsValidMovement())
+        //    {
+        //        transform.position = arCamera.transform.position + arCamera.transform.forward * 2;
+        //        transform.rotation = Quaternion.LookRotation(transform.position - arCamera.transform.position);
+        //    }
+        //    else
+        //    {
+        //        directionVector = locationModule.GetDirectionVector();
+        //        transform.position = arCamera.transform.position + directionVector * 2;
+        //        transform.rotation = Quaternion.LookRotation(transform.position - arCamera.transform.position);
+        //    }
+        //}
     }
 
     private void GetDirVectAtPause()

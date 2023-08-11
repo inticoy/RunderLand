@@ -39,16 +39,8 @@ public class Player : MonoBehaviour
 
 	public void Start()
     {		
-		isPaused = true;
-		StartCoroutine(startRun());
-	}
-
-	public IEnumerator startRun()
-	{
-		while (!LocationModule.isLocationModuleReady)
-		{			
-			yield return new WaitForSecondsRealtime(1f);
-		}
+		isPaused = false;
+		distUnit = 0.01;
 		currGPSData = new GPSData(LocationModule.latitude, LocationModule.longitude, LocationModule.altitude);
 		StartCoroutine(UpdateLocation());
 		StartCoroutine(UpdateDistance());
@@ -111,7 +103,7 @@ public class Player : MonoBehaviour
 				}
             }
 			distUnit = Math.Abs(sectionDist * 0.02);
-            route.Add(Tuple.Create(currGPSData, totalDist, LocationModule.GetWeightedVector()));			
+            route.Add(Tuple.Create(currGPSData, totalDist, LocationModule.GetDirectionVector()));			
 			size++;
 			GPXLogger.AppendTrackPointToGPXFile(latitude, longitude, altitude);
         }

@@ -15,10 +15,10 @@ public class StateBar : MonoBehaviour
 	
 	private float distance;
 	private float fadeSpeed = 1.2f;
-	private float startTime = -1;		
+	private float startTime;		
 	private int fadeMode;
-	private bool isLoadingEnd = false;
-	private bool isCountDownEnd = false;
+	private bool isLoadingEnd;
+	private bool isCountDownEnd;
 
 	public bool GetIsCountDownEnd()
     {
@@ -33,7 +33,10 @@ public class StateBar : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-			unitText.text = "";
+		unitText.text = "";
+		isCountDownEnd = false;
+		isLoadingEnd = false;
+		startTime = -1;
     }
 
     // Update is called once per frame

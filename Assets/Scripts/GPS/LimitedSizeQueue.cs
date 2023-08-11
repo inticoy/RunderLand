@@ -10,6 +10,11 @@ public class LimitedSizeQueue
     private Vector3 lastVector;
     private float lerfArgument;
 
+    public void SetLastVector(Vector3 lastVector)
+    {
+        this.lastVector = lastVector;
+    }
+
     public LimitedSizeQueue(int maxSize)
     {
         lerfArgument = 0.1f;
@@ -66,13 +71,9 @@ public class LimitedSizeQueue
     public Vector3 GetFilteredDirectionVector()
     {
         Vector3 filteredDirectionVector;
-
         if (queue.Count == 0)
-            return (Vector3.zero);
-        else if (lastVector == Vector3.zero)
         {
-            lastVector = queue.Peek();
-            return (queue.Peek());
+            return (Vector3.zero);
         }
 
         filteredDirectionVector = Vector3.Lerp(lastVector, queue.Peek(), lerfArgument);

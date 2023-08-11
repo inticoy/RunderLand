@@ -10,12 +10,13 @@ public class AvatarAlone : MonoBehaviour
     public LocationModule locationModule;
     public StateBar stateBar;
     public Player player;
-    public TMP_Text avatarDistText;   
+    public TMP_Text avatarDistText;
 
     private Vector3 pos;
     private Vector3 directionVector;
     private List<double> distanceList;
     private bool isPaused;   
+    private float threshold;
     private double movePerFrame = 0;
     private double avatarTotalDist = 0;
 
@@ -34,7 +35,7 @@ public class AvatarAlone : MonoBehaviour
         Vector3 newDirVec = arCamera.transform.forward;
         newDirVec.y = 0;
         Vector3.Normalize(newDirVec);
-        Vector3 pos = arCamera.transform.position + newDirVec * 1.5f;        
+        Vector3 pos = arCamera.transform.position + newDirVec * 4f;        
         pos.y -= 1.4f;
         transform.position = pos;        
         Quaternion newRot = Quaternion.Euler(0f, arCamera.transform.rotation.eulerAngles.y, 0f);
@@ -47,11 +48,9 @@ public class AvatarAlone : MonoBehaviour
     }
 
     public void Start()
-    {
-        ///
-        movePerFrame = 0.1f;
-        ///
-        isPaused = true;
+    {        
+        isPaused = false;
+        threshold = 3f;
         directionVector = Vector3.zero;
     }
 
@@ -63,24 +62,32 @@ public class AvatarAlone : MonoBehaviour
         if (!isPaused)
         {
             avatarTotalDist += movePerFrame;
-            float distDiff = Mathf.Clamp((float)(avatarTotalDist - playerTotalDist), -2, 2);
+            float distDiff = Mathf.Clamp((float)(avatarTotalDist - playerTotalDist), -threshold, threshold);
 
-            if (locationModule.GetIsValidMovement())
-            {
-                directionVector = locationModule.GetWeightedVector();
+            //avatarDistText.text = distDiff.ToString();
 
-                pos = arCamera.transform.position + directionVector * distDiff;
-                pos.y -= 1.4f;
-                transform.position = pos;
-            }
-            if (directionVector == Vector3.zero)
-            {
-                directionVector = arCamera.transform.forward;
-                directionVector.y = 0;
-                Vector3.Normalize(directionVector);                
-            }
+            directionVector = locationModule.GetDirectionVector();
+            //avatarDistText.text = directionVector.ToString();
+            pos = arCamera.transform.position + directionVector * distDiff;
+            pos.y -= 1.4f;
+            transform.position = pos;
+            //if (locationModule.GetIsValidMovement())
+            //{
+            //    directionVector = locationModule.GetWeightedVector();
+
+            //    pos = arCamera.transform.position + directionVector * distDiff;              
+            //    pos.y -= 1.4f;
+            //    transform.position = pos;
+            //}
+            //// At first
+            //if (directionVector == Vector3.zero)
+            //{
+            //    directionVector = arCamera.transform.forward;
+            //    directionVector.y = 0;
+            //    Vector3.Normalize(directionVector);                
+            //}
             transform.rotation = Quaternion.LookRotation(directionVector);
         }
-        avatarDistText.text = ((float)(avatarTotalDist)).ToString();
+        //avatarDistText.text = ((float)(avatarTotalDist)).ToString();
     }
 }

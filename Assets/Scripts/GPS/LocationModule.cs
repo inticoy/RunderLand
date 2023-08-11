@@ -7,17 +7,18 @@ public class LocationModule : MonoBehaviour
 {
     public double latitude, longitude, altitude;   
     public Camera arCamera;
-    public bool isLocationModuleReady;    
+    public bool isLocationModuleReady;
+    public TMP_Text debug;
     
     private LimitedSizeQueue directionVectorList = new LimitedSizeQueue(10);        
     private Vector3 currPositionMov, prevPositionMov;
-    private Vector3 weightedVector;            
+    private Vector3 directionVector;            
     private bool isValidMovement;        
     private float dxMov, dyMov, dzMov;
 
-    public Vector3 GetWeightedVector()
+    public Vector3 GetDirectionVector()
     {
-        return (weightedVector);
+        return (directionVector);
     }
 
     public bool GetIsValidMovement()
@@ -25,12 +26,22 @@ public class LocationModule : MonoBehaviour
         return (isValidMovement);
     }
 
+    public void InitializeQueue()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            directionVectorList.Enqueue(arCamera.transform.forward);
+        }
+        directionVectorList.SetLastVector(arCamera.transform.forward);
+    }
+
     void Start()
     {
         isLocationModuleReady = false;
         //위치 서비스 초기화
         Input.location.Start(0.1f, 0.1f);
-
+        //StartCoroutine(UpdateGPSData());
+        //StartCoroutine(UpdateMovement());
         //위치 서비스 활성화 확인
         if (Input.location.isEnabledByUser)
         {            
@@ -73,7 +84,7 @@ public class LocationModule : MonoBehaviour
         float prevRot = rot;
         ///
         while (true)
-        {
+        {            
             rot = arCamera.transform.rotation.eulerAngles.y;
             currPositionMov = arCamera.transform.position;
 
@@ -82,7 +93,7 @@ public class LocationModule : MonoBehaviour
             dzMov = currPositionMov.z - prevPositionMov.z;
 
             double movement = Math.Sqrt(Math.Pow(dxMov, 2) + Math.Pow(dyMov, 2) + Math.Pow(dzMov, 2));
-            
+            //debug.text = Math.Abs(rot - prevRot).ToString();
             if (Math.Abs(rot - prevRot) > 1.3)
                 directionVectorList.setArgument(0.6f);
             else
@@ -93,12 +104,13 @@ public class LocationModule : MonoBehaviour
                 directionVectorList.Enqueue(new Vector3(dxMov, 0, dzMov));
             }
             else
-                isValidMovement = false;
-
+            {
+                isValidMovement = false;               
+            }
             prevRot = rot;
                         
             prevPositionMov = currPositionMov;
-            weightedVector = Vector3.Normalize(directionVectorList.GetFilteredDirectionVector());
+            directionVector = Vector3.Normalize(directionVectorList.GetFilteredDirectionVector());
             yield return new WaitForSecondsRealtime(0.04f);
         }        
     }
