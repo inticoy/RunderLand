@@ -42,8 +42,7 @@ public class ControlTowerForRunningAlone : MonoBehaviour
         avatarToggleValue = true;
         mapToggleValue = true;
         effectToggleValue = true;
-        isPaused = false;
-        isStart = false;
+        isPaused = true;
         isPauseButtonPressed = false;
         time = 0;
     }
@@ -56,7 +55,6 @@ public class ControlTowerForRunningAlone : MonoBehaviour
         {
             if (time == 0)
             {
-                isStart = true;
                 player.enabled = true;
                 avatarAlone.enabled = true;
                 GPXLogger.enabled = true;
@@ -84,9 +82,7 @@ public class ControlTowerForRunningAlone : MonoBehaviour
 
     public void SetAvatarAnime()
     {
-        if (!isStart)
-            return;
-        else if (isPaused)
+        if (isPaused)
         {
             avatarAnime.SetBool("isIdle", true);
             avatarAnime.SetBool("isRun", false);
