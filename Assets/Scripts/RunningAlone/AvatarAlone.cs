@@ -14,6 +14,7 @@ public class AvatarAlone : MonoBehaviour
 
     private Vector3 pos;
     private Vector3 directionVector;
+    private Vector3 avatarFixedLocation;
     private List<double> distanceList;
     private bool isPaused;   
     private float threshold;
@@ -38,8 +39,16 @@ public class AvatarAlone : MonoBehaviour
         Vector3 pos = arCamera.transform.position + newDirVec * 4f;        
         pos.y -= 1.4f;
         transform.position = pos;        
-        Quaternion newRot = Quaternion.Euler(0f, arCamera.transform.rotation.eulerAngles.y, 0f);
+        Quaternion newRot = Quaternion.Euler(0f, 180f + arCamera.transform.rotation.eulerAngles.y, 0f);
         transform.rotation = newRot;
+    }
+
+    public void ComeAvatar(float time)
+    {
+        if (avatarFixedLocation == Vector3.zero)
+            avatarFixedLocation = transform.position;
+        Vector3 avatarPosition = Vector3.Lerp(avatarFixedLocation, arCamera.transform.position - new Vector3(0, 1.4f, 0) + 0.5f * arCamera.transform.right, time / 3);
+        transform.position = avatarPosition;
     }
 
     public void ToggleIsPaused()
@@ -52,6 +61,7 @@ public class AvatarAlone : MonoBehaviour
         isPaused = false;
         threshold = 3f;
         directionVector = Vector3.zero;
+        avatarFixedLocation = Vector3.zero;
     }
 
     public void FixedUpdate()

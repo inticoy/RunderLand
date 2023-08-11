@@ -18,6 +18,7 @@ public class StateBar : MonoBehaviour
 	private float startTime;		
 	private int fadeMode;
 	private bool isLoadingEnd;
+	private bool isCountDownGoing;
 	private bool isCountDownEnd;
 
 	public bool GetIsCountDownEnd()
@@ -30,12 +31,18 @@ public class StateBar : MonoBehaviour
 		return (isLoadingEnd);
     }
 
+	public bool GetIsCountDownGoing()
+	{
+		return (isCountDownGoing);
+	}
+
 	// Start is called before the first frame update
 	void Start()
     {
 		unitText.text = "";
 		isCountDownEnd = false;
 		isLoadingEnd = false;
+		isCountDownGoing = false;
 		startTime = -1;
     }
 
@@ -69,6 +76,7 @@ public class StateBar : MonoBehaviour
 		{			
 			if (startTime == -1)
 			{
+				isCountDownGoing = true;
 				startTime = Time.time + 3;
 			}
 			else if (Time.time < startTime)
@@ -88,6 +96,7 @@ public class StateBar : MonoBehaviour
 			}
 			else
 			{
+				isCountDownGoing = false;
 				if (countdownText != null && Time.time < startTime + 1)
 				{
                     float newAlpha = (startTime - Time.time) - Mathf.Floor(startTime - Time.time);
