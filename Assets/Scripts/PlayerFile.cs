@@ -5,6 +5,7 @@ using System;
 
 public class PlayerFile : MonoBehaviour
 {
+    public GameObject keyboard;
     string playerName;
     DateTime todayDate;
     DateTime lastRunDate;
@@ -23,9 +24,8 @@ public class PlayerFile : MonoBehaviour
         }
         else
         {
+            keyboard.SetActive(true);
             // Show keyboard and get name by input
-
-            
             Debug.Log("No playerName, Set to Jason Peralta");
             PlayerPrefs.SetString("playerName", "Jason Peralta");
         }
@@ -43,7 +43,7 @@ public class PlayerFile : MonoBehaviour
         }        
 
         // Get streakDays using lastRunDate
-        streakDays = PlayerPrefs.GetInt("streakDays", 1);        
+        streakDays = PlayerPrefs.GetInt("streakDays", 1);
         int daySpan = (lastRunDate - todayDate).Days;
         
         if (daySpan == 1)

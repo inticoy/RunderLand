@@ -16,6 +16,7 @@ namespace QCHT.Samples.XRKeyboard
     public class KeyboardInputs : MonoBehaviour
     {
         [SerializeField] private Text _keyboardInputsText;
+        [SerializeField] private GameObject keyboard;
 
         public Text KeyboardInputsText
         {
@@ -77,7 +78,9 @@ namespace QCHT.Samples.XRKeyboard
                             _keyboardInputsText.text = _keyboardInputsText.text.Substring(0, _keyboardInputsText.text.Length - 1);
                         break;
                     case KeySpecial.Enter:
-                        _keyboardInputsText.text += "\n";
+                        keyboard.SetActive(false);
+                        Debug.Log(_keyboardInputsText.text);
+                        //_keyboardInputsText.text += "\n";
                         break;
                     case KeySpecial.Shift:
                         SetMaj(!_maj);
