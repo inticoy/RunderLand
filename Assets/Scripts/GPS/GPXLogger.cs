@@ -12,6 +12,8 @@ public class GPXLogger : MonoBehaviour
     private string gpxFilePath;
     private string fileName = "log1.gpx";
 
+    [SerializeField] NaverReverseGeocodingLog reverseGeocoding;
+
     // Time interval between each GPS update
     public float updateInterval = 1f;
 
@@ -112,6 +114,15 @@ public class GPXLogger : MonoBehaviour
 
         XmlNode trackSegment = doc.SelectSingleNode("//trkseg");
 
+        if (doc.SelectSingleNode("//trkpt") == null)
+        {
+            XmlNode locInfoNode = doc.SelectSingleNode("//locationinfo");
+
+            XmlElement source = doc.CreateElement("source");
+            source.InnerText = reverseGeocoding.GetLocationName((float)latitude, (float)longitude);
+            locInfoNode.AppendChild(source);
+        }
+
         XmlElement trackPoint = doc.CreateElement("trkpt");
         trackPoint.SetAttribute("lat", latitude.ToString());
         trackPoint.SetAttribute("lon", longitude.ToString());
@@ -131,6 +142,21 @@ public class GPXLogger : MonoBehaviour
 
     private void OnDestroy()
     {
+        XmlDocument doc = new XmlDocument();
+        doc.Load(gpxFilePath);
+
+        XmlNodeList trkpts = doc.SelectNodes("//trkpt");
+        XmlNode endtrkpt = trkpts[trkpts.Count - 1];
+
+        double latitude = double.Parse(endtrkpt.Attributes["lat"].Value);
+        double longitude = double.Parse(endtrkpt.Attributes["lon"].Value);
+
+        XmlNode locInfoNode = doc.SelectSingleNode("//locationinfo");
+
+        XmlElement destination = doc.CreateElement("destination");
+        destination.InnerText = reverseGeocoding.GetLocationName((float)latitude, (float)longitude);
+        locInfoNode.AppendChild(destination);
+
         // Stop GPS
         Input.location.Stop();
     }

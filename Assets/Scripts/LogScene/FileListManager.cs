@@ -87,6 +87,17 @@ public class FileListManager : MonoBehaviour
 
         stringList.Add(dateString);
 
+        try
+        {
+            string source = doc.SelectSingleNode("//source").InnerText;
+            string destination = doc.SelectSingleNode("//destination").InnerText;
+
+            stringList.Add(source + " -> " + destination);
+        } catch (Exception e)
+        {
+            stringList.Add("Unknown");
+        }
+
         // Get location from start and end Node
 
         float gpxDistance = GPXReader.getGPXDistance(gpsDataList);
@@ -111,8 +122,8 @@ public class FileListManager : MonoBehaviour
     {
         nameText.text = logDataList[index][1];
         dateText.text = logDataList[index][2];
-        distanceText.text = logDataList[index][3];
-        paceText.text = logDataList[index][4];
-        locationText.text = logDataList[index].Count.ToString();
+        locationText.text = logDataList[index][3];
+        distanceText.text = logDataList[index][4];
+        paceText.text = logDataList[index][5];
     }
 }
