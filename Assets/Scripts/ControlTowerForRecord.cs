@@ -3,15 +3,20 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 
-public class ControlTowerForRunningAlone : MonoBehaviour
+/*
+ * Avatar Anime control in the avatar script  
+ * No Speed Control
+ * 
+*/
+
+public class ControlTowerForRecord: MonoBehaviour
 {
     public Toggle avatarToggle;
     public Toggle mapToggle;
     public Toggle effectToggle;
-    public Slider slider;
     public Player player;
     public RunningInfo runningInfo;
-    public AvatarAlone avatarAlone;
+    public AvatarWithRecord avatarWithRecord;
     public Animator avatarAnime;
     public StateBar stateBar;
     public Camera arCamera;
@@ -52,14 +57,14 @@ public class ControlTowerForRunningAlone : MonoBehaviour
     void Update()
     {
         CheckOption();
-        SetAvatarAnime();        
+        SetAvatarAnime();
         if (stateBar.GetIsCountDownEnd())
         {
             if (time == 0)
             {
                 isPaused = false;
                 player.enabled = true;
-                avatarAlone.enabled = true;
+                avatarWithRecord.enabled = true;
                 GPXLogger.enabled = true;
                 runningInfo.ToggleIsPaused();
                 locationModule.InitializeQueue();
@@ -69,7 +74,7 @@ public class ControlTowerForRunningAlone : MonoBehaviour
             if (isPauseButtonPressed)
             {
                 player.ToggleIsPaused();
-                avatarAlone.ToggleIsPaused();
+                avatarWithRecord.ToggleIsPaused();
                 runningInfo.ToggleIsPaused();
                 isPauseButtonPressed = false;
             }
@@ -82,11 +87,11 @@ public class ControlTowerForRunningAlone : MonoBehaviour
             avatarAnime.SetBool("isRun", true);
             avatarAnime.SetBool("isIdle", false);
             preTime += Time.deltaTime;
-            avatarAlone.ComeAvatar(preTime);
+            avatarWithRecord.ComeAvatar(preTime);
         }
         else
-        {            
-            avatarAlone.FixAvatar();
+        {
+            avatarWithRecord.FixAvatar();
             runningInfo.FixInfo();
         }
     }
@@ -99,7 +104,7 @@ public class ControlTowerForRunningAlone : MonoBehaviour
             avatarAnime.SetBool("isRun", false);
             avatarAnime.SetBool("isSprint", false);
         }
-        else if (runningSpeed >= 10)
+        else if (avatarWithRecord.GetSpeed() >= 2.77)
         {
             avatarAnime.SetBool("isIdle", false);
             avatarAnime.SetBool("isRun", false);
@@ -110,16 +115,11 @@ public class ControlTowerForRunningAlone : MonoBehaviour
             avatarAnime.SetBool("isIdle", false);
             avatarAnime.SetBool("isRun", true);
             avatarAnime.SetBool("isSprint", false);
-        }         
+        }
     }
 
     public void CheckOption()
     {
-        if (runningSpeed != slider.value)
-        {
-            runningSpeed = slider.value;
-            avatarAlone.SetMovePerFrame(slider.value / 180);
-        }
         if (avatarToggleValue != avatarToggle.isOn)
         {
             avatarToggleValue = avatarToggle.isOn;

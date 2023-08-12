@@ -24101,7 +24101,7 @@ MonoBehaviour:
   locationModule: {fileID: 979290811}
   stateBar: {fileID: 1807722781}
   player: {fileID: 220808846}
-  avatarDistText: {fileID: 0}
+  avatarDistText: {fileID: 1380872952}
 --- !u!95 &1646964050 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4540229000190281644, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}

@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
+using System.IO;
 using TMPro;
 
-public class AvatarAlone : MonoBehaviour
+public class AvatarWithRecord : MonoBehaviour
 {
-    public Camera arCamera;    
+    public Camera arCamera;
     public LocationModule locationModule;
     public StateBar stateBar;
     public Player player;
@@ -14,11 +16,19 @@ public class AvatarAlone : MonoBehaviour
     private Vector3 directionVector;
     private Vector3 avatarFixedLocation;
     private List<double> distanceList;
-    private bool isPaused;   
+    private bool isPaused;
+    private int distIdx = 0;
     private float threshold;
+    private float distDiff;
     private double movePerFrame = 0;
     private double avatarTotalDist = 0;
-    private float distDiff;
+    private double sectionDist = 0;
+    private double speed;
+
+    public double GetSpeed()
+    {
+        return (speed);
+    }
 
     public double GetAvatarTotalDist()
     {
@@ -35,9 +45,9 @@ public class AvatarAlone : MonoBehaviour
         Vector3 newDirVec = arCamera.transform.forward;
         newDirVec.y = 0;
         Vector3.Normalize(newDirVec);
-        Vector3 pos = arCamera.transform.position + newDirVec * 4f;        
+        Vector3 pos = arCamera.transform.position + newDirVec * 4f;
         pos.y -= 1.4f;
-        transform.position = pos;        
+        transform.position = pos;
         Quaternion newRot = Quaternion.Euler(0f, 180f + arCamera.transform.rotation.eulerAngles.y, 0f);
         transform.rotation = newRot;
     }
@@ -56,21 +66,56 @@ public class AvatarAlone : MonoBehaviour
     }
 
     public void Start()
-    {        
+    {
         isPaused = false;
         threshold = 3f;
         directionVector = Vector3.zero;
         avatarFixedLocation = Vector3.zero;
+     
+        string filePath = Path.Combine(Application.persistentDataPath, "log1.gpx");
+        List<GPSData> gpsDataList = GPXReader.ReadGPXFile(filePath);
+
+        distanceList = new List<double>();
+
+        if (gpsDataList != null)
+        {
+            for (int idx = 0; idx < gpsDataList.Count - 1; idx++)
+            {
+                distanceList.Add(GPSUtils.CalculateDistance(gpsDataList[idx], gpsDataList[idx + 1]));
+            }
+        }
     }
+
+    public bool IsOutOfRange()
+    {
+        if (distanceList.Count >= distIdx)
+        {
+            return (true);
+        }
+        return (false);
+    }
+
 
     public void FixedUpdate()
     {
         //List<Tuple<GPSData, double, Vector3>> route = player.route;
         double playerTotalDist = player.GetTotalDist();
+        if (IsOutOfRange())
+            return;
+        if (sectionDist >= distanceList[distIdx])
+        {
+            distIdx++;
+            sectionDist = 0;
+            if (IsOutOfRange())
+                return;
+            speed = distanceList[distIdx];
+            movePerFrame = distanceList[distIdx] * 0.02;
+        }
 
         if (!isPaused)
         {
             avatarTotalDist += movePerFrame;
+            sectionDist += movePerFrame;
             distDiff = Mathf.Clamp((float)(avatarTotalDist - playerTotalDist), -threshold, threshold);
             directionVector = locationModule.GetDirectionVector();
 
