@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainSceneNew.unity
+    path: Assets/Scenes/MainScene.unity
     guid: 96b8df653881940a59411e6892506548
   - enabled: 1
     path: Assets/Scenes/RunningAloneScene.unity
@@ -26,9 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RunWithFriendScene.unity
     guid: 6064cec1eb98b4eccabee65cfbbaf4a1
-  - enabled: 1
-    path: Assets/Scenes/MainScene.unity
-    guid: e543690956d9f4bb5b3088f7fa9d2e40
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: bc9a5c4aad4614e218ce0e6b600a0027, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e0ffad2ac005742679a5efab7972b031, type: 2}

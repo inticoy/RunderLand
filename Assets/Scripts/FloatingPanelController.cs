@@ -12,7 +12,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
     public class FloatingPanelController : MonoBehaviour
     {
         public bool FollowGaze = true;
-        public float TargetDistance = 1.0f;
+        public float TargetDistance = 3f;
         public float MovementSmoothness = 0.2f;
         private Transform _arCameraTransform;
         private Camera _arCamera;
