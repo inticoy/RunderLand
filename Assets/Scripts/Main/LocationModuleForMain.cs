@@ -15,10 +15,6 @@ public class LocationModuleForMain : MonoBehaviour
         isLocationModuleReady = false;
         Input.location.Start(0.1f, 0.1f);
 
-        // Dokdo
-        latitude = 37.24312;
-        longitude = 131.86611;
-
         if (Input.location.isEnabledByUser)
         {
             StartCoroutine(InitializeGPS());

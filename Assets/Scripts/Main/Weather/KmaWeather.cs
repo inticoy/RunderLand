@@ -80,8 +80,14 @@ public class KmaWeather : MonoBehaviour
 
     public WeatherData response;   
 
-    void Start()
+    IEnumerator Start()
     {
+        while (true)
+        {
+            if (location.isLocationModuleReady)
+                break;
+            yield return new WaitForSecondsRealtime(1f);
+        }
         WgsToBaseStationCoord conv = new WgsToBaseStationCoord();
         LatXLonY latXlonY = conv.dfs_xy_conv(location.latitude, location.longitude);
 

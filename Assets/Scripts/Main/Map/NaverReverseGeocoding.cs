@@ -112,8 +112,14 @@ public class NaverReverseGeocoding : MonoBehaviour
     private string url = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc";
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
+        while (true)
+        {
+            if (location.isLocationModuleReady == true)
+                break;
+            yield return new WaitForSecondsRealtime(1f);
+        }
         Debug.Log(location.longitude.ToString() + "," + location.latitude.ToString());
         url += "?coords=" + location.longitude.ToString() + "," + location.latitude.ToString();
         url += "&orders=legalcode&output=json";
