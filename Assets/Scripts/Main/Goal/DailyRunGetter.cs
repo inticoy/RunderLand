@@ -21,7 +21,7 @@ public class DailyRunGetter : MonoBehaviour
 
         foreach (string filePath in fileList)
         {
-            if (filePath.Substring(0, 8).CompareTo(DateTime.Now.ToString("yyyyMMdd")) == 0)
+            if (Path.GetFileName(filePath).Substring(0, 8).CompareTo(DateTime.Now.ToString("yyyyMMdd")) == 0)
                 todayFiles.Add(filePath);
         }
         dailyGoalText.text = GetDailyRunDistance().ToString("0.0") + " / 5km";
