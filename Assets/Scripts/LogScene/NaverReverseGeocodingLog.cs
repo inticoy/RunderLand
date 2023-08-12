@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Networking;
 using Geocoding;
+using System.Threading;
 
 public class NaverReverseGeocodingLog : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class NaverReverseGeocodingLog : MonoBehaviour
     public string GetLocationName(float latitude, float longitude)
     {
         StartCoroutine(GetReverseGeocode(latitude, longitude));
+        float start = Time.time;
         while (true)
         {
             if (status_code == 0)
@@ -27,6 +29,9 @@ public class NaverReverseGeocodingLog : MonoBehaviour
             }
             else if (status_code > 0)
                 return "Unknown";
+            if (start + 5 < Time.time)
+                return "Unknown";
+            Thread.Sleep(500);
         }
     }
 

@@ -26,6 +26,7 @@ public class GPXLogger : MonoBehaviour
             Directory.CreateDirectory(path);
 
         fileName = DateTime.Now.ToString("yyyyMMddHHmm") + ".gpx";
+        Debug.Log(fileName);
         gpxFilePath = Path.Combine(path, fileName);
         
         double latitude = LocationModule.GetComponent<LocationModule>().latitude;
