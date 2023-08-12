@@ -109,14 +109,14 @@ public class GPXLogger : MonoBehaviour
 
         XmlNode trackSegment = doc.SelectSingleNode("//trkseg");
 
-        if (doc.SelectSingleNode("//trkpt") == null)
-        {
-            XmlNode locInfoNode = doc.SelectSingleNode("//locationinfo");
+        //if (doc.SelectSingleNode("//trkpt") == null)
+        //{
+        //    XmlNode locInfoNode = doc.SelectSingleNode("//locationinfo");
 
-            XmlElement source = doc.CreateElement("source");
-            source.InnerText = reverseGeocoding.GetLocationName((float)latitude, (float)longitude);
-            locInfoNode.AppendChild(source);
-        }
+        //    XmlElement source = doc.CreateElement("source");
+        //    source.InnerText = reverseGeocoding.GetLocationName((float)latitude, (float)longitude);
+        //    locInfoNode.AppendChild(source);
+        //}
 
         XmlElement trackPoint = doc.CreateElement("trkpt");
         trackPoint.SetAttribute("lat", latitude.ToString());
@@ -137,27 +137,27 @@ public class GPXLogger : MonoBehaviour
 
     private void OnDestroy()
     {
-        XmlDocument doc = new XmlDocument();
-        doc.Load(gpxFilePath);
+        //XmlDocument doc = new XmlDocument();
+        //doc.Load(gpxFilePath);
 
-        try
-        {
-            XmlNodeList trkpts = doc.SelectNodes("//trkpt");
-            XmlNode endtrkpt = trkpts[trkpts.Count - 1];
+        //try
+        //{
+        //    XmlNodeList trkpts = doc.SelectNodes("//trkpt");
+        //    XmlNode endtrkpt = trkpts[trkpts.Count - 1];
 
-            double latitude = double.Parse(endtrkpt.Attributes["lat"].Value);
-            double longitude = double.Parse(endtrkpt.Attributes["lon"].Value);
+        //    double latitude = double.Parse(endtrkpt.Attributes["lat"].Value);
+        //    double longitude = double.Parse(endtrkpt.Attributes["lon"].Value);
 
-            XmlNode locInfoNode = doc.SelectSingleNode("//locationinfo");
+        //    XmlNode locInfoNode = doc.SelectSingleNode("//locationinfo");
 
-            XmlElement destination = doc.CreateElement("destination");
-            destination.InnerText = reverseGeocoding.GetLocationName((float)latitude, (float)longitude);
-            locInfoNode.AppendChild(destination);
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e.Message);
-        }
+        //    XmlElement destination = doc.CreateElement("destination");
+        //    destination.InnerText = reverseGeocoding.GetLocationName((float)latitude, (float)longitude);
+        //    locInfoNode.AppendChild(destination);
+        //}
+        //catch (Exception e)
+        //{
+        //    Debug.Log(e.Message);
+        //}
         // Stop GPS
         Input.location.Stop();
     }

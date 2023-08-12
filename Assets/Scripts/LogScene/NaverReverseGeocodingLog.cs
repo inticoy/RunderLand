@@ -17,8 +17,8 @@ public class NaverReverseGeocodingLog : MonoBehaviour
     public string GetLocationName(float latitude, float longitude)
     {
         StartCoroutine(GetReverseGeocode(latitude, longitude));
-        float start = Time.time;
-        while (true)
+        int limit = 0;
+        while (limit < 1000)
         {
             if (status_code == 0)
             {
@@ -29,10 +29,9 @@ public class NaverReverseGeocodingLog : MonoBehaviour
             }
             else if (status_code > 0)
                 return "Unknown";
-            if (start + 5 < Time.time)
-                return "Unknown";
-            Thread.Sleep(500);
+            limit++;
         }
+        return "Unknown";
     }
 
     IEnumerator GetReverseGeocode(float latitude, float longitude)
