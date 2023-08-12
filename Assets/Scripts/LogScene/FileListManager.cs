@@ -74,18 +74,27 @@ public class FileListManager : MonoBehaviour
         XmlNode endNode = trkPoints[trkPoints.Count - 1];
 
         // Get time from start and end Node
-        DateTime startTime = DateTime.Parse(startNode.SelectSingleNode("time").InnerText);
-        DateTime endTime = DateTime.Parse(endNode.SelectSingleNode("time").InnerText);
+        TimeSpan duration;
 
-        TimeSpan duration = endTime.Subtract(startTime);
+        DateTime startTime = DateTime.Parse(metadata.SelectSingleNode("time").InnerText);
+        try
+        {
+            DateTime endTime = DateTime.Parse(endNode.SelectSingleNode("time").InnerText);
 
-        string dateString = startTime.ToString("yyyy.MM.dd.ddd") + " - " +
-                            string.Format("{0}h {1}' {2}''",
-                                    (int)duration.TotalHours,              // Hours
-                                    duration.Minutes,                      // Minutes
-                                    duration.Seconds);
+            duration = endTime.Subtract(startTime);
 
-        stringList.Add(dateString);
+            string dateString = startTime.ToString("yyyy.MM.dd.ddd") + " - " +
+                                string.Format("{0}h {1}' {2}''",
+                                        (int)duration.TotalHours,              // Hours
+                                        duration.Minutes,                      // Minutes
+                                        duration.Seconds);
+
+            stringList.Add(dateString);
+        } catch
+        {
+            duration = new TimeSpan(0);
+            stringList.Add(startTime.ToString("yyyy.MM.dd.ddd"));
+        }
 
         try
         {

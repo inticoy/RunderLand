@@ -4023,6 +4023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ----AR SETUP----
       objectReference: {fileID: 0}
+    - target: {fileID: 1330969416397547473, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1330969416684376125, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
       propertyPath: m_IsActive
       value: 0
