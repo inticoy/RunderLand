@@ -16,9 +16,11 @@ public class NaverReverseGeocodingLog : MonoBehaviour
 
     public string GetLocationName(float latitude, float longitude)
     {
+        if (latitude == 0 && longitude == 0)
+            return "Unknown";
         StartCoroutine(GetReverseGeocode(latitude, longitude));
         int limit = 0;
-        while (limit < 1000)
+        while (true)
         {
             if (status_code == 0)
             {
@@ -28,16 +30,18 @@ public class NaverReverseGeocodingLog : MonoBehaviour
                     return response.results[0].region.area3.name;
             }
             else if (status_code > 0)
-                return "Unknown";
+                return "Unknown1";
             limit++;
         }
-        return "Unknown";
+        return "Unknown2";
     }
 
     IEnumerator GetReverseGeocode(float latitude, float longitude)
     {
-        url += "?coords=" + longitude.ToString() + "," + latitude.ToString();
+        Debug.Log(longitude.ToString() + latitude.ToString());
+        url += "?coords=" + longitude.ToString("0.00000") + "," + latitude.ToString("0.00000");
         url += "&orders=legalcode&output=json";
+        Debug.Log(url);
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {
