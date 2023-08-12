@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FollowGaze: 1
-  TargetDistance: 0.6
+  TargetDistance: 1
   MovementSmoothness: 0.2
 --- !u!224 &701276648 stripped
 RectTransform:
@@ -659,6 +659,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4418158629963821200, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418158629963821200, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418158629963821200, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418158629963821200, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -705,6 +717,14 @@ PrefabInstance:
     - target: {fileID: 4418158629963821201, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418158631322815293, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0774
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418158631322815293, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0544
       objectReference: {fileID: 0}
     - target: {fileID: 6595615865667423730, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
       propertyPath: m_AnchorMax.x
