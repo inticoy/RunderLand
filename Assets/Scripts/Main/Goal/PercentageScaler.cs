@@ -10,12 +10,14 @@ public class PercentageScaler : MonoBehaviour
     
     private Vector3 initialPosition;
     private Vector3 initialScale;
+    private Vector3 startPosition;
 
     
     void Start()
     {
         initialPosition = transform.position;
         initialScale = transform.localScale;
+        startPosition = transform.position - transform.parent.position;
     }
 
     void Update()
@@ -25,7 +27,7 @@ public class PercentageScaler : MonoBehaviour
             float prevScaleX = transform.localScale.x;
             float newScaleX = Mathf.MoveTowards(prevScaleX, targetScaleX, scaleSpeed * Time.deltaTime);
             transform.localScale = new Vector3(newScaleX, transform.localScale.y, transform.localScale.z);
-            transform.position = new Vector3(initialPosition.x + (newScaleX / 4.0f), transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.parent.position.x + startPosition.x + (newScaleX / 4.0f), transform.parent.position.y + startPosition.y, transform.position.z + startPosition.z);
         }
     }
 }
