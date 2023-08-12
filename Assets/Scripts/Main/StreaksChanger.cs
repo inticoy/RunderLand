@@ -15,6 +15,6 @@ public class StreaksChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        text3d.Text = PlayerPrefs.GetInt("streakDays", 1).ToString();
     }
 }

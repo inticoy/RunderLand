@@ -4,30 +4,29 @@ using UnityEngine;
 
 public class PercentageScaler : MonoBehaviour
 {
-    public float targetScaleX = 0.5f; 
-    public float scaleSpeed = 0.1f; 
+    public float percentage = 1f;
 
-    
-    private Vector3 initialPosition;
-    private Vector3 initialScale;
-    private Vector3 startPosition;
+    private Vector3 originalPosition;
+    private Vector3 targetPosition;
+    private Vector3 targetScale;
+   
+    public float moveDuration = 0.2f; // Duration of the movement in seconds
 
-    
+
     void Start()
     {
-        initialPosition = transform.position;
-        initialScale = transform.localScale;
-        startPosition = transform.position - transform.parent.position;
+        originalPosition = transform.position - transform.parent.position;
     }
 
     void Update()
     {
-        if (transform.localScale.x < targetScaleX)
-        {
-            float prevScaleX = transform.localScale.x;
-            float newScaleX = Mathf.MoveTowards(prevScaleX, targetScaleX, scaleSpeed * Time.deltaTime);
-            transform.localScale = new Vector3(newScaleX, transform.localScale.y, transform.localScale.z);
-            transform.position = new Vector3(transform.parent.position.x + startPosition.x + (newScaleX / 4.0f), transform.parent.position.y + startPosition.y, transform.position.z + startPosition.z);
-        }
+        Vector3 rotatedVector = transform.parent.TransformDirection(originalPosition);
+        targetPosition = transform.parent.position + rotatedVector + 0.15f * percentage * Vector3.Normalize(transform.parent.right);
+        targetScale = new Vector3(percentage, 0.1f, 1f);
+        
+
+        float t = Mathf.Clamp01(Time.deltaTime / moveDuration);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, t);
+        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, t);
     }
 }

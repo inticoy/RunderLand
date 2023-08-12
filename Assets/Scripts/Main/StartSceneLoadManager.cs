@@ -40,7 +40,7 @@ public class StartSceneLoadManager : MonoBehaviour
 
         for (int i = 0; i < totalSteps; i++)
         {
-            man.transform.position += new Vector3(0, 0, -movementStep);
+            man.transform.position += movementStep * Vector3.Normalize(transform.parent.parent.forward);
             man.transform.localScale += new Vector3(movementStep, movementStep, movementStep);
             yield return null; // Wait for one frame
         }
