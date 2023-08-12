@@ -15552,6 +15552,7 @@ GameObject:
   - component: {fileID: 2077477553}
   - component: {fileID: 2077477552}
   - component: {fileID: 2077477551}
+  - component: {fileID: 2077477554}
   m_Layer: 0
   m_Name: GoalCube
   m_TagString: Untagged
@@ -15761,6 +15762,19 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2077477554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077477546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6c3db08f463417ca3760c168294b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dailyGoalText: {fileID: 1800199237}
 --- !u!1001 &2088821895
 PrefabInstance:
   m_ObjectHideFlags: 0

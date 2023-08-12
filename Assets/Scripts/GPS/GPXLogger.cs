@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 using System.IO;
 using System.Xml;
 using System;
@@ -10,7 +8,7 @@ public class GPXLogger : MonoBehaviour
 {
     // File path of the existing GPX file
     private string gpxFilePath;
-    private string fileName = "log1.gpx";
+    private string fileName;
 
     [SerializeField] NaverReverseGeocodingLog reverseGeocoding;
 
@@ -26,14 +24,10 @@ public class GPXLogger : MonoBehaviour
         string path = Application.persistentDataPath + "/running_logs";
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);
+
+        fileName = DateTime.Now.ToString("yyyyMMddHHmm") + ".gpx";
         gpxFilePath = Path.Combine(path, fileName);
-        int suffix = 1;
-        while (System.IO.File.Exists(gpxFilePath))
-        {
-            fileName = $"log{suffix}.gpx";
-            gpxFilePath = Path.Combine(path, fileName);
-            suffix++;
-        }
+        
         double latitude = LocationModule.GetComponent<LocationModule>().latitude;
         double longitude = LocationModule.GetComponent<LocationModule>().longitude;
         double altitude = LocationModule.GetComponent<LocationModule>().altitude;
