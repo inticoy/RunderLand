@@ -10,7 +10,7 @@ public class GPXLogger : MonoBehaviour
     private string gpxFilePath;
     private string fileName;
 
-    [SerializeField] NaverReverseGeocodingLog reverseGeocoding;
+    //[SerializeField] NaverReverseGeocodingLog reverseGeocoding;
 
     // Time interval between each GPS update
     public float updateInterval = 1f;
