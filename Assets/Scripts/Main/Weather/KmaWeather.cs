@@ -140,8 +140,8 @@ public class KmaWeather : MonoBehaviour
         }
         else
         {
-            weatherTempText.text = "기온 오류";
-            weatherMainText.text = "날씨 오류";            
+            weatherTempText.text = "날씨";
+            weatherMainText.text = "로딩 중";            
         }
     }
 

@@ -39,11 +39,11 @@ public class WeatherPrefabSelector : MonoBehaviour
                 }
                 else if (kmaWeather.weather == "구름 많음")
                 {
-                    weatherObj = Instantiate(mostly_cloudy, transform.parent);
+                    weatherObj = Instantiate(cloudy, transform.parent);
                 }
                 else if (kmaWeather.weather == "흐림")
                 {
-                    weatherObj = Instantiate(cloudy, transform.parent);
+                    weatherObj = Instantiate(mostly_cloudy, transform.parent);
                 }
                 else if (kmaWeather.weather == "비")
                 {

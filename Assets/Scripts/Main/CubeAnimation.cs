@@ -11,13 +11,19 @@ public class CubeAnimation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     // Start is called before the first frame update
     void Start()
     {
-        originalPosition = transform.position;
-        targetPosition = originalPosition + new Vector3(0, 0, -0.15f);
+        originalPosition = transform.position - transform.parent.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 rotatedVector = transform.parent.TransformDirection(originalPosition);
+
+        
+
+        targetPosition = transform.parent.position + rotatedVector - 0.15f * Vector3.Normalize(transform.parent.forward);
+
+
         if (isMoving)
         {
             float t = Mathf.Clamp01(Time.deltaTime / moveDuration);
@@ -33,6 +39,7 @@ public class CubeAnimation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         isMoving = false;
-        transform.position = originalPosition;
+        Vector3 rotatedVector = transform.parent.TransformDirection(originalPosition);
+        transform.position = transform.parent.position + rotatedVector;
     }
 }

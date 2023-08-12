@@ -131,8 +131,8 @@ public class NaverReverseGeocoding : MonoBehaviour
     {
         if (status_code == -1)
         {
-            area1Text.text = "위치를 찾을 수 없습니다.";
-            area2Text.text = "Location Module 확인";
+            area1Text.text = "위치";
+            area2Text.text = "로딩 중";
         }
         else if (status_code == 0)
         {
