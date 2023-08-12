@@ -9,16 +9,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace QCHT.Samples.XRKeyboard
 {
     public class KeyboardInputs : MonoBehaviour
     {
-        [SerializeField] private Text _keyboardInputsText;
+        [SerializeField] private TMP_Text _keyboardInputsText;
         [SerializeField] private GameObject keyboard;
 
-        public Text KeyboardInputsText
+        public TMP_Text KeyboardInputsText
         {
             get => _keyboardInputsText;
             set => _keyboardInputsText = value;
@@ -51,16 +52,18 @@ namespace QCHT.Samples.XRKeyboard
         {
             if (_keyboardInputsText == null)
                 return;
-            
+
+            string textStr = _keyboardInputsText.text;
+            Debug.Log("len" + textStr.Length);
             var keyStringCharButton = keyButton as KeyStringCharButton;
-            if (keyStringCharButton != null && keyStringCharButton.StrInput.Length > 0)
-            {
+            if (keyStringCharButton != null && keyStringCharButton.StrInput.Length > 0 && textStr.Length < 8)
+            {                
                 _keyboardInputsText.text += _maj ? keyStringCharButton.StrInput.ToUpper() : keyStringCharButton.StrInput.ToLower();
                 return;
-            }
-             
+            }            
+
             var keyStringButton = keyButton as KeyStringButton;
-            if (keyStringButton != null && keyStringButton.StrInput.Length > 0)
+            if (keyStringButton != null && keyStringButton.StrInput.Length > 0 && textStr.Length < 8)
             {
                 _keyboardInputsText.text += keyStringButton.StrInput;
                 return;
@@ -68,7 +71,7 @@ namespace QCHT.Samples.XRKeyboard
 
             var keySpecialButton = keyButton as KeySpecialButton;
             if (keySpecialButton != null)
-            {
+            {                
                 switch (keySpecialButton.KeySpecial)
                 {
                     case KeySpecial.Delete:
@@ -79,8 +82,8 @@ namespace QCHT.Samples.XRKeyboard
                         break;
                     case KeySpecial.Enter:
                         keyboard.SetActive(false);
-                        Debug.Log(_keyboardInputsText.text);
-                        //_keyboardInputsText.text += "\n";
+                        PlayerPrefs.SetString("playerName", _keyboardInputsText.text);
+                        SceneManager.LoadScene("MainScene");
                         break;
                     case KeySpecial.Shift:
                         SetMaj(!_maj);
