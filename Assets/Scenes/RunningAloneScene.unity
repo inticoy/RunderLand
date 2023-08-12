@@ -231,8 +231,8 @@ MonoBehaviour:
   _numElevationTileFallbackLods: 2
   _requestTilesAroundView: 1
   _center:
-    _latitude: 37.4885
-    _longitude: 127.0655
+    _latitude: 0
+    _longitude: 0
   _zoomLevel: 18
   _minimumZoomLevel: 1
   _maximumZoomLevel: 20
@@ -274,7 +274,7 @@ MonoBehaviour:
   _developerKey: AiK6k27GQHtXAGxukeYQL4DCPwyQulRr0EpedKBFfRxVCLlUHi66M50XsNyAvWv9
   _developerKeySource: 2
   _showMapDataInEditor: 1
-  _languageOverride: 42
+  _languageOverride: 23
   _languageChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15305,7 +15305,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
