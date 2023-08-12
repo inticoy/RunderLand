@@ -47,8 +47,19 @@ public class AvatarAlone : MonoBehaviour
     {
         if (avatarFixedLocation == Vector3.zero)
             avatarFixedLocation = transform.position;
-        Vector3 avatarPosition = Vector3.Lerp(avatarFixedLocation, arCamera.transform.position - new Vector3(0, 1.4f, 0), time / 3);
+        Vector3 avatarPosition = Vector3.Lerp(avatarFixedLocation, arCamera.transform.position - new Vector3(0, 1.4f, 0) - 1.5f * arCamera.transform.right, time / 3);
         transform.position = avatarPosition;
+    }
+
+    public void AfterMove(Vector3 directionVector)
+    {
+        Vector3 crossProductedVector = Vector3.Normalize(Vector3.Cross(directionVector, Vector3.up));
+        float distDiff = Vector3.Distance(transform.position, arCamera.transform.position);
+
+        if (distDiff < 1)
+        {
+            transform.position += crossProductedVector * (1 - distDiff);
+        }
     }
 
     public void ToggleIsPaused()
@@ -78,9 +89,13 @@ public class AvatarAlone : MonoBehaviour
 
             directionVector = locationModule.GetDirectionVector();
             //avatarDistText.text = directionVector.ToString();
-            pos = arCamera.transform.position + directionVector * distDiff;
+            if (distDiff > 2)
+                pos = arCamera.transform.position + directionVector * distDiff;
+            else
+                pos = arCamera.transform.position + directionVector * distDiff + Vector3.Normalize(Vector3.Cross(directionVector, Vector3.up)) * (2 - distDiff);
             pos.y -= 1.4f;
             transform.position = pos;
+            
             //if (locationModule.GetIsValidMovement())
             //{
             //    directionVector = locationModule.GetWeightedVector();

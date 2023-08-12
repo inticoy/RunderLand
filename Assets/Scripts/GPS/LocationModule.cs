@@ -15,6 +15,7 @@ public class LocationModule : MonoBehaviour
     private Vector3 directionVector;            
     private bool isValidMovement;        
     private float dxMov, dyMov, dzMov;
+    private Vector3 initDirVec;
 
     public Vector3 GetDirectionVector()
     {
@@ -28,11 +29,15 @@ public class LocationModule : MonoBehaviour
 
     public void InitializeQueue()
     {
+        initDirVec = arCamera.transform.forward;
+        initDirVec.y = 0;
+        Vector3.Normalize(initDirVec);
+
         for (int i = 0; i < 10; i++)
         {
-            directionVectorList.Enqueue(arCamera.transform.forward);
+            directionVectorList.Enqueue(initDirVec);
         }
-        directionVectorList.SetLastVector(arCamera.transform.forward);
+        directionVectorList.SetLastVector(initDirVec);
     }
 
     void Start()

@@ -21,7 +21,10 @@ public class RunningInfo : MonoBehaviour
 
         if (locationModule.GetIsValidMovement() || isPaused)
         {
-            transform.position = arCamera.transform.position + arCamera.transform.forward * 2;
+            directionVector = arCamera.transform.forward;
+            directionVector.y = 0;
+            Vector3.Normalize(directionVector);
+            transform.position = arCamera.transform.position + directionVector * 2;
             transform.rotation = Quaternion.LookRotation(transform.position - arCamera.transform.position);
         }        
         //else

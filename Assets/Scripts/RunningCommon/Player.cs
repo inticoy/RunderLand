@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 	public LocationModule  							LocationModule;
 	public StateBar									stateBar;
 	public TMP_Text									playertext;
-	//public GameObject								speedLine;
+	public GameObject speedLine;
 	public int										size;
 
 	private bool									isPaused;
@@ -61,16 +61,13 @@ public class Player : MonoBehaviour
 		while (true)
 		{	
 			yield return new WaitForSecondsRealtime(1f);
-			//double decimalDist = totalDist - Math.Floor(totalDist);
 
-            //if (decimalDist >= 0.95 || decimalDist <= 0.05)
-            //{
-            //    //if (decimalDist == 0)
+			double decimalDist = totalDist - Math.Floor(totalDist);
 
-            //        speedLine.SetActive(true);
-            //}
-            //else
-            //    speedLine.SetActive(false);
+            if (decimalDist <= 0.05 && totalDist >= 1)
+                speedLine.SetActive(true);
+            else
+                speedLine.SetActive(false);
 
 			///debug///
             playertext.text = totalDist.ToString();
