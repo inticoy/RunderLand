@@ -220,7 +220,7 @@ MonoBehaviour:
   scrollOffset: 0.5
   loop: 0
   cellContainer: {fileID: 2095832302}
-  GLM: {fileID: 606542670}
+  GLM: {fileID: 0}
   idx: 0
   scroller: {fileID: 215976559}
   cellPrefab: {fileID: 5947544202490284290, guid: c976e48ed72774557908c57c02191b40, type: 3}
@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 606542671}
         m_TargetAssemblyTypeName: SceneLoadManager, Assembly-CSharp
         m_MethodName: LoadSceneByName
         m_Mode: 5
@@ -1246,6 +1246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 606542669}
+  - component: {fileID: 606542671}
   - component: {fileID: 606542670}
   m_Layer: 0
   m_Name: SceneLoadManeger
@@ -1282,6 +1283,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idx: 0
+--- !u!114 &606542671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606542667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e09951337499497e90438551dae9fb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &647104457
 GameObject:
   m_ObjectHideFlags: 0
