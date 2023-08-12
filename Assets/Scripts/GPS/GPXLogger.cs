@@ -145,18 +145,24 @@ public class GPXLogger : MonoBehaviour
         XmlDocument doc = new XmlDocument();
         doc.Load(gpxFilePath);
 
-        XmlNodeList trkpts = doc.SelectNodes("//trkpt");
-        XmlNode endtrkpt = trkpts[trkpts.Count - 1];
+        try
+        {
+            XmlNodeList trkpts = doc.SelectNodes("//trkpt");
+            XmlNode endtrkpt = trkpts[trkpts.Count - 1];
 
-        double latitude = double.Parse(endtrkpt.Attributes["lat"].Value);
-        double longitude = double.Parse(endtrkpt.Attributes["lon"].Value);
+            double latitude = double.Parse(endtrkpt.Attributes["lat"].Value);
+            double longitude = double.Parse(endtrkpt.Attributes["lon"].Value);
 
-        XmlNode locInfoNode = doc.SelectSingleNode("//locationinfo");
+            XmlNode locInfoNode = doc.SelectSingleNode("//locationinfo");
 
-        XmlElement destination = doc.CreateElement("destination");
-        destination.InnerText = reverseGeocoding.GetLocationName((float)latitude, (float)longitude);
-        locInfoNode.AppendChild(destination);
-
+            XmlElement destination = doc.CreateElement("destination");
+            destination.InnerText = reverseGeocoding.GetLocationName((float)latitude, (float)longitude);
+            locInfoNode.AppendChild(destination);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
         // Stop GPS
         Input.location.Stop();
     }
