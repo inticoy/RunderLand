@@ -12,7 +12,11 @@ using FancyScrollView.Example07;
 public class FileListManager : MonoBehaviour
 {
     [SerializeField] Example07 scrollViewController;
-    [SerializeField] GameObject logInfoContent;
+    [SerializeField] TMP_Text nameText;
+    [SerializeField] TMP_Text dateText;
+    [SerializeField] TMP_Text locationText;
+    [SerializeField] TMP_Text distanceText;
+    [SerializeField] TMP_Text paceText;
 
     private List<List<string>> logDataList;
     private List<List<GPSData>> GPSDatasList;
@@ -103,18 +107,12 @@ public class FileListManager : MonoBehaviour
         return stringList;
     }
 
-    void OnButtonClick(string filePath)
-    {
-        Debug.Log("Clicked: " + filePath);
-    }
-
     public void UpdateLogInfo(int index)
     {
-        TMP_Text[] logInfoTexts = logInfoContent.GetComponents<TMP_Text>();
-
-        logInfoTexts[0].text = logDataList[index][0];
-        logInfoTexts[0].text = logDataList[index][0];
-        logInfoTexts[0].text = logDataList[index][0];
-        logInfoTexts[0].text = logDataList[index][0];
+        nameText.text = logDataList[index][1];
+        dateText.text = logDataList[index][2];
+        distanceText.text = logDataList[index][3];
+        paceText.text = logDataList[index][4];
+        locationText.text = logDataList[index].Count.ToString();
     }
 }

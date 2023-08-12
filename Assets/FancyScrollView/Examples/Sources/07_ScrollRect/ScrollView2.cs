@@ -86,7 +86,7 @@ namespace FancyScrollView.Example07
             }
         }
 
-        void UpdateSelection(int index)
+        public void UpdateSelection(int index)
         {
             if (Context.SelectedIndex == index)
             {

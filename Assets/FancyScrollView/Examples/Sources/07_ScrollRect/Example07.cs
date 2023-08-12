@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using EasingCore;
 using System.Collections.Generic;
+using TMPro;
 
 namespace FancyScrollView.Example07
 {
@@ -22,6 +23,7 @@ namespace FancyScrollView.Example07
         [SerializeField] InputField dataCountInputField = default;
         [SerializeField] InputField selectIndexInputField = default;
         [SerializeField] Dropdown alignmentDropdown = default;
+        [SerializeField] TMP_Text nameText;
         [SerializeField] FileListManager fileListManager;
 
         void Start()
@@ -40,7 +42,7 @@ namespace FancyScrollView.Example07
                 TryParseValue(spacingInputField, 0, 100, value => scrollView.Spacing = value));
             spacingInputField.text = scrollView.Spacing.ToString();
 
-            //alignmentDropdown.AddOptions(Enum.GetNames(typeof(Ali               vbnbvbvvcv c cv cx  vZZ˛CreateButton(metadata);  ngnment)).Select(x => new Dropdown.OptionData(x)).ToList());
+            //alignmentDropdown.AddOptions(Enum.GetNames(typeof(Alingnment)).Select(x => new Dropdown.OptionData(x)).ToList());
             //alignmentDropdown.onValueChanged.AddListener(_ => SelectCell());
             //alignmentDropdown.value = (int)Alignment.Middle;
 
@@ -75,16 +77,19 @@ namespace FancyScrollView.Example07
                 scrollView.ScrollTo(index, 0.3f, Ease.InOutQuint, (Alignment)alignmentDropdown.value));
         }
 
+        void OnButtonClick(int index)
+        {
+            scrollView.UpdateSelection(index);
+            fileListManager.UpdateLogInfo(index);
+
+        }
+
         public void GenerateCells(List<List<string>> metadatas)
         {
-                //var items = Enumerable.Range(0, dataCount)
-                //    .Select(i => new ItemData($"Cell {i}"))
-                //    .ToArray();
-
             ItemData[] itemDatas = new ItemData[metadatas.Count];
             for (int i = 0; i < metadatas.Count; i++)
             {
-                itemDatas[i] = new ItemData(metadatas[i][0]);
+                itemDatas[i] = new ItemData(metadatas[i][1]);
             }
 
             scrollView.UpdateData(itemDatas);
