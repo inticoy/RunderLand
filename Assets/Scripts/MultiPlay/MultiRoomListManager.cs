@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Security.Cryptography;
+using System;
 
 public class MultiRoomListManager : MonoBehaviourPunCallbacks
 {
@@ -50,7 +51,7 @@ public class MultiRoomListManager : MonoBehaviourPunCallbacks
         ro.MaxPlayers = 2;
         ro.IsOpen = true;
         ro.IsVisible = true;
-        PhotonNetwork.CreateRoom("Jukim2", ro);
+        PhotonNetwork.CreateRoom(PlayerPrefs.GetString("playerName"), ro);
     }
 
     public override void OnJoinedRoom()
@@ -110,6 +111,6 @@ public class MultiRoomListManager : MonoBehaviourPunCallbacks
         ro.MaxPlayers = 2;
 
         if (PhotonNetwork.IsConnectedAndReady)
-            PhotonNetwork.CreateRoom("Jinhchoi", ro);
+            PhotonNetwork.CreateRoom(PlayerPrefs.GetString("playerName"), ro);
     }
 }

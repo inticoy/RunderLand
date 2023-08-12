@@ -177,9 +177,16 @@ public class FileListManager : MonoBehaviour
     {
         nameText.text = logDataList[index][1];
         dateText.text = logDataList[index][2];
+        distanceText.text = logDataList[index][3];
+        paceText.text = logDataList[index][4];
+
+
+        reverseGeocoding.srcLat = (float)GPSDatasList[index][0].latitude;
+        reverseGeocoding.srcLon = (float)GPSDatasList[index][0].longitude;
+        reverseGeocoding.destLat = (float)GPSDatasList[index][^1].longitude;
+        reverseGeocoding.destLon = (float)GPSDatasList[index][^1].longitude;
+
         locationText.text = logDataList[index][3];
-        distanceText.text = logDataList[index][4];
-        paceText.text = logDataList[index][5];
 
         int lastIdx = 0;
         if (GPSDatasList[index].Count > 0)

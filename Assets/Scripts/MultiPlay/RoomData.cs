@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 
+
 public class RoomData : MonoBehaviour
 {
     private TMP_Text RoomInfoText;
@@ -56,7 +57,7 @@ public class RoomData : MonoBehaviour
         ro.IsVisible = true;
         ro.MaxPlayers = 2;
 
-        PhotonNetwork.NickName = "junseo"; // inputtextfield required
+        PhotonNetwork.NickName = PlayerPrefs.GetString("playerName"); // inputtextfield required
         PhotonNetwork.JoinOrCreateRoom(roomName, ro, TypedLobby.Default);
     }
 }

@@ -4,46 +4,75 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Networking;
 using Geocoding;
-using System.Threading;
 
 public class NaverReverseGeocodingLog : MonoBehaviour
 {
     private Root response;
+    private Root response2;
     private int status_code = -1;
+    private int status_code2 = -1;
 
+    string srcName, destName;
+
+    public float srcLat, srcLon, destLat, destLon;
+
+    [SerializeField] TMP_Text locationText;
 
     private string url = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc";
 
-    public string GetLocationName(float latitude, float longitude)
+    void Start()
     {
-        if (latitude == 0 && longitude == 0)
-            return "Unknown";
-        StartCoroutine(GetReverseGeocode(latitude, longitude));
-        int limit = 0;
-        while (true)
-        {
-            if (status_code == 0)
-            {
-                if (response.results[0].region.area3 == null)
-                    return response.results[0].region.area2.name;
-                else
-                    return response.results[0].region.area3.name;
-            }
-            else if (status_code > 0)
-                return "Unknown1";
-            limit++;
-        }
-        return "Unknown2";
+        srcLat = srcLon = destLat = destLon = 0;
+        srcName = "";
+        destName = "";
+        StartCoroutine(GetSrcGeocode());
+        StartCoroutine(GetDestGeocode());
     }
 
-    IEnumerator GetReverseGeocode(float latitude, float longitude)
+    void Update()
     {
-        Debug.Log(longitude.ToString() + latitude.ToString());
-        url += "?coords=" + longitude.ToString("0.00000") + "," + latitude.ToString("0.00000");
-        url += "&orders=legalcode&output=json";
-        Debug.Log(url);
+        if (status_code == 0)
+        {
+            if (response.results[0].region.area3 != null)
+                srcName = response.results[0].region.area3.ToString();
+            else
+                srcName = response.results[0].region.area2.ToString();
+        }
+        else
+        {
+            srcName = "Unknown";
+        }
 
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
+        string locText = srcName;
+
+        if (status_code2 == 0)
+        {
+            if (response2.results[0].region.area3 != null)
+                destName = response2.results[0].region.area3.ToString();
+            else
+                destName = response2.results[0].region.area2.ToString();
+        }
+        else
+        {
+            destName = "Unknown";
+        }
+
+        if (locText != "Unknown" && destName != "Unknown")
+            locText += " -> " + destName;
+        else if (destName != "Unknown")
+            locText = destName;
+
+        locationText.text = locText;
+    }
+
+    IEnumerator GetSrcGeocode()
+    {
+        if (srcLon == 0 && srcLat == 0)
+            yield return new WaitForSecondsRealtime(1f);
+        string srcurl = url + "?coords=" + srcLon.ToString() + "," + srcLat.ToString();
+        srcurl += "&orders=legalcode&output=json";
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(srcurl))
         {
             webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", "wnapo1j7yy");
             webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY", "WD2NPl4SffTzHK1G8vyLlHUjOtAm3jYQUKqpjPsa");
@@ -62,7 +91,34 @@ public class NaverReverseGeocodingLog : MonoBehaviour
                 status_code = response.status.code;
             }
         }
+    }
 
+    IEnumerator GetDestGeocode()
+    {
+       if (destLat == 0 && destLon == 0)
+            yield return new WaitForSecondsRealtime(1f);
+        string desturl = url + "?coords=" + destLon.ToString() + "," + destLat.ToString();
+        desturl += "&orders=legalcode&output=json";
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(desturl))
+        {
+            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", "wnapo1j7yy");
+            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY", "WD2NPl4SffTzHK1G8vyLlHUjOtAm3jYQUKqpjPsa");
+
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
+                webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("Error: " + webRequest.error);
+                status_code2 = 1;
+            }
+            else
+            {
+                response2 = JsonUtility.FromJson<Root>(webRequest.downloadHandler.text);
+                status_code2 = response2.status.code;
+                Debug.Log(response2.results[0].region.area2);
+            }
+        }
     }
 }
 
