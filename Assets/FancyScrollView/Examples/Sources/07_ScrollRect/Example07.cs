@@ -28,7 +28,7 @@ namespace FancyScrollView.Example07
 
         void Start()
         {
-            scrollView.OnCellClicked(index => fileListManager.UpdateLogInfo(index));
+            scrollView.OnCellClicked(index => OnButtonClick(index));
 
             paddingTopInputField.onValueChanged.AddListener(_ =>
                 TryParseValue(paddingTopInputField, 0, 999, value => scrollView.PaddingTop = value));
