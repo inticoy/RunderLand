@@ -8,6 +8,7 @@ using TMPro;
 public class DailyRunGetter : MonoBehaviour
 {
     public PercentageScaler percentageScaler;
+    public RunnerGauge runnerGauge;
 
     List<string> todayFiles;
     [SerializeField] TMP_Text dailyGoalText;
@@ -28,6 +29,7 @@ public class DailyRunGetter : MonoBehaviour
         }
         dailyGoalText.text = (GetDailyRunDistance() / 1000).ToString("0.0") + " / 5km";
         percentageScaler.percentage = (GetDailyRunDistance() / 5000);
+        runnerGauge.percentage = percentageScaler.percentage;
     }
 
     public float GetDailyRunDistance()

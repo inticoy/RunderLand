@@ -2,27 +2,25 @@ using UnityEngine;
 
 public class RunnerGauge : MonoBehaviour
 {
-    public float distance = 1.5f;
-    public float speed = 0.1f;
-    float currentDistance;
-    private float targetX;
-    private Vector3 startPosition;
+    public float percentage = 1f;
 
-    private void Start()
+    private Vector3 originalPosition;
+    private Vector3 targetPosition;
+
+    public float moveDuration = 0.2f; // Duration of the movement in seconds
+
+
+    void Start()
     {
-        currentDistance = 0;
-        startPosition = transform.position - transform.parent.position;
+        originalPosition = transform.position - transform.parent.position;
     }
 
-    private void Update()
+    void Update()
     {
-        targetX = transform.parent.position.x + startPosition.x + distance;
-        // step = speed * Time.deltaTime;
-        currentDistance += speed * Time.deltaTime;
-        // float newX = Mathf.MoveTowards(transform.position.x, targetX, step);
-        // transform.position = tranform new Vector3(newX, transform.position.y, transform.position.z);
-        if(currentDistance < distance){
-            transform.position = new Vector3(transform.parent.position.x + startPosition.x + currentDistance, transform.parent.position.y + startPosition.y, transform.position.z + startPosition.z);
-        }
+        Vector3 rotatedVector = transform.parent.TransformDirection(originalPosition);
+        targetPosition = transform.parent.position + rotatedVector + 0.3f * (percentage - 0.1f)* Vector3.Normalize(transform.parent.right);
+
+        float t = Mathf.Clamp01(Time.deltaTime / moveDuration);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, t);
     }
 }

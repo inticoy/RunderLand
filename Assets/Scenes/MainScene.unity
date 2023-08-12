@@ -4253,8 +4253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301f4e8df00b74b54b9525cde8172901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0.25
-  speed: 0.25
+  percentage: 1
+  moveDuration: 0.2
 --- !u!1 &651637794
 GameObject:
   m_ObjectHideFlags: 0
@@ -16393,6 +16393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   percentageScaler: {fileID: 967265497}
+  runnerGauge: {fileID: 643186136}
   dailyGoalText: {fileID: 1800199237}
 --- !u!1001 &2088821895
 PrefabInstance:
