@@ -7,24 +7,16 @@ using UnityEngine.UI;
 using TMPro;
 //using Qualcomm.Snapdragon.Spaces.Samples;
 using System;
-using FancyScrollView.Example07;
 using Microsoft.Maps.Unity;
 using Microsoft.Geospatial;
-using System.Security.Cryptography.X509Certificates;
-using System.Reflection;
 
 public class FileListManager : MonoBehaviour
 {
-    [SerializeField] Example07 scrollViewController;
-    [SerializeField] TMP_Text nameText;
-    [SerializeField] TMP_Text dateText;
-    [SerializeField] TMP_Text locationText;
-    [SerializeField] TMP_Text distanceText;
-    [SerializeField] TMP_Text paceText;
     [SerializeField] MapRenderer mapRenderer;
     [SerializeField] MapPin startMapPin;
     [SerializeField] MapPin endMapPin;
-    [SerializeField] NaverReverseGeocodingLog reverseGeocoding;
+    [SerializeField] Transform content;
+    [SerializeField] GameObject logPrefab;
 
     private List<List<string>> logDataList;
     private List<List<GPSData>> GPSDatasList;
@@ -38,15 +30,22 @@ public class FileListManager : MonoBehaviour
         logDataList = new List<List<string>>();
         GPSDatasList = new List<List<GPSData>>();
 
-        Debug.Log(path);
-        Debug.Log(fileList.Length.ToString());
-        foreach (string filePath in fileList)
+        for (int i = 0; i < fileList.Length; i++)
         {
-            Debug.Log("file: " + Path.GetFileName(filePath));
+            string filePath = fileList[i];
+            int index = i;
             logDataList.Add(getMetadata(filePath));
             GPSDatasList.Add(GPXReader.ReadGPXFile(filePath));
+            GameObject button = Instantiate(logPrefab, content);
+            TMP_Text[] texts = button.GetComponentsInChildren<TMP_Text>();
+            texts[0].text = logDataList[^1][2];
+            texts[1].text = logDataList[^1][3];
+            texts[2].text = logDataList[^1][4];
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                UpdateLogInfo(index);
+            });
         }
-        scrollViewController.GenerateCells(logDataList);
     }
 
     List<string> getMetadata(string filePath)
@@ -92,7 +91,7 @@ public class FileListManager : MonoBehaviour
             duration = endTime.Subtract(startTime);
 
             string dateString = startTime.ToString("yyyy.MM.dd.ddd") + " - " +
-                                string.Format("{0}h {1}' {2}''",
+                                string.Format("{0}시간 {1}분 {2}초",
                                         (int)duration.TotalHours,              // Hours
                                         duration.Minutes,                      // Minutes
                                         duration.Seconds);
@@ -103,55 +102,6 @@ public class FileListManager : MonoBehaviour
             duration = new TimeSpan(0);
             stringList.Add(startTime.ToString("yyyy.MM.dd.ddd"));
         }
-
-        try
-        {
-            string source = doc.SelectSingleNode("//source").InnerText;
-            string destination = doc.SelectSingleNode("//destination").InnerText;
-
-            stringList.Add(source + " -> " + destination);
-        }
-        catch (Exception e)
-        {
-            stringList.Add("Unknown");
-        }
-
-        //string sourceName, destinationName;
-
-        //try {
-        //    XmlNode sourceNode = doc.SelectSingleNode("//source");
-        //    if (sourceNode == null)
-        //    {
-        //        sourceName = reverseGeocoding.GetLocationName(
-        //            float.Parse(startNode.Attributes["lat"].Value),
-        //            float.Parse(startNode.Attributes["lon"].Value));
-        //    }
-        //    else
-        //        sourceName = sourceNode.InnerText;
-
-        //    XmlNode destinationNode = doc.SelectSingleNode("//destination");
-        //    if (destinationNode == null)
-        //    {
-        //        destinationName = "hi";
-        //        //destinationName = reverseGeocoding.GetLocationName(
-        //        //    float.Parse(endNode.Attributes["lat"].Value),
-        //        //    float.Parse(endNode.Attributes["lon"].Value));
-        //    }
-        //    else
-        //        destinationName = destinationNode.InnerText;
-
-        //    //if (sourceName == "Unknown" && destinationName == "Unknown")
-        //    //    stringList.Add("Unknown");
-        //    //else if (sourceName == "Unknown")
-        //    //    stringList.Add(destinationName);
-        //    //else if (destinationName == "Unknown")
-        //    //    stringList.Add(sourceName);
-        //    //else
-        //        stringList.Add(sourceName + " -> " + destinationName);
-        //} catch
-        //{
-        //    stringList.Add("Unknown");
-        //}
 
         // Get location from start and end Node
 
@@ -167,7 +117,7 @@ public class FileListManager : MonoBehaviour
             paceTotalSeconds = 0;
         int paceMinutes = paceTotalSeconds / 60;
         int paceSeconds = paceTotalSeconds % 60;
-        string paceString = "Avg. " + paceMinutes.ToString() + "' " + paceSeconds.ToString() + "''";
+        string paceString = "평균 페이스: " + paceMinutes.ToString() + "' " + paceSeconds.ToString() + "''";
         stringList.Add(paceString);
 
         return stringList;
@@ -175,18 +125,13 @@ public class FileListManager : MonoBehaviour
 
     public void UpdateLogInfo(int index)
     {
-        nameText.text = logDataList[index][1];
-        dateText.text = logDataList[index][2];
-        distanceText.text = logDataList[index][3];
-        paceText.text = logDataList[index][4];
+        Debug.Log(index.ToString());
+        //nameText.text = logDataList[index][1];
+        //dateText.text = logDataList[index][2];
+        //distanceText.text = logDataList[index][3];
+        //paceText.text = logDataList[index][4];
 
-
-        reverseGeocoding.srcLat = (float)GPSDatasList[index][0].latitude;
-        reverseGeocoding.srcLon = (float)GPSDatasList[index][0].longitude;
-        reverseGeocoding.destLat = (float)GPSDatasList[index][^1].longitude;
-        reverseGeocoding.destLon = (float)GPSDatasList[index][^1].longitude;
-
-        locationText.text = logDataList[index][3];
+        //locationText.text = logDataList[index][3];
 
         int lastIdx = 0;
         if (GPSDatasList[index].Count > 0)
