@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: 2f1b897accc6a4992b98a61bfd12b4bd
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 96b8df653881940a59411e6892506548
   - enabled: 1
@@ -24,8 +27,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MultiWaitingScene.unity
     guid: 183dcfacb2c2e4dc0980e001eddfe788
   - enabled: 0
-    path: Assets/Scenes/RunWithFriendScene.unity
-    guid: 6064cec1eb98b4eccabee65cfbbaf4a1
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: bc9a5c4aad4614e218ce0e6b600a0027, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e0ffad2ac005742679a5efab7972b031, type: 2}
