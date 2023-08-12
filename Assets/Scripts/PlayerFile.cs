@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerFile : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerFile : MonoBehaviour
     DateTime todayDate;
     DateTime lastRunDate;
     int streakDays;
+    bool isKeyboardActive;
 
     void Start()
     {
@@ -21,13 +23,14 @@ public class PlayerFile : MonoBehaviour
         {
             playerName = PlayerPrefs.GetString("playerName");
             Debug.Log("playerName is : " + playerName);
+            isKeyboardActive = false;
         }
         else
         {
             keyboard.SetActive(true);
-            // Show keyboard and get name by input
-            Debug.Log("No playerName, Set to Jason Peralta");
-            PlayerPrefs.SetString("playerName", "Jason Peralta");
+            isKeyboardActive = true;
+            Debug.Log("Set name");
+            // Show keyboard and get name by input                        
         }
 
         // Get lastRunDate
@@ -62,6 +65,10 @@ public class PlayerFile : MonoBehaviour
         // Update lastRunDate
         PlayerPrefs.SetString("lastRunDate", todayDate.ToString());
         PlayerPrefs.Save();
+        if (isKeyboardActive == false)
+        {
+            SceneManager.LoadScene("MainScene");
+        }
     }
 
     // Update is called once per frame
