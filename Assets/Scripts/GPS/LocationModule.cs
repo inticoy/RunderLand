@@ -8,7 +8,6 @@ public class LocationModule : MonoBehaviour
     public double latitude, longitude, altitude;   
     public Camera arCamera;
     public bool isLocationModuleReady;
-    public TMP_Text debug;
     
     private LimitedSizeQueue directionVectorList = new LimitedSizeQueue(10);        
     private Vector3 currPositionMov, prevPositionMov;
