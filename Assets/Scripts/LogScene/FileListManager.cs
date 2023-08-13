@@ -107,7 +107,7 @@ public class FileListManager : MonoBehaviour
 
         float gpxDistance = GPXReader.getGPXDistance(gpsDataList);
 
-        string distString = (gpxDistance / 1000.0).ToString() + "km";
+        string distString = (gpxDistance / 1000.0).ToString("0.00") + "km";
         stringList.Add(distString);
 
         int paceTotalSeconds;
