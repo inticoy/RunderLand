@@ -9,6 +9,7 @@ using TMPro;
 using System;
 using Microsoft.Maps.Unity;
 using Microsoft.Geospatial;
+using System.Reflection;
 
 public class FileListManagerRecord : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class FileListManagerRecord : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetString("RecordFile", null);
+
         string path = Application.persistentDataPath + "/running_records";
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);
@@ -46,6 +49,8 @@ public class FileListManagerRecord : MonoBehaviour
                 UpdateLogInfo(index);
             });
         }
+        if (fileList.Length > 0)
+            UpdateLogInfo(0);
     }
 
     List<string> getMetadata(string filePath)
