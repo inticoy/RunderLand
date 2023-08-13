@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
+  m_IndirectSpecularColor: {r: 0.12729394, g: 0.1341429, b: 0.121147014, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1078207395}
   m_InteractableObject: {fileID: 195275764}
   m_SnapCollider: {fileID: 195275763}
   m_DisableSnapColliderWhenSelected: 1
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1078207395}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -924,7 +924,7 @@ RectTransform:
   - {fileID: 560153881}
   - {fileID: 970996724}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -991,7 +991,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &471078128
 GameObject:
@@ -1501,7 +1501,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1330969415494702736, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1330969415494702736, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1549,10 +1549,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1330969416684376125, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
+--- !u!114 &1078207395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1330969416684376124, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
+  m_PrefabInstance: {fileID: 1078207394}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1119358459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1928,7 +1939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1078207395}
   m_InteractableObject: {fileID: 1227913118}
   m_SnapCollider: {fileID: 1227913117}
   m_DisableSnapColliderWhenSelected: 1
@@ -1958,7 +1969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1078207395}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -2413,7 +2424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1078207395}
   m_InteractableObject: {fileID: 1324591416}
   m_SnapCollider: {fileID: 1324591415}
   m_DisableSnapColliderWhenSelected: 1
@@ -2443,7 +2454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1078207395}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -2668,7 +2679,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1391664625
 GameObject:
@@ -3395,7 +3406,7 @@ Transform:
   m_Children:
   - {fileID: 1848721535}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1848721534
 GameObject:
@@ -4028,7 +4039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 334568657649264745, guid: 76b8780c8d87346d3b0df75726cb917f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 334568657649264745, guid: 76b8780c8d87346d3b0df75726cb917f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4235,52 +4246,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.059
   m_Center: {x: -0.004, y: -0.024, z: 0.083}
---- !u!1 &2116191409
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2116191411}
-  - component: {fileID: 2116191410}
-  m_Layer: 0
-  m_Name: XR Interaction Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2116191410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116191409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_StartingHoverFilters: []
-  m_StartingSelectFilters: []
---- !u!4 &2116191411
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116191409}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2129566972
 PrefabInstance:
   m_ObjectHideFlags: 0

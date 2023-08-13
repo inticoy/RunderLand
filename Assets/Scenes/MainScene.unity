@@ -813,7 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_InteractableObject: {fileID: 204936585}
   m_SnapCollider: {fileID: 204936580}
   m_DisableSnapColliderWhenSelected: 1
@@ -830,7 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -1073,7 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_InteractableObject: {fileID: 206337172}
   m_SnapCollider: {fileID: 206337167}
   m_DisableSnapColliderWhenSelected: 1
@@ -1090,7 +1090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -1483,7 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -1572,7 +1572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_InteractableObject: {fileID: 353009147}
   m_SnapCollider: {fileID: 353009144}
   m_DisableSnapColliderWhenSelected: 1
@@ -2654,7 +2654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_InteractableObject: {fileID: 496324502}
   m_SnapCollider: {fileID: 496324500}
   m_DisableSnapColliderWhenSelected: 1
@@ -2671,7 +2671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -3981,7 +3981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_InteractableObject: {fileID: 599173795}
   m_SnapCollider: {fileID: 599173793}
   m_DisableSnapColliderWhenSelected: 1
@@ -3998,7 +3998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -7769,7 +7769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_InteractableObject: {fileID: 1047923029}
   m_SnapCollider: {fileID: 1047923024}
   m_DisableSnapColliderWhenSelected: 1
@@ -7786,7 +7786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -8408,7 +8408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_InteractableObject: {fileID: 1121236766}
   m_SnapCollider: {fileID: 1121236764}
   m_DisableSnapColliderWhenSelected: 1
@@ -8425,7 +8425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -8629,7 +8629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_InteractableObject: {fileID: 1122879323}
   m_SnapCollider: {fileID: 1122879318}
   m_DisableSnapColliderWhenSelected: 1
@@ -8646,7 +8646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -9027,7 +9027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_InteractableObject: {fileID: 1151641635}
   m_SnapCollider: {fileID: 1151641634}
   m_DisableSnapColliderWhenSelected: 1
@@ -9057,7 +9057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -9500,7 +9500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_InteractableObject: {fileID: 1188864365}
   m_SnapCollider: {fileID: 1188864366}
   m_DisableSnapColliderWhenSelected: 1
@@ -9517,7 +9517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -10431,7 +10431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_InteractableObject: {fileID: 1249280485}
   m_SnapCollider: {fileID: 1249280484}
   m_DisableSnapColliderWhenSelected: 1
@@ -10461,7 +10461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -11383,7 +11383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_InteractableObject: {fileID: 1419777954}
   m_SnapCollider: {fileID: 1419777952}
   m_DisableSnapColliderWhenSelected: 1
@@ -11400,7 +11400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -11851,7 +11851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_InteractableObject: {fileID: 1440312124}
   m_SnapCollider: {fileID: 1440312122}
   m_DisableSnapColliderWhenSelected: 1
@@ -11868,7 +11868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -12706,7 +12706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_InteractableObject: {fileID: 1576004893}
   m_SnapCollider: {fileID: 1576004892}
   m_DisableSnapColliderWhenSelected: 1
@@ -12736,7 +12736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -13835,7 +13835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -15797,7 +15797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_InteractableObject: {fileID: 1972008741}
   m_SnapCollider: {fileID: 1972008739}
   m_DisableSnapColliderWhenSelected: 1
@@ -15814,7 +15814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -16271,7 +16271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87996e81a5026dc429bfd6a9271548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_InteractableObject: {fileID: 2077477553}
   m_SnapCollider: {fileID: 2077477548}
   m_DisableSnapColliderWhenSelected: 1
@@ -16288,7 +16288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 2116191410}
+  m_InteractionManager: {fileID: 1330969415598832356}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
@@ -16441,52 +16441,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f3b34ca4418f4496ba5734403ca9b8e, type: 3}
---- !u!1 &2116191409
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2116191411}
-  - component: {fileID: 2116191410}
-  m_Layer: 0
-  m_Name: XR Interaction Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2116191410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116191409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_StartingHoverFilters: []
-  m_StartingSelectFilters: []
---- !u!4 &2116191411
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116191409}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1330969415598832356}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2120826586
 GameObject:
   m_ObjectHideFlags: 0
@@ -16801,12 +16755,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1330969416684376125, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
---- !u!4 &1330969415598832356 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1330969415494702736, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
+--- !u!114 &1330969415598832356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1330969416684376124, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
   m_PrefabInstance: {fileID: 1330969415598832355}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
