@@ -5,36 +5,36 @@ using Photon.Pun;
 
 public class MultiAvatarManager : MonoBehaviour
 {
-    //[SerializeField]
-    //AvatarRecord avatar;
-    //[SerializeField]
-    //Player player;
-    //public PhotonView photonView;
+    [SerializeField]
+    AvatarWithFriend avatar;
+    [SerializeField]
+    Player player;
+    public PhotonView photonView;
 
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    StartCoroutine(updateAvatar());
-    //}
+    // Start is called before the first frame update
+    void Start()
+    {
+        StartCoroutine(updateAvatar());
+    }
 
-    //IEnumerator updateAvatar()
-    //{
-    //    while (true)
-    //    {
-    //        yield return new WaitForSecondsRealtime(1f);
-    //        updateDist((float) player.GetTotalDist());
-    //    }
-    //}
+    IEnumerator updateAvatar()
+    {
+        while (true)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            updateDist(player.GetTotalDist());
+        }
+    }
 
-    //public void updateDist(float _mydist)
-    //{
-    //    photonView.RPC("updateDistRPC", RpcTarget.Others, _mydist);
-    //}
+    public void updateDist(double _mydist)
+    {
+        photonView.RPC("updateDistRPC", RpcTarget.Others, _mydist);
+    }
 
-    //[PunRPC]
-    //public void updateDistRPC(float _avatardist)
-    //{
-    //    avatar.setDist(_avatardist);
-    //}
+    [PunRPC]
+    public void updateDistRPC(double _avatardist)
+    {
+        avatar.SetDist(_avatardist);
+    }
 
 }

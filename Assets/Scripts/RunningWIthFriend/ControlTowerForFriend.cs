@@ -9,14 +9,15 @@ using TMPro;
  * 
 */
 
-public class ControlTowerForRecord: MonoBehaviour
+public class ControlTowerForFriend: MonoBehaviour
 {
     public Toggle avatarToggle;
-    public Toggle mapToggle;
+    public Toggle infoToggle;
     public Toggle effectToggle;
     public Player player;
     public RunningInfo runningInfo;
-    public AvatarWithRecord avatarWithRecord;
+    public GameObject optionedInfo;
+    public AvatarWithFriend avatarWithFriend;
     public Animator avatarAnime;
     public StateBar stateBar;
     public Camera arCamera;
@@ -26,10 +27,9 @@ public class ControlTowerForRecord: MonoBehaviour
     public TMP_Text timeText;
     public TMP_Text paceText;
     public TMP_Text caloriesText;
-
-    private float runningSpeed;
+    
     private bool avatarToggleValue;
-    private bool mapToggleValue;
+    private bool infoToggleValue;
     private bool effectToggleValue;
     private bool isPaused;
     private bool isPauseButtonPressed;
@@ -46,7 +46,7 @@ public class ControlTowerForRecord: MonoBehaviour
     void Start()
     {
         avatarToggleValue = true;
-        mapToggleValue = true;
+        infoToggleValue = true;
         effectToggleValue = true;
         isPaused = true;
         isPauseButtonPressed = false;
@@ -64,7 +64,7 @@ public class ControlTowerForRecord: MonoBehaviour
             {
                 isPaused = false;
                 player.enabled = true;
-                avatarWithRecord.enabled = true;
+                avatarWithFriend.enabled = true;
                 GPXLogger.enabled = true;
                 runningInfo.ToggleIsPaused();
                 locationModule.InitializeQueue();
@@ -74,7 +74,7 @@ public class ControlTowerForRecord: MonoBehaviour
             if (isPauseButtonPressed)
             {
                 player.ToggleIsPaused();
-                avatarWithRecord.ToggleIsPaused();
+                avatarWithFriend.ToggleIsPaused();
                 runningInfo.ToggleIsPaused();
                 isPauseButtonPressed = false;
             }
@@ -87,11 +87,11 @@ public class ControlTowerForRecord: MonoBehaviour
             avatarAnime.SetBool("isRun", true);
             avatarAnime.SetBool("isIdle", false);
             preTime += Time.deltaTime;
-            avatarWithRecord.ComeAvatar(preTime);
+            avatarWithFriend.ComeAvatar(preTime);
         }
         else
         {
-            avatarWithRecord.FixAvatar();
+            avatarWithFriend.FixAvatar();
             runningInfo.FixInfo();
         }
     }
@@ -104,7 +104,7 @@ public class ControlTowerForRecord: MonoBehaviour
             avatarAnime.SetBool("isRun", false);
             avatarAnime.SetBool("isSprint", false);
         }
-        else if (avatarWithRecord.GetSpeed() >= 2.77)
+        else if (avatarWithFriend.GetSpeed() >= 2.77)
         {
             avatarAnime.SetBool("isIdle", false);
             avatarAnime.SetBool("isRun", false);
@@ -128,10 +128,10 @@ public class ControlTowerForRecord: MonoBehaviour
             else
                 arCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Avatar"));
         }
-        if (mapToggleValue != mapToggle.isOn)
+        if (infoToggleValue != infoToggle.isOn)
         {
-            //mapToggleValue = mapToggle.isOn;
-            //miniMap.SetActive(mapToggleValue);
+            infoToggleValue = infoToggle.isOn;
+            optionedInfo.SetActive(infoToggleValue);
         }
         if (effectToggleValue != effectToggle.isOn)
         {

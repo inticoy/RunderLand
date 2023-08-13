@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7794ed0901c4d0f85a9b04a677f1d94, type: 3}
   m_Name: ControlBoxSettings
   m_EditorClassIdentifier: 
-  SmoothSpeed: 7
-  Constraint: 0
+  SmoothSpeed: 8.78
+  Constraint: 1
   Layer: 0
-  ScaleOffset: 0.05
+  ScaleOffset: 0.26
   IsTrigger: 1
-  MinScale: 0.5
-  MaxScale: 1.5
+  MinScale: 1
+  MaxScale: 1
   HoverRayColor: {r: 1, g: 1, b: 1, a: 1}
   SelectedRayColor: {r: 1, g: 1, b: 1, a: 1}
   HoverColor: {r: 3.564161, g: 0.857416, b: 1.8323066, a: 1}
@@ -38,5 +38,5 @@ MonoBehaviour:
   Resize: {fileID: 21300000, guid: c9e9dd6a9f4534e75a5cb039b2f3cfb4, type: 3}
   HoverReticleColor: {r: 1, g: 1, b: 1, a: 1}
   SelectedReticleColor: {r: 1, g: 1, b: 1, a: 1}
-  HoverReticleSize: 1
-  SelectedReticleSize: 0.8
+  HoverReticleSize: 1.14
+  SelectedReticleSize: 1.74
