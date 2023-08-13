@@ -133,24 +133,29 @@ public class FileListManager : MonoBehaviour
 
         //locationText.text = logDataList[index][3];
 
-        int lastIdx = 0;
-        if (GPSDatasList[index].Count > 0)
+        try {
+            int lastIdx = 0;
+            if (GPSDatasList[index].Count > 0)
+            {
+                lastIdx = GPSDatasList[index].Count - 1;
+            }
+            double distance = GPSUtils.CalculateDistance(GPSDatasList[index][0], GPSDatasList[index][lastIdx]);
+            LatLon middle = new LatLon((GPSDatasList[index][0].latitude + GPSDatasList[index][lastIdx].latitude) / 2,
+                                       (GPSDatasList[index][0].longitude + GPSDatasList[index][lastIdx].longitude) / 2);
+
+            //mapRenderer.Center = new LatLon(37.4885, 127.0655);
+            //startMapPin.Location = new LatLon(37.48, 127.06);
+            //endMapPin.Location = new LatLon(37.49, 127.07);
+
+            mapRenderer.Center = middle;
+            startMapPin.Location = new LatLon(GPSDatasList[index][0].latitude, GPSDatasList[index][0].longitude);
+            endMapPin.Location = new LatLon(GPSDatasList[index][lastIdx].latitude, GPSDatasList[index][lastIdx].longitude);
+
+            StartCoroutine(AnimateMap(GPSDatasList[index], 17.0f, 17.0f, 5.0f));
+        } catch (Exception e)
         {
-            lastIdx = GPSDatasList[index].Count - 1;
+            Debug.Log(e.Message);
         }
-        double distance = GPSUtils.CalculateDistance(GPSDatasList[index][0], GPSDatasList[index][lastIdx]);
-        LatLon middle = new LatLon((GPSDatasList[index][0].latitude + GPSDatasList[index][lastIdx].latitude) / 2,
-                                   (GPSDatasList[index][0].longitude + GPSDatasList[index][lastIdx].longitude) / 2);
-
-        //mapRenderer.Center = new LatLon(37.4885, 127.0655);
-        //startMapPin.Location = new LatLon(37.48, 127.06);
-        //endMapPin.Location = new LatLon(37.49, 127.07);
-
-        mapRenderer.Center = middle;
-        startMapPin.Location = new LatLon(GPSDatasList[index][0].latitude, GPSDatasList[index][0].longitude);
-        endMapPin.Location = new LatLon(GPSDatasList[index][lastIdx].latitude, GPSDatasList[index][lastIdx].longitude);
-
-        StartCoroutine(AnimateMap(GPSDatasList[index], 17.0f, 17.0f, 5.0f));
 
     }
 
