@@ -9,6 +9,8 @@ public class AvatarAlone : MonoBehaviour
     public StateBar stateBar;
     public Player player;
     public TMP_Text avatarDistText;
+    public TMP_Text distDiffText;
+    public GameObject avatarPointer;
 
     private Vector3 pos;
     private Vector3 directionVector;
@@ -72,6 +74,10 @@ public class AvatarAlone : MonoBehaviour
         {
             avatarTotalDist += movePerFrame;
             distDiff = Mathf.Clamp((float)(avatarTotalDist - playerTotalDist), -threshold, threshold);
+
+            distDiffText.text = distDiff.ToString("0.0") + "m";
+            avatarPointer.transform.rotation = Quaternion.LookRotation(transform.position - avatarPointer.transform.position);
+
             directionVector = locationModule.GetDirectionVector();
 
             if (distDiff > 2 || distDiff < -2)
