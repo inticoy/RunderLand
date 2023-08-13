@@ -9394,7 +9394,6 @@ GameObject:
   - component: {fileID: 1188864364}
   - component: {fileID: 1188864363}
   - component: {fileID: 1188864362}
-  - component: {fileID: 1188864369}
   m_Layer: 0
   m_Name: StopCube
   m_TagString: Untagged
@@ -9658,20 +9657,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188864360}
   m_Mesh: {fileID: -5495902117074765545, guid: 1094885271a59480c9bddd3f357faa11, type: 3}
---- !u!114 &1188864369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188864360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08be47df7fe3c4c69b81f0943276576a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapRenderer: {fileID: 0}
-  locationModule: {fileID: 0}
 --- !u!1 &1192859446
 GameObject:
   m_ObjectHideFlags: 0
@@ -16758,6 +16743,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1330969414946404856, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1330969415494702736, guid: 44bc4c30d97cf41488135d2f95566d26, type: 3}
       propertyPath: m_RootOrder
       value: 3
