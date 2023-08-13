@@ -42,7 +42,7 @@ public class StartSceneLoadManager : MonoBehaviour
         {
             //man.transform.position = Vector3.Lerp(transform.position, targetPosition, totalSteps);
 
-            man.transform.position += -0.5f * movementStep * Vector3.Normalize(man.transform.parent.forward);
+            man.transform.position += -0.1f * movementStep * Vector3.Normalize(man.transform.parent.forward);
             man.transform.position += -0.25f * movementStep * Vector3.Normalize(man.transform.parent.up);
             man.transform.localScale += new Vector3(movementStep, movementStep, movementStep);
             yield return null; // Wait for one frame

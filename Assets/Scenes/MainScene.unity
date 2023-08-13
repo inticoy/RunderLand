@@ -7638,8 +7638,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   man: {fileID: 1688570878}
-  movementStep: 0.02
-  totalSteps: 5000
+  movementStep: 0.015
+  totalSteps: 100
   delayTime: 2
 --- !u!1 &1047923022
 GameObject:
