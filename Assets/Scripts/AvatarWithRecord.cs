@@ -122,7 +122,9 @@ public class AvatarWithRecord : MonoBehaviour
             directionVector = locationModule.GetDirectionVector();
 
             distDiffText.text = distDiff.ToString("0.0");
-            avatarPointer.transform.rotation = Quaternion.LookRotation(transform.position - avatarPointer.transform.position);
+            Vector3 avatarPointDir = transform.position - avatarPointer.transform.position;
+            avatarPointDir.y = 0;            
+            avatarPointer.transform.rotation = Quaternion.LookRotation(-avatarPointDir);
 
             if (distDiff > 2 || distDiff < -2)
                 pos = arCamera.transform.position + directionVector * distDiff;

@@ -76,7 +76,9 @@ public class AvatarAlone : MonoBehaviour
             distDiff = Mathf.Clamp((float)(avatarTotalDist - playerTotalDist), -threshold, threshold);
 
             distDiffText.text = distDiff.ToString("0.0") + "m";
-            avatarPointer.transform.rotation = Quaternion.LookRotation(transform.position - avatarPointer.transform.position);
+            Vector3 avatarPointDir = transform.position - avatarPointer.transform.position;
+            avatarPointDir.y = 0;
+            avatarPointer.transform.rotation = Quaternion.LookRotation(-avatarPointDir);
 
             directionVector = locationModule.GetDirectionVector();
 
