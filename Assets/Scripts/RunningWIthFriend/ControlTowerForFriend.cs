@@ -80,7 +80,7 @@ public class ControlTowerForFriend: MonoBehaviour
             }
             timeText.text = GetTimeInFormat(time);
             paceText.text = (player.GetTotalDist() / time).ToString("0.0");
-            caloriesText.text = (0.18958333333 * time).ToString();
+            caloriesText.text = (0.18958333333 * time).ToString("0.0");
         }
         else if (stateBar.GetIsCountDownGoing())
         {

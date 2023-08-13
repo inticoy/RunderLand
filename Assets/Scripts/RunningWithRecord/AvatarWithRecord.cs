@@ -121,10 +121,10 @@ public class AvatarWithRecord : MonoBehaviour
             distDiff = Mathf.Clamp((float)(avatarTotalDist - playerTotalDist), -threshold, threshold);
             directionVector = locationModule.GetDirectionVector();
 
-            distDiffText.text = distDiff.ToString("0.0");
-            Vector3 avatarPointDir = transform.position - avatarPointer.transform.position;
+            distDiffText.text = (avatarTotalDist - playerTotalDist).ToString("0.0") + "m";
+            Vector3 avatarPointDir = transform.position - arCamera.transform.position;
             avatarPointDir.y = 0;            
-            avatarPointer.transform.rotation = Quaternion.LookRotation(-avatarPointDir);
+            avatarPointer.transform.rotation = Quaternion.LookRotation(avatarPointDir);
 
             if (distDiff > 2 || distDiff < -2)
                 pos = arCamera.transform.position + directionVector * distDiff;
