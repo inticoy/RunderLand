@@ -74,10 +74,10 @@ public class AvatarAlone : MonoBehaviour
             distDiff = Mathf.Clamp((float)(avatarTotalDist - playerTotalDist), -threshold, threshold);
             directionVector = locationModule.GetDirectionVector();
 
-            if (distDiff > 2)
+            if (distDiff > 2 || distDiff < -2)
                 pos = arCamera.transform.position + directionVector * distDiff;
             else
-                pos = arCamera.transform.position + directionVector * distDiff + Vector3.Normalize(Vector3.Cross(directionVector, Vector3.up)) * (2 - distDiff);
+                pos = arCamera.transform.position + directionVector * distDiff + Vector3.Normalize(Vector3.Cross(directionVector, Vector3.up)) * Mathf.Abs(2 - distDiff);
             pos.y -= 1.4f;
 
             transform.position = pos;
