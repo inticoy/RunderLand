@@ -10,7 +10,7 @@ using System;
 using Microsoft.Maps.Unity;
 using Microsoft.Geospatial;
 
-public class FileListManager : MonoBehaviour
+public class FileListManagerRecord : MonoBehaviour
 {
     [SerializeField] MapRenderer mapRenderer;
     [SerializeField] MapPin startMapPin;
@@ -23,7 +23,7 @@ public class FileListManager : MonoBehaviour
 
     void Start()
     {
-        string path = Application.persistentDataPath + "/running_logs";
+        string path = Application.persistentDataPath + "/running_records";
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);
         string[] fileList = Directory.GetFiles(path);
@@ -125,6 +125,8 @@ public class FileListManager : MonoBehaviour
 
     public void UpdateLogInfo(int index)
     {
+        PlayerPrefs.SetString("RecordFile", logDataList[index][0]);
+
         Image[] images = content.GetComponentsInChildren<Image>();
 
         foreach(Image image in images)
