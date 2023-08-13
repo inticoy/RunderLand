@@ -18,7 +18,7 @@ public class RunnerGauge : MonoBehaviour
     void Update()
     {
         Vector3 rotatedVector = transform.parent.TransformDirection(originalPosition);
-        targetPosition = transform.parent.position + rotatedVector + 0.3f * (percentage - 0.1f)* Vector3.Normalize(transform.parent.right);
+        targetPosition = transform.parent.position + rotatedVector + 0.3f * (percentage * 0.8f)* Vector3.Normalize(transform.parent.right);
 
         float t = Mathf.Clamp01(Time.deltaTime / moveDuration);
         transform.position = Vector3.Lerp(transform.position, targetPosition, t);

@@ -5,6 +5,7 @@ using Qualcomm.Snapdragon.Spaces.Samples;
 
 public class StartSceneLoadManager : MonoBehaviour
 {
+
     public GameObject man;
     public float movementStep = 0.001f;
     public int totalSteps = 5000;
@@ -15,6 +16,7 @@ public class StartSceneLoadManager : MonoBehaviour
 
     void Start()
     {
+
         _interactionManager ??= FindObjectOfType<InteractionManager>(true);
     }
 
@@ -35,17 +37,18 @@ public class StartSceneLoadManager : MonoBehaviour
 
     private IEnumerator MoveManGradually()
     {
-        Vector3 targetPosition = man.transform.position + new Vector3(0, 0, -movementStep * totalSteps);
-        Vector3 targetScale = man.transform.localScale + new Vector3(movementStep * totalSteps, movementStep * totalSteps, movementStep * totalSteps);
 
         for (int i = 0; i < totalSteps; i++)
         {
-            man.transform.position += movementStep * Vector3.Normalize(transform.parent.parent.forward);
+            //man.transform.position = Vector3.Lerp(transform.position, targetPosition, totalSteps);
+
+            man.transform.position += -0.5f * movementStep * Vector3.Normalize(man.transform.parent.forward);
+            man.transform.position += -0.25f * movementStep * Vector3.Normalize(man.transform.parent.up);
             man.transform.localScale += new Vector3(movementStep, movementStep, movementStep);
             yield return null; // Wait for one frame
         }
 
         // Ensure that the final position is set correctly
-        man.transform.position = targetPosition;
+        //man.transform.position = targetPosition;
     }
 }
