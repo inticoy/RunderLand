@@ -22,6 +22,8 @@ public class ControlTowerForRunningAlone : MonoBehaviour
     public TMP_Text timeText;
     public TMP_Text paceText;
     public TMP_Text caloriesText;
+    public GameObject pauseIcon;
+    public GameObject playIcon;
 
     private float runningSpeed;
     private bool avatarToggleValue;
@@ -38,6 +40,16 @@ public class ControlTowerForRunningAlone : MonoBehaviour
         isPaused = !isPaused;
         isPauseButtonPressed = true;
         SetAvatarAnime();
+        if (isPaused)
+        {
+            pauseIcon.SetActive(false);
+            playIcon.SetActive(true);
+        }
+        else
+        {
+            pauseIcon.SetActive(true);
+            playIcon.SetActive(false);
+        }
     }
 
     void Start()
