@@ -73,8 +73,8 @@ public class AvatarWithRecord : MonoBehaviour
         threshold = 3f;
         directionVector = Vector3.zero;
         avatarFixedLocation = Vector3.zero;
-     
-        string filePath = Path.Combine(Application.persistentDataPath, "log1.gpx");
+
+        string filePath = PlayerPrefs.GetString("RecordFile");
         List<GPSData> gpsDataList = GPXReader.ReadGPXFile(filePath);
 
         distanceList = new List<double>();

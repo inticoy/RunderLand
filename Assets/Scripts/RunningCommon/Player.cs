@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     }
 
 	public void Start()
-    {		
+	{
 		isPaused = false;
 		distUnit = 0.01;
 		currGPSData = new GPSData(LocationModule.latitude, LocationModule.longitude, LocationModule.altitude);
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         while (true)
 		{
 			yield return new WaitForSecondsRealtime(0.02f);
-			if (!isPaused)
+			if (!isPaused && LocationModule.GetIsValidMovement())
 				totalDist += distUnit;		
 		}		
     }

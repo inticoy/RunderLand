@@ -106,10 +106,10 @@ public class StateBar : MonoBehaviour
                     float scale = -newAlpha * 0.002f + 0.005f;
                     countdownText.transform.localScale = new Vector3(scale, scale, scale);
                 }
-				isCountDownEnd = true;
-				distance = Mathf.Floor((float)player.GetTotalDist() / 1000);
-				distanceText.text = (distance).ToString("0.00");
-				LoadingBar.fillAmount = distance - (int)distance;
+				isCountDownEnd = true;				
+				distance = (float)player.GetTotalDist() * 0.001f;
+                distanceText.text = (distance).ToString("0.00");
+                LoadingBar.fillAmount = distance - (int)distance;
 				unitText.text = "kilometer";
 			}		
 		}
@@ -117,7 +117,7 @@ public class StateBar : MonoBehaviour
 		else
 		{
 			distanceText.text = "";
-			playButton.gameObject.SetActive(true);
+            playButton.gameObject.SetActive(true);
 
 			LoadingBar.color = new Color(LoadingBar.color.r, LoadingBar.color.g, LoadingBar.color.b, 1);
 		}

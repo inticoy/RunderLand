@@ -1671,7 +1671,6 @@ MonoBehaviour:
   endMapPin: {fileID: 1856023754}
   content: {fileID: 1698936810}
   logPrefab: {fileID: 5348629743241618454, guid: 27aefc93a83424ac699929175d79d1ad, type: 3}
-  dirName: running_logs
 --- !u!1 &715952906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3817,7 +3816,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390256145}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9507dfb213d224dfca2d4d9b7885c240, type: 3}
   m_Name: 

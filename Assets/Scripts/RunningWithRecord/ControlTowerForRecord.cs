@@ -35,6 +35,7 @@ public class ControlTowerForRecord: MonoBehaviour
     private bool isPaused;
     private bool isPauseButtonPressed;
     private float time;
+    private float calorieTime;
     private float preTime;
 
     public void ToggleIsPaused()
@@ -72,6 +73,8 @@ public class ControlTowerForRecord: MonoBehaviour
             }
             if (!isPaused)
                 time += Time.deltaTime;
+            if (locationModule.GetIsValidMovement())
+                calorieTime += Time.deltaTime;
             if (isPauseButtonPressed)
             {
                 player.ToggleIsPaused();
@@ -81,7 +84,7 @@ public class ControlTowerForRecord: MonoBehaviour
             }
             timeText.text = GetTimeInFormat(time);
             paceText.text = (player.GetTotalDist() / time).ToString("0.0");
-            caloriesText.text = (0.18958333333 * time).ToString("0.0");
+            caloriesText.text = (0.18958333333 * calorieTime).ToString("0.0");
         }
         else if (stateBar.GetIsCountDownGoing())
         {
@@ -148,6 +151,6 @@ public class ControlTowerForRecord: MonoBehaviour
     {
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);
 
-        return (timeSpan.Hours + ":" + timeSpan.Minutes + ":" + timeSpan.Seconds);
+        return (timeSpan.Hours + ":" + timeSpan.Minutes.ToString("00") + ":" + timeSpan.Seconds.ToString("00"));
     }
 }

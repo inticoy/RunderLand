@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MultiListScene.unity
     guid: 12bda15f83b984e6b928837688aea552
   - enabled: 1
+    path: Assets/Scenes/RecordSelectScene.unity
+    guid: 2e74c79a157dc4410803956599f75b10
+  - enabled: 1
+    path: Assets/Scenes/RunningWithRecordScene.unity
+    guid: 77df362af11e24ab292324792396e6bd
+  - enabled: 1
     path: Assets/Scenes/MultiWaitingScene.unity
     guid: 183dcfacb2c2e4dc0980e001eddfe788
   m_configObjects:
