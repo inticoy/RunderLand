@@ -14,7 +14,9 @@ public class AvatarWithRecord : MonoBehaviour
     public TMP_Text distDiffText;
     public TMP_Text gameEndText;
     public GameObject avatarPointer;
+    public GameObject lightEffect;
 
+    private int time;
     private Vector3 pos;
     private Vector3 directionVector;
     private Vector3 avatarFixedLocation;
@@ -25,8 +27,8 @@ public class AvatarWithRecord : MonoBehaviour
     private float distDiff;
     private double movePerFrame = 0;
     private double avatarTotalDist = 0;
-    private double sectionDist = 0;
     private double speed;
+    private double playerTotalDist;
 
     public double GetSpeed()
     {
@@ -100,24 +102,28 @@ public class AvatarWithRecord : MonoBehaviour
     {
         if (distanceList.Count <= distIdx)
         {
-            gameEndText.text = "Avatar End";
+            if (playerTotalDist > avatarTotalDist)
+                gameEndText.text = "Record End! You Won!!";
+            else
+                gameEndText.text = "Record End! You Lose..";
+            this.gameObject.SetActive(false);
+            lightEffect.SetActive(true);
             return (true);
         }
         return (false);
     }
 
-
     public void FixedUpdate()
     {
         //List<Tuple<GPSData, double, Vector3>> route = player.route;
-        double playerTotalDist = player.GetTotalDist();
+        playerTotalDist = player.GetTotalDist();
 
         if (IsOutOfRange())
             return;
-        if (sectionDist >= distanceList[distIdx])
+        if (time == 50)
         {
+            time = 0;
             distIdx++;
-            sectionDist = 0;
             if (IsOutOfRange())
                 return;
             speed = distanceList[distIdx];
@@ -126,14 +132,14 @@ public class AvatarWithRecord : MonoBehaviour
 
         if (!isPaused)
         {
-            avatarTotalDist += movePerFrame;
-            sectionDist += movePerFrame;
+            avatarTotalDist += movePerFrame;            
+            time++;
             distDiff = Mathf.Clamp((float)(avatarTotalDist - playerTotalDist), -threshold, threshold);
             directionVector = locationModule.GetDirectionVector();
 
             distDiffText.text = (avatarTotalDist - playerTotalDist).ToString("0.0") + "m";
             Vector3 avatarPointDir = transform.position - arCamera.transform.position;
-            avatarPointDir.y = 0;            
+            avatarPointDir.y = 0;
             avatarPointer.transform.rotation = Quaternion.LookRotation(avatarPointDir);
 
             if (distDiff > 2 || distDiff < -2)
