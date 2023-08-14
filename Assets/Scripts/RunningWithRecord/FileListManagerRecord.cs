@@ -26,12 +26,12 @@ public class FileListManagerRecord : MonoBehaviour
     {
         PlayerPrefs.SetString("RecordFile", null);
 
+        logDataList = new List<List<string>>();
+        GPSDatasList = new List<List<GPSData>>();
         string path = Application.persistentDataPath + "/running_records";
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);
         string[] fileList = Directory.GetFiles(path);
-        logDataList = new List<List<string>>();
-        GPSDatasList = new List<List<GPSData>>();
 
         for (int i = 0; i < fileList.Length; i++)
         {
@@ -49,6 +49,29 @@ public class FileListManagerRecord : MonoBehaviour
                 UpdateLogInfo(index);
             });
         }
+
+        path = Application.persistentDataPath + "/running_logs";
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+        fileList = Directory.GetFiles(path);
+
+        for (int i = 0; i < fileList.Length; i++)
+        {
+            string filePath = fileList[i];
+            int index = i;
+            logDataList.Add(getMetadata(filePath));
+            GPSDatasList.Add(GPXReader.ReadGPXFile(filePath));
+            GameObject button = Instantiate(logPrefab, content);
+            TMP_Text[] texts = button.GetComponentsInChildren<TMP_Text>();
+            texts[0].text = logDataList[^1][2];
+            texts[1].text = logDataList[^1][3];
+            texts[2].text = logDataList[^1][4];
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                UpdateLogInfo(index);
+            });
+        }
+
         if (fileList.Length > 0)
             UpdateLogInfo(0);
     }
