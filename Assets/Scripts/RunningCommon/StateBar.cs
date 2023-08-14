@@ -99,13 +99,15 @@ public class StateBar : MonoBehaviour
 				isCountDownGoing = false;
 				if (countdownText != null && Time.time < startTime + 1)
 				{
-                    float newAlpha = (startTime - Time.time) - Mathf.Floor(startTime - Time.time);
+					float newAlpha = (startTime - Time.time) - Mathf.Floor(startTime - Time.time);
 					countdownText.text = "GO!";
-                    newAlpha = Mathf.Clamp01(newAlpha);
-                    countdownText.color = new Color(countdownText.color.r, countdownText.color.g, countdownText.color.b, newAlpha);
-                    float scale = -newAlpha * 0.002f + 0.005f;
-                    countdownText.transform.localScale = new Vector3(scale, scale, scale);
-                }
+					newAlpha = Mathf.Clamp01(newAlpha);
+					countdownText.color = new Color(countdownText.color.r, countdownText.color.g, countdownText.color.b, newAlpha);
+					float scale = -newAlpha * 0.002f + 0.005f;
+					countdownText.transform.localScale = new Vector3(scale, scale, scale);
+				}
+				else
+					countdownText.text = "";
 				isCountDownEnd = true;				
 				distance = (float)player.GetTotalDist() * 0.001f;
                 distanceText.text = (distance).ToString("0.00");

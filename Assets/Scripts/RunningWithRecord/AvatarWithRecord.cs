@@ -12,6 +12,7 @@ public class AvatarWithRecord : MonoBehaviour
     public Player player;
     public TMP_Text avatarDistText;
     public TMP_Text distDiffText;
+    public TMP_Text gameEndText;
     public GameObject avatarPointer;
 
     private Vector3 pos;
@@ -79,19 +80,27 @@ public class AvatarWithRecord : MonoBehaviour
 
         distanceList = new List<double>();
 
-        if (gpsDataList != null)
+        if (gpsDataList != null && gpsDataList.Count > 1)
         {
             for (int idx = 0; idx < gpsDataList.Count - 1; idx++)
             {
                 distanceList.Add(GPSUtils.CalculateDistance(gpsDataList[idx], gpsDataList[idx + 1]));
+                if (idx == 0)
+                    movePerFrame = distanceList[0] * 0.02; 
             }
+        }
+        else
+        {
+            // ErrText !!!
+            gameEndText.text = "Invalid File";
         }
     }
 
     public bool IsOutOfRange()
     {
-        if (distanceList.Count >= distIdx)
+        if (distanceList.Count <= distIdx)
         {
+            gameEndText.text = "Avatar End";
             return (true);
         }
         return (false);
@@ -102,6 +111,7 @@ public class AvatarWithRecord : MonoBehaviour
     {
         //List<Tuple<GPSData, double, Vector3>> route = player.route;
         double playerTotalDist = player.GetTotalDist();
+
         if (IsOutOfRange())
             return;
         if (sectionDist >= distanceList[distIdx])

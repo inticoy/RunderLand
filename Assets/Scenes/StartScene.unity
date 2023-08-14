@@ -635,15 +635,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4418158629963821201, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4418158631322815293, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1961
+      value: -0.2117
       objectReference: {fileID: 0}
     - target: {fileID: 4418158631322815293, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0979
+      value: -0.0165
       objectReference: {fileID: 0}
     - target: {fileID: 6595615865667423730, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
       propertyPath: m_AnchorMax.x
@@ -687,50 +687,6 @@ PrefabInstance:
       objectReference: {fileID: 456405626}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 796a3a8cfa64e2740b5aa45790e24eed, type: 3}
---- !u!1 &1375382516
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1375382518}
-  - component: {fileID: 1375382517}
-  m_Layer: 0
-  m_Name: RecordsDownloader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1375382517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375382516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d650625260cac49c596ab27df05c259c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1375382518
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375382516}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0045427084, y: -0.26854825, z: 0.97683895}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1431037787
 GameObject:
   m_ObjectHideFlags: 0
