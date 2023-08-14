@@ -61,7 +61,7 @@ public class GPXLogger : MonoBehaviour
 
         XmlElement metadata = doc.CreateElement("metadata");
         XmlElement name = doc.CreateElement("name");
-        name.InnerText = "Junseo Kim";
+        name.InnerText = PlayerPrefs.GetString("playerName");
         metadata.AppendChild(name);
         XmlElement metaTime = doc.CreateElement("time");
         metaTime.InnerText = DateTime.Now.ToString("s") + "Z";
