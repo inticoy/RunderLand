@@ -46,8 +46,8 @@ public class RoomData : MonoBehaviour
     void OnRoomButtonClicked(RoomInfo roomInfo)
     {
         roomJoinButton.roomInfo = roomInfo;
-        RoomNameText.text = "Name: " + roomInfo.Name;
-        MaxPlayersText.text = "Max Players: " + roomInfo.MaxPlayers.ToString();
+        RoomNameText.text = "이름: " + roomInfo.Name;
+        MaxPlayersText.text = "최대 인원: " + roomInfo.MaxPlayers.ToString();
     }
 
     void OnEnterRoom(string roomName)

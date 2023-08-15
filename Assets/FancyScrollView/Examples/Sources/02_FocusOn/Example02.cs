@@ -17,7 +17,7 @@ namespace FancyScrollView.Example02
         void Start()
         { 
             var items = Enumerable.Range(0, 3)
-                .Select(i => new ItemData(i == 0 ? "Running Alone" : i == 1 ? "Running With Record" : "Running With Friend"))
+                .Select(i => new ItemData(i == 0 ? "싱글플레이" : i == 1 ? "기록과 플레이" : "멀티플레이"))
                 .ToArray();
 
             scrollView.UpdateData(items);
