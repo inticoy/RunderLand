@@ -7641,6 +7641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9495fdb0826c540d6913f4b1b39096e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manAnimator: {fileID: 1688570879}
   man: {fileID: 1688570878}
   movementStep: 0.015
   totalSteps: 100
@@ -14000,6 +14001,11 @@ MeshFilter:
 --- !u!1 &1688570878 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+  m_PrefabInstance: {fileID: 532559354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1688570879 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4540229000190281644, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
   m_PrefabInstance: {fileID: 532559354}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1721290231
