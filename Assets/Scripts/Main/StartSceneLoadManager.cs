@@ -7,9 +7,9 @@ public class StartSceneLoadManager : MonoBehaviour
 {
     public Animator manAnimator;
     public GameObject man;
-    public float movementStep = 0.001f;
-    public int totalSteps = 5000;
-    public float delayTime = 1.8f; // Delay time in seconds
+    public float movementStep = 0.005f;
+    public int totalSteps = 1000;
+    public float delayTime = 2.5f; // Delay time in seconds
 
 
     private InteractionManager _interactionManager;
@@ -48,10 +48,10 @@ public class StartSceneLoadManager : MonoBehaviour
             yield return null; // Wait for one frame
         }
         yield return new WaitForSecondsRealtime(0.5f);
-        for (int i = 0; i < 225; i++)
+        for (int i = 0; i < 45; i++)
         {
             man.transform.position += 0.001f * Vector3.Normalize(man.transform.forward);
-            man.transform.Rotate(0, -0.4f, 0);
+            man.transform.Rotate(0, -2f, 0);
             yield return null;
         }
         //man.transform.Rotate(0, -90, 0);
