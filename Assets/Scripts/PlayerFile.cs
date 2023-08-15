@@ -15,9 +15,6 @@ public class PlayerFile : MonoBehaviour
 
     void Start()
     {
-        ///
-        PlayerPrefs.DeleteAll();
-        ///
         todayDate = DateTime.Now.Date;
         Debug.Log("Today : " + todayDate);
 
