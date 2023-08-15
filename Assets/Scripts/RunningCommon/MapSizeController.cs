@@ -18,7 +18,7 @@ public class MapSizeController : MonoBehaviour
         }
         else
         {
-            transform.localScale = new Vector3(extendScale, extendScale, extendScale);
+            transform.localScale = new Vector3(extendScale, contractedScale, extendScale);
             mapRender.ZoomLevel = 16;
         }
         isExtended = !isExtended;

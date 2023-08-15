@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 96b8df653881940a59411e6892506548
   - enabled: 1
-    path: Assets/Scenes/RunningAloneScene.unity
+    path: Assets/Scenes/NeoRunningAloneScene.unity
     guid: ca355ddabcc14410f99823ae38dd8b5e
   - enabled: 1
     path: Assets/Scenes/GameSelectionScene.unity
