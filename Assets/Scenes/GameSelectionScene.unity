@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FollowGaze: 1
-  TargetDistance: 2.5
+  TargetDistance: 3.5
   MovementSmoothness: 0.2
 --- !u!1 &507861409
 GameObject:
