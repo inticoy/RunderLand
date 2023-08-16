@@ -17,6 +17,7 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         private Transform _arCameraTransform;
         private Camera _arCamera;
         private InteractionManager _interactionManager;
+        private bool isStart;
 
         public void SwitchToScene(string name)
         {
@@ -26,13 +27,22 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
 
         private void Start()
         {
+            isStart = true;
             _arCamera = OriginLocationUtility.GetOriginCamera();
             _arCameraTransform = _arCamera.transform;
-            _interactionManager ??= FindObjectOfType<InteractionManager>(true);
+            _interactionManager ??= FindObjectOfType<InteractionManager>(true);   
         }
 
         private void Update()
         {
+            if (isStart)
+            {
+                Vector3 dir = _arCamera.transform.forward;
+                dir.y = 0;
+                Vector3.Normalize(dir);
+                transform.position = _arCamera.transform.position + dir * TargetDistance;
+                isStart = !isStart;
+            }
             if (FollowGaze)
             {
                 AdjustPanelPosition();
@@ -45,7 +55,11 @@ namespace Qualcomm.Snapdragon.Spaces.Samples
         {
             var headPosition = _arCameraTransform.position;
             var gazeDirection = _arCameraTransform.forward;
+            //gazeDirection.y = 0;
+            //Vector3.Normalize(gazeDirection);
             var direction = (transform.position - headPosition).normalized;
+            //direction.y = 0;
+            //Vector3.Normalize(direction);
             var targetPosition = headPosition + (gazeDirection * TargetDistance);
             var targetDirection = (targetPosition - headPosition).normalized;
             var eulerAngles = Quaternion.LookRotation(direction).eulerAngles;

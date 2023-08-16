@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class MultiAvatarManager : MonoBehaviour
+public class MultiAvatarManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField]
     AvatarWithFriend avatar;
@@ -24,6 +24,14 @@ public class MultiAvatarManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(1f);
             updateDist(player.GetTotalDist());
         }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+            stream.SendNext(player.GetTotalDist());
+        else
+            avatar.SetDist((double)stream.ReceiveNext());
     }
 
     public void updateDist(double _mydist)

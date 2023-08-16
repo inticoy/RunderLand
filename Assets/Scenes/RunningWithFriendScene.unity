@@ -2152,7 +2152,6 @@ GameObject:
   m_Component:
   - component: {fileID: 374336561}
   - component: {fileID: 374336562}
-  - component: {fileID: 374336563}
   m_Layer: 0
   m_Name: ControlTower
   m_TagString: Untagged
@@ -2203,21 +2202,6 @@ MonoBehaviour:
   timeText: {fileID: 1977542346}
   paceText: {fileID: 1174917269}
   caloriesText: {fileID: 2058250414}
---- !u!114 &374336563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374336559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 230112a77612144dfb0a7e999f3e4c2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avatar: {fileID: 1229135780}
-  player: {fileID: 1114343426}
-  photonView: {fileID: 1229135781}
 --- !u!1 &377197908
 GameObject:
   m_ObjectHideFlags: 0
@@ -11793,10 +11777,26 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 1229135782}
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1229135782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229135778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230112a77612144dfb0a7e999f3e4c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avatar: {fileID: 1229135780}
+  player: {fileID: 1114343426}
+  photonView: {fileID: 1229135781}
 --- !u!1 &1249752443
 GameObject:
   m_ObjectHideFlags: 0
