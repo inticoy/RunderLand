@@ -13,7 +13,6 @@ public class ControlTowerForRunningAlone : MonoBehaviour
     public RunningInfo runningInfo;
     public GameObject optionedInfo;
     public AvatarAlone avatarAlone;
-    public Animator avatarAnime;
     public StateBar stateBar;
     public Camera arCamera;
     public PlayButton playButton;
@@ -25,6 +24,7 @@ public class ControlTowerForRunningAlone : MonoBehaviour
     public GameObject pauseIcon;
     public GameObject playIcon2;
 
+    [SerializeField] private Animator avatarAnime;
     private float runningSpeed;
     private bool avatarToggleValue;
     private bool infoToggleValue;
@@ -54,6 +54,7 @@ public class ControlTowerForRunningAlone : MonoBehaviour
 
     void Start()
     {
+        avatarAnime = GameObject.Find("AnimeMan(Clone)").GetComponent<Animator>();
         avatarToggleValue = true;
         infoToggleValue = true;
         effectToggleValue = true;
@@ -65,6 +66,7 @@ public class ControlTowerForRunningAlone : MonoBehaviour
 
     void Update()
     {
+        //avatarAnime = GameObject.Find("AnimeMan(Clone)").GetComponent<Animator>();
         CheckOption();
         SetAvatarAnime();        
         if (stateBar.GetIsCountDownEnd())
