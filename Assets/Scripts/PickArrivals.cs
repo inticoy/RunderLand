@@ -23,7 +23,7 @@ public class PickArrivals : MonoBehaviour
         {
             Debug.Log("gogo1");
             PlayerPrefs.SetFloat("latitude", 37.575767f);
-            PlayerPrefs.SetFloat("longitute", 126.976808f);
+            PlayerPrefs.SetFloat("longitude", 126.976808f);
             foreach (SpriteRenderer square in squares)
             {
                 square.enabled = false;
@@ -33,7 +33,7 @@ public class PickArrivals : MonoBehaviour
         else if (arrival == "Banpo Hangang Park")
         {
             PlayerPrefs.SetFloat("latitude", 37.510746f);
-            PlayerPrefs.SetFloat("longitute", 126.996019f);
+            PlayerPrefs.SetFloat("longitude", 126.996019f);
             foreach (SpriteRenderer square in squares)
             {
                 square.enabled = false;
@@ -43,7 +43,7 @@ public class PickArrivals : MonoBehaviour
         else if (arrival == "Namsan Tower")
         {
             PlayerPrefs.SetFloat("latitude", 37.551560f);
-            PlayerPrefs.SetFloat("longitute", 126.988110f);
+            PlayerPrefs.SetFloat("longitude", 126.988110f);
             foreach (SpriteRenderer square in squares)
             {
                 square.enabled = false;
@@ -53,7 +53,7 @@ public class PickArrivals : MonoBehaviour
         else if (arrival == "Cheonggyecheon")
         {
             PlayerPrefs.SetFloat("latitude", 37.569251f);
-            PlayerPrefs.SetFloat("longitute", 126.978601f);
+            PlayerPrefs.SetFloat("longitude", 126.978601f);
             foreach (SpriteRenderer square in squares)
             {
                 square.enabled = false;
@@ -63,7 +63,7 @@ public class PickArrivals : MonoBehaviour
         else if (arrival == "Lotte World")
         {
             PlayerPrefs.SetFloat("latitude", 37.512934f);
-            PlayerPrefs.SetFloat("longitute", 127.102192f);
+            PlayerPrefs.SetFloat("longitude", 127.102192f);
             foreach (SpriteRenderer square in squares)
             {
                 square.enabled = false;
