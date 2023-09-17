@@ -54,7 +54,9 @@ public class ControlTowerForRunningAlone : MonoBehaviour
 
     void Start()
     {
-        avatarAnime = GameObject.Find("AnimeMan(Clone)").GetComponent<Animator>();
+        if (PlayerPrefs.GetString("avatar") != "BicycleMan")
+            avatarAnime = GameObject.Find(PlayerPrefs.GetString("avatar") + "(Clone)").GetComponent<Animator>();
+        
         avatarToggleValue = true;
         infoToggleValue = true;
         effectToggleValue = true;
@@ -97,8 +99,11 @@ public class ControlTowerForRunningAlone : MonoBehaviour
         }
         else if (stateBar.GetIsCountDownGoing())
         {
-            avatarAnime.SetBool("isRun", true);
-            avatarAnime.SetBool("isIdle", false);
+            if (avatarAnime != null)
+            {
+                avatarAnime.SetBool("isRun", true);
+                avatarAnime.SetBool("isIdle", false);
+            }
             preTime += Time.deltaTime;
             avatarAlone.ComeAvatar(preTime);
         }
@@ -111,6 +116,8 @@ public class ControlTowerForRunningAlone : MonoBehaviour
 
     public void SetAvatarAnime()
     {
+        if (avatarAnime == null)
+            return;
         if (isPaused)
         {
             avatarAnime.SetBool("isIdle", true);
