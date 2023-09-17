@@ -67,7 +67,6 @@ public class AvatarAlone : MonoBehaviour
 
     public void FixedUpdate()
     {
-        //List<Tuple<GPSData, double, Vector3>> route = player.route;
         double playerTotalDist = player.GetTotalDist();
 
         if (!isPaused)

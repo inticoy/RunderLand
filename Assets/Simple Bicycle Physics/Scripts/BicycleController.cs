@@ -146,9 +146,6 @@ namespace SBPScripts
         public WayPointSystem wayPointSystem;
         public AirTimeSettings airTimeSettings;
 
-        private Vector3 prevPosition;
-        private Quaternion prevRot;
-    
         void Awake()
         {
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
@@ -156,8 +153,6 @@ namespace SBPScripts
 
         void Start()
         {
-            prevPosition = transform.localPosition;
-            prevRot = transform.rotation;
             rb = GetComponent<Rigidbody>();
             rb.maxAngularVelocity = Mathf.Infinity;
 
@@ -187,7 +182,8 @@ namespace SBPScripts
         }
 
         void FixedUpdate()
-        {           
+        {
+
             //Physics based Steering Control.
             fPhysicsWheel.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + customSteerAxis * steerAngle.Evaluate(rb.velocity.magnitude) + oscillationSteerEffect, 0);
             fPhysicsWheelConfigJoint.axis = new Vector3(1, 0, 0);
@@ -274,7 +270,7 @@ namespace SBPScripts
             cycleOscillation = -Mathf.Sin(Mathf.Deg2Rad * (crankSpeed + 90)) * (oscillationAmount * (Mathf.Clamp(currentTopSpeed / currentSpeed, 1f, 1.5f))) * pickUpSpeed;
             turnLeanAmount = -leanCurve.Evaluate(customLeanAxis) * Mathf.Clamp(currentSpeed * 0.1f, 0, 1);
             oscillationSteerEffect = cycleOscillation * Mathf.Clamp01(customAccelerationAxis) * (oscillationAffectSteerRatio * (Mathf.Clamp(topSpeed / currentSpeed, 1f, 1.5f)));
-            
+
             //FrictionSettings
             wheelFrictionSettings.fPhysicMaterial.staticFriction = wheelFrictionSettings.fFriction.x;
             wheelFrictionSettings.fPhysicMaterial.dynamicFriction = wheelFrictionSettings.fFriction.y;
@@ -315,87 +311,82 @@ namespace SBPScripts
             //AirControl
             if (Physics.Raycast(transform.position + new Vector3(0, 1f, 0), Vector3.down, out hit, Mathf.Infinity))
             {
-                //    if (hit.distance > 2f || impactFrames > 0)
-                //    {
-                //        isAirborne = true;
-                //        restingCrank = 100;
-                //    }
-                //    else if (isBunnyHopping)
-                //    {
-                //        restingCrank = 100;
-                //    }
-                //    else
-                //    {
-                //        isAirborne = false;
-                //        restingCrank = 10;
-                //    }
-                //    // For stunts
-                //    // 5f is the snap to ground distance
-                //    if (hit.distance > airTimeSettings.heightThreshold && airTimeSettings.freestyle)
-                //    {
-                //        stuntMode = true;
-                //        // Stunt + flips controls (Not available for Waypoint system as of yet)
-                //        // You may use Numpad Inputs as well.
-                //        rb.AddTorque(Vector3.up * customSteerAxis * 4 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
-                //        rb.AddTorque(transform.right * rawCustomAccelerationAxis * -3 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
-                //    }
-                //    else
-                //        stuntMode = false;
+                if (hit.distance > 2f || impactFrames > 0)
+                {
+                    isAirborne = true;
+                    restingCrank = 100;
+                }
+                else if (isBunnyHopping)
+                {
+                    restingCrank = 100;
+                }
+                else
+                {
+                    isAirborne = false;
+                    restingCrank = 10;
+                }
+                // For stunts
+                // 5f is the snap to ground distance
+                if (hit.distance > airTimeSettings.heightThreshold && airTimeSettings.freestyle)
+                {
+                    stuntMode = true;
+                    // Stunt + flips controls (Not available for Waypoint system as of yet)
+                    // You may use Numpad Inputs as well.
+                    rb.AddTorque(Vector3.up * customSteerAxis * 4 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
+                    rb.AddTorque(transform.right * rawCustomAccelerationAxis * -3 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
+                }
+                else
+                    stuntMode = false;
             }
 
             // Setting the Main Rotational movements of the bicycle
             if (airTimeSettings.freestyle)
             {
-                //if (!stuntMode && isAirborne)
-                //    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, turnLeanAmount + cycleOscillation + GroundConformity(groundConformity)), Time.deltaTime * airTimeSettings.groundSnapSensitivity);
-                //else if (!stuntMode && !isAirborne)
-                //    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, turnLeanAmount + cycleOscillation + GroundConformity(groundConformity)), Time.deltaTime * 10 * airTimeSettings.groundSnapSensitivity);
+                if (!stuntMode && isAirborne)
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, transform.rotation.eulerAngles.y, turnLeanAmount + cycleOscillation + GroundConformity(groundConformity)), Time.deltaTime * airTimeSettings.groundSnapSensitivity);
+                else if (!stuntMode && !isAirborne)
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, turnLeanAmount + cycleOscillation + GroundConformity(groundConformity)), Time.deltaTime * 10 * airTimeSettings.groundSnapSensitivity);
             }
             else
             {
                 //Pre-version 1.5
-                //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, turnLeanAmount + cycleOscillation + GroundConformity(groundConformity));
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, turnLeanAmount + cycleOscillation + GroundConformity(groundConformity));
             }
             //Wheelie
             if(!isAirborne && wheelieInput && rawCustomAccelerationAxis>0)
             {
-                //rb.angularDrag = 15;
-                //wheeliePower = customAccelerationAxis*150*System.Convert.ToInt32(wheelieToggle);
-                //var rot = Quaternion.FromToRotation(transform.forward, new Vector3(transform.forward.x,0.75f,transform.forward.z));
-                //rb.AddTorque(new Vector3(rot.x, rot.y, rot.z) * wheeliePower, ForceMode.Acceleration);
+                rb.angularDrag = 15;
+                wheeliePower = customAccelerationAxis*150*System.Convert.ToInt32(wheelieToggle);
+                var rot = Quaternion.FromToRotation(transform.forward, new Vector3(transform.forward.x,0.75f,transform.forward.z));
+                rb.AddTorque(new Vector3(rot.x, rot.y, rot.z) * wheeliePower, ForceMode.Acceleration);
             }
             else
             {
-                //rb.angularDrag = 1;
+                rb.angularDrag = 1;
             }
-            
-            transform.rotation = prevRot;
-            transform.localPosition = prevPosition;
-            
+
+
         }
         void Update()
         {
-            
-            transform.localPosition = prevPosition;
-            transform.rotation = prevRot;
-            
             ApplyCustomInput();
+
             //GetKeyUp/Down requires an Update Cycle
             //BunnyHopping
-            //if (bunnyHopInputState == 1)
-            //{
-            //    isBunnyHopping = true;
-            //    bunnyHopAmount += Time.deltaTime * 8f;
-            //}
-            //if (bunnyHopInputState == -1)
-            //    StartCoroutine(DelayBunnyHop());
+            if (bunnyHopInputState == 1)
+            {
+                isBunnyHopping = true;
+                bunnyHopAmount += Time.deltaTime * 8f;
+            }
+            if (bunnyHopInputState == -1)
+                StartCoroutine(DelayBunnyHop());
 
-            //if (bunnyHopInputState == -1 && !isAirborne)
-            //    rb.AddForce(transform.up * bunnyHopAmount * bunnyHopStrength, ForceMode.VelocityChange);
-            //else
-            //    bunnyHopAmount = Mathf.Lerp(bunnyHopAmount, 0, Time.deltaTime * 8f);
+            if (bunnyHopInputState == -1 && !isAirborne)
+                rb.AddForce(transform.up * bunnyHopAmount * bunnyHopStrength, ForceMode.VelocityChange);
+            else
+                bunnyHopAmount = Mathf.Lerp(bunnyHopAmount, 0, Time.deltaTime * 8f);
 
-            //bunnyHopAmount = Mathf.Clamp01(bunnyHopAmount);
+            bunnyHopAmount = Mathf.Clamp01(bunnyHopAmount);
 
         }
         float GroundConformity(bool toggle)
@@ -434,11 +425,11 @@ namespace SBPScripts
                 {
                     if (Time.frameCount % wayPointSystem.frameIncrement == 0)
                     {
-                        //wayPointSystem.bicyclePositionTransform.Add(new Vector3(Mathf.Round(transform.position.x * 100f) * 0.01f, Mathf.Round(transform.position.y * 100f) * 0.01f, Mathf.Round(transform.position.z * 100f) * 0.01f));
-                        //wayPointSystem.bicycleRotationTransform.Add(transform.rotation);
-                        //wayPointSystem.movementInstructionSet.Add(new Vector2Int((int)Input.GetAxisRaw("Horizontal"), (int)Input.GetAxisRaw("Vertical")));
-                        //wayPointSystem.sprintInstructionSet.Add(sprint);
-                        //wayPointSystem.bHopInstructionSet.Add(bunnyHopInputState);
+                        wayPointSystem.bicyclePositionTransform.Add(new Vector3(Mathf.Round(transform.position.x * 100f) * 0.01f, Mathf.Round(transform.position.y * 100f) * 0.01f, Mathf.Round(transform.position.z * 100f) * 0.01f));
+                        wayPointSystem.bicycleRotationTransform.Add(transform.rotation);
+                        wayPointSystem.movementInstructionSet.Add(new Vector2Int((int)Input.GetAxisRaw("Horizontal"), (int)Input.GetAxisRaw("Vertical")));
+                        wayPointSystem.sprintInstructionSet.Add(sprint);
+                        wayPointSystem.bHopInstructionSet.Add(bunnyHopInputState);
                     }
                 }
             }
@@ -449,14 +440,14 @@ namespace SBPScripts
                 {
                     if (wayPointSystem.movementInstructionSet.Count - 1 > Time.frameCount / wayPointSystem.frameIncrement)
                     {
-                        //transform.position = Vector3.Lerp(transform.position, wayPointSystem.bicyclePositionTransform[Time.frameCount / wayPointSystem.frameIncrement], Time.deltaTime * wayPointSystem.frameIncrement);
-                        //transform.rotation = Quaternion.Lerp(transform.rotation, wayPointSystem.bicycleRotationTransform[Time.frameCount / wayPointSystem.frameIncrement], Time.deltaTime * wayPointSystem.frameIncrement);
-                        //WayPointInput(wayPointSystem.movementInstructionSet[Time.frameCount / wayPointSystem.frameIncrement].x, ref customSteerAxis, 5, 5, false);
-                        //WayPointInput(wayPointSystem.movementInstructionSet[Time.frameCount / wayPointSystem.frameIncrement].y, ref customAccelerationAxis, 1, 1, false);
-                        //WayPointInput(wayPointSystem.movementInstructionSet[Time.frameCount / wayPointSystem.frameIncrement].x, ref customLeanAxis, 1, 1, false);
-                        //WayPointInput(wayPointSystem.movementInstructionSet[Time.frameCount / wayPointSystem.frameIncrement].y, ref rawCustomAccelerationAxis, 1, 1, true);
-                        //sprint = wayPointSystem.sprintInstructionSet[Time.frameCount / wayPointSystem.frameIncrement];
-                        //bunnyHopInputState = wayPointSystem.bHopInstructionSet[Time.frameCount / wayPointSystem.frameIncrement];
+                        transform.position = Vector3.Lerp(transform.position, wayPointSystem.bicyclePositionTransform[Time.frameCount / wayPointSystem.frameIncrement], Time.deltaTime * wayPointSystem.frameIncrement);
+                        transform.rotation = Quaternion.Lerp(transform.rotation, wayPointSystem.bicycleRotationTransform[Time.frameCount / wayPointSystem.frameIncrement], Time.deltaTime * wayPointSystem.frameIncrement);
+                        WayPointInput(wayPointSystem.movementInstructionSet[Time.frameCount / wayPointSystem.frameIncrement].x, ref customSteerAxis, 5, 5, false);
+                        WayPointInput(wayPointSystem.movementInstructionSet[Time.frameCount / wayPointSystem.frameIncrement].y, ref customAccelerationAxis, 1, 1, false);
+                        WayPointInput(wayPointSystem.movementInstructionSet[Time.frameCount / wayPointSystem.frameIncrement].x, ref customLeanAxis, 1, 1, false);
+                        WayPointInput(wayPointSystem.movementInstructionSet[Time.frameCount / wayPointSystem.frameIncrement].y, ref rawCustomAccelerationAxis, 1, 1, true);
+                        sprint = wayPointSystem.sprintInstructionSet[Time.frameCount / wayPointSystem.frameIncrement];
+                        bunnyHopInputState = wayPointSystem.bHopInstructionSet[Time.frameCount / wayPointSystem.frameIncrement];
                     }
                 }
             }
@@ -474,7 +465,7 @@ namespace SBPScripts
             {
                 axis = 1;
             }
-                //axis = r;
+
             else
             {
                 if (r != 0)

@@ -69,7 +69,8 @@ namespace SBPScripts
             waitTime = Mathf.Clamp(waitTime, 0, 1.5f);
 
 
-            speed = bicycleController.transform.InverseTransformDirection(bicycleController.rb.velocity).z;
+            //speed = bicycleController.transform.InverseTransformDirection(bicycleController.rb.velocity).z;
+            speed = 4;
             isAirborne = bicycleController.isAirborne;
             anim.SetFloat("Speed", speed);
             anim.SetBool("isAirborne", isAirborne);
