@@ -64,6 +64,7 @@ public class TmapRouteCalculator : MonoBehaviour
             yield return new WaitForSecondsRealtime(1f);
         }
         // Define the request parameters
+        StartCoroutine(Navigate());
     }
 
     public IEnumerator Navigate()
@@ -72,6 +73,7 @@ public class TmapRouteCalculator : MonoBehaviour
         string startY = locationModule.latitude.ToString();
         string endX = PlayerPrefs.GetFloat("longitude").ToString();
         string endY = PlayerPrefs.GetFloat("latitude").ToString();
+        Debug.Log(endX + ", " + endY);
         string reqCoordType = "WGS84GEO";
         string resCoordType = "WGS84GEO";
         string startName = "출발지";
