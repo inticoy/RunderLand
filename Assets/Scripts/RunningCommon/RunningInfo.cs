@@ -61,7 +61,7 @@ public class RunningInfo : MonoBehaviour
         Vector3 newDirVec = arCamera.transform.forward;
         newDirVec.y = 0;
         Vector3.Normalize(newDirVec);
-        Vector3 pos = arCamera.transform.position + newDirVec;
+        Vector3 pos = arCamera.transform.position + newDirVec * 2;
         transform.position = pos;
         Quaternion newRot = Quaternion.Euler(0f, arCamera.transform.rotation.eulerAngles.y, 0f);
         transform.rotation = newRot;
