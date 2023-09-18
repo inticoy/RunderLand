@@ -68,9 +68,11 @@ public class TmapRouteCalculator : MonoBehaviour
         isGeoDataReady = false;
         points = new List<Feature>();
         turnVectors = new Vector3[234];
+        circles = new();
         for (int i = 0; i < 10; i++)
         {
-            circles.Add(Instantiate(blueCircle, mapByBing).GetComponent<MapPin>());
+            GameObject obj = Instantiate(blueCircle, mapByBing);
+            circles.Add(obj.GetComponent<MapPin>());
         }
 
         //Initialize
