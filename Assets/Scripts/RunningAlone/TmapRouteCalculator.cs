@@ -49,6 +49,8 @@ public class TmapRouteCalculator : MonoBehaviour
     [SerializeField] MapPin mapPin;
     [SerializeField] GameObject arrow;
     [SerializeField] Camera arCamera;
+    [SerializeField] GameObject blueCircle;
+    [SerializeField] Transform mapByBing;
 
     private const string baseUrl = "https://apis.openapi.sk.com/tmap/routes/pedestrian";
     private const string apiKey = "MkWBdAMR859mRs2vFJthA9kWMnUilNTf76DNUNCk"; // Replace with your actual API key
@@ -59,11 +61,17 @@ public class TmapRouteCalculator : MonoBehaviour
     List<Feature> points;
     Vector3[] turnVectors;
 
+    List<MapPin> circles;
+
     private IEnumerator Start()
     {
         isGeoDataReady = false;
         points = new List<Feature>();
         turnVectors = new Vector3[234];
+        for (int i = 0; i < 10; i++)
+        {
+            circles.Add(Instantiate(blueCircle, mapByBing).GetComponent<MapPin>());
+        }
 
         //Initialize
 
@@ -166,14 +174,19 @@ public class TmapRouteCalculator : MonoBehaviour
         distanceNextPoint = GPSUtils.CalculateDistance(currGPS, nextPoint);
         distanceNextNextPoint = GPSUtils.CalculateDistance(currGPS, nextNextPoint);
 
-        if (distanceNextPoint < 15)
+        for (int i = 0; i < 10; i++)
         {
-            arrow.SetActive(true);
+            circles[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, i), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i));
+        }
+
+        //if (distanceNextPoint < 15)
+        //{
+            //arrow.SetActive(true);
             arrow.transform.position = arCamera.transform.position + locationModule.GetDirectionVector() * (float)distanceNextPoint;
             arrow.transform.rotation = Quaternion.Euler(turnVectors[points[currentIdx + 1].properties.turnType]);
-        }
-        else
-            arrow.SetActive(false);
+        //}
+        //else
+        //    arrow.SetActive(false);
 
         mapPin.Location = new LatLon(points[currentIdx + 1].geometry.coordinates[1], points[currentIdx + 1].geometry.coordinates[0]);
         distanceText.text = distanceNextPoint.ToString("0.0") + "m";
