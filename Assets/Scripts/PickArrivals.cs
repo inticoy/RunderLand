@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PickArrivals : MonoBehaviour
 {
-    public Image [] images = new Image[5];
+    public Image [] images = new Image[6];
 
     private void Start()
     {
@@ -66,6 +66,16 @@ public class PickArrivals : MonoBehaviour
                 image.color = new Color(0, 0, 0, 0);
             }
             images[4].color = new Color(0, 0, 1, 0.3f);
+        }
+        else if (arrival == "Nakseongdae Park")
+        {
+            PlayerPrefs.SetFloat("latitude", 37.471463f);
+            PlayerPrefs.SetFloat("longitude", 126.958476f);
+            foreach (Image image in images)
+            {
+                image.color = new Color(0, 0, 0, 0);
+            }
+            images[5].color = new Color(0, 0, 1, 0.3f);
         }
     }
 
