@@ -58,6 +58,8 @@ public class ControlTowerForRecord: MonoBehaviour
 
     void Update()
     {
+        if (PlayerPrefs.GetString("avatar") != "BicycleMan")
+            avatarAnime = GameObject.Find(PlayerPrefs.GetString("avatar") + "(Clone)").GetComponent<Animator>();
         CheckOption();
         SetAvatarAnime();
         if (stateBar.GetIsCountDownEnd())
@@ -88,8 +90,11 @@ public class ControlTowerForRecord: MonoBehaviour
         }
         else if (stateBar.GetIsCountDownGoing())
         {
-            avatarAnime.SetBool("isRun", true);
-            avatarAnime.SetBool("isIdle", false);
+            if (avatarAnime != null)
+            {
+                avatarAnime.SetBool("isRun", true);
+                avatarAnime.SetBool("isIdle", false);
+            }
             preTime += Time.deltaTime;
             avatarWithRecord.ComeAvatar(preTime);
         }
@@ -102,6 +107,8 @@ public class ControlTowerForRecord: MonoBehaviour
 
     public void SetAvatarAnime()
     {
+        if (avatarAnime == null)
+            return;
         if (isPaused)
         {
             avatarAnime.SetBool("isIdle", true);

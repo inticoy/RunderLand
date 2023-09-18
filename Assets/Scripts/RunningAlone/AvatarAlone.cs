@@ -8,14 +8,12 @@ public class AvatarAlone : MonoBehaviour
     public LocationModule locationModule;
     public StateBar stateBar;
     public Player player;
-    public TMP_Text avatarDistText;
     public TMP_Text distDiffText;
     public GameObject avatarPointer;
 
     private Vector3 pos;
     private Vector3 directionVector;
     private Vector3 avatarFixedLocation;
-    private List<double> distanceList;
     private bool isPaused;   
     private float threshold;
     private double movePerFrame = 0;
@@ -90,6 +88,5 @@ public class AvatarAlone : MonoBehaviour
             transform.position = pos;
             transform.rotation = Quaternion.LookRotation(directionVector);
         }
-        avatarDistText.text = ((float)(avatarTotalDist)).ToString();
     }
 }

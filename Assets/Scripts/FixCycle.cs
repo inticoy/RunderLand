@@ -14,6 +14,6 @@ public class FixCycle : MonoBehaviour
     void Update()
     {
         transform.localPosition = new Vector3(0, 0f, 0);
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        transform.localRotation = Quaternion.Euler(0, -0.4f, 0);
     }
 }

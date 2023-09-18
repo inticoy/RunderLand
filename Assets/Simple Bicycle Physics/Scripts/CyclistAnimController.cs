@@ -69,11 +69,11 @@ namespace SBPScripts
             waitTime = Mathf.Clamp(waitTime, 0, 1.5f);
 
 
-            //speed = bicycleController.transform.InverseTransformDirection(bicycleController.rb.velocity).z;
-            speed = 4;
+            speed = bicycleController.transform.InverseTransformDirection(bicycleController.rb.velocity).z;
             isAirborne = bicycleController.isAirborne;
-            anim.SetFloat("Speed", speed);
-            anim.SetBool("isAirborne", isAirborne);
+            //anim.SetFloat("Speed", speed);
+            anim.SetFloat("Speed", 4);
+            //anim.SetBool("isAirborne", isAirborne);
             if (bicycleStatus != null)
             {
                 if (bicycleStatus.dislodged == false)
@@ -107,6 +107,12 @@ namespace SBPScripts
             {
                 if (!bicycleController.isAirborne)
                 {
+                    AnimatorClipInfo[] clipInfo = anim.GetCurrentAnimatorClipInfo(0);
+                    if (clipInfo.Length < 1)
+                    {
+                        return;
+                    }
+
                     clipInfoCurrent = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
                     if (clipInfoCurrent == "IdleToStart" && clipInfoLast == "Idle")
                         StartCoroutine(LeftFootIK(0));

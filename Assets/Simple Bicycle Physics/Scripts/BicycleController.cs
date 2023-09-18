@@ -313,8 +313,8 @@ namespace SBPScripts
             {
                 if (hit.distance > 2f || impactFrames > 0)
                 {
-                    isAirborne = true;
-                    restingCrank = 100;
+                    //isAirborne = true;
+                    //restingCrank = 100;
                 }
                 else if (isBunnyHopping)
                 {
@@ -465,7 +465,7 @@ namespace SBPScripts
             {
                 axis = 1;
             }
-
+                //axis = r;
             else
             {
                 if (r != 0)

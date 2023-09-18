@@ -95,11 +95,11 @@ public class ProceduralIKHandler : MonoBehaviour
     {
         //Weights
         chestRange.weight = Mathf.Clamp(bicycleController.pickUpSpeed, chestIKRange.x, chestIKRange.y);
-            hipRange.weight = Mathf.Clamp(bicycleController.pickUpSpeed, hipIKRange.x, hipIKRange.y);
-            headRange.weight = Mathf.Clamp(cyclistAnimController.speed, headIKRange.x, headIKRange.y);
+        hipRange.weight = Mathf.Clamp(bicycleController.pickUpSpeed, hipIKRange.x, hipIKRange.y);
+        headRange.weight = Mathf.Clamp(cyclistAnimController.speed, headIKRange.x, headIKRange.y);
 
-            //Noise
-            if (noiseProperties.useNoise)
+        //Noise
+        if (noiseProperties.useNoise)
         {
             animatedNoise = Mathf.Lerp(animatedNoise, perlinNoise, Time.deltaTime*5);
             snapTime += Time.deltaTime;
