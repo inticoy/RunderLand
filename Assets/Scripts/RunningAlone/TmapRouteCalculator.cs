@@ -53,7 +53,7 @@ public class TmapRouteCalculator : MonoBehaviour
     bool isGeoDataReady = false;
     GeoJSON geoData;
     int currentIdx = 0;
-    double distanceNextPoint = 0;
+    double distanceNextPoint = 0, distanceNextNextPoint = 0;
 
     private IEnumerator Start()
     {
@@ -119,7 +119,7 @@ public class TmapRouteCalculator : MonoBehaviour
         if (!isGeoDataReady)
             return;
         navigationText.text = geoData.features[currentIdx].properties.description;
-         List<Feature> points = new List<Feature>();
+        List<Feature> points = new List<Feature>();
         foreach (Feature feature in geoData.features)
         {
             if (feature.geometry.type.Equals("Point"))
@@ -128,15 +128,19 @@ public class TmapRouteCalculator : MonoBehaviour
 
         GPSData currGPS = new GPSData(locationModule.latitude, locationModule.longitude, 0);
         GPSData nextPoint = new GPSData(points[currentIdx + 1].geometry.coordinates[1], points[currentIdx + 1].geometry.coordinates[0], 0);
-        distanceNextPoint = GPSUtils.CalculateDistance(currGPS, nextPoint);
+        GPSData nextNextPoint = new GPSData(points[currentIdx + 2].geometry.coordinates[1], points[currentIdx + 2].geometry.coordinates[0], 0);
 
-        if (distanceNextPoint < 3)
+        if (GPSUtils.CalculateDistance(currGPS, nextPoint) < 5 ||
+            (GPSUtils.CalculateDistance(currGPS, nextPoint) - distanceNextPoint > 0 &&
+            GPSUtils.CalculateDistance(currGPS, nextNextPoint) - distanceNextNextPoint < 0))
         {
             currentIdx++;
             navigationText.text = points[currentIdx].properties.description;
             //mapPin.Location = new LatLon(locationModule.latitude, locationModule.longitude);
         }
 
+        distanceNextPoint = GPSUtils.CalculateDistance(currGPS, nextPoint);
+        distanceNextNextPoint = GPSUtils.CalculateDistance(currGPS, nextNextPoint);
         mapPin.Location = new LatLon(points[currentIdx + 1].geometry.coordinates[1], points[currentIdx + 1].geometry.coordinates[0]);
         distanceText.text = distanceNextPoint.ToString("0.0") + "m";
     }
