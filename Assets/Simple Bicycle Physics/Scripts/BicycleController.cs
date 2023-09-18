@@ -329,11 +329,11 @@ namespace SBPScripts
                 // 5f is the snap to ground distance
                 if (hit.distance > airTimeSettings.heightThreshold && airTimeSettings.freestyle)
                 {
-                    stuntMode = true;
+                    //stuntMode = true;
                     // Stunt + flips controls (Not available for Waypoint system as of yet)
                     // You may use Numpad Inputs as well.
-                    rb.AddTorque(Vector3.up * customSteerAxis * 4 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
-                    rb.AddTorque(transform.right * rawCustomAccelerationAxis * -3 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
+                    //rb.AddTorque(Vector3.up * customSteerAxis * 4 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
+                    //rb.AddTorque(transform.right * rawCustomAccelerationAxis * -3 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
                 }
                 else
                     stuntMode = false;

@@ -72,6 +72,7 @@ public class TmapRouteCalculator : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             GameObject obj = Instantiate(blueCircle, mapByBing);
+            obj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
             circles.Add(obj.GetComponent<MapPin>());
         }
 
@@ -178,7 +179,7 @@ public class TmapRouteCalculator : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            circles[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, i), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i));
+            circles[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, i/10.0f), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i/10.0f));
         }
 
         //if (distanceNextPoint < 15)

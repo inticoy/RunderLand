@@ -17398,7 +17398,7 @@ MonoBehaviour:
   mapPin: {fileID: 1590411614}
   arrow: {fileID: 1396871608}
   arCamera: {fileID: 661078809}
-  blueCircle: {fileID: 3100002317880078649, guid: 91877c39687354c21ae1196db44a339d, type: 3}
+  blueCircle: {fileID: 803482509021119196, guid: 91877c39687354c21ae1196db44a339d, type: 3}
   mapByBing: {fileID: 59168366}
 --- !u!1 &937566617
 GameObject:
