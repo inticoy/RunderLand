@@ -47,6 +47,8 @@ public class TmapRouteCalculator : MonoBehaviour
     [SerializeField] TMP_Text distanceText;
     [SerializeField] LocationModule locationModule;
     [SerializeField] MapPin mapPin;
+    [SerializeField] GameObject arrow;
+    [SerializeField] Camera arCamera;
 
     private const string baseUrl = "https://apis.openapi.sk.com/tmap/routes/pedestrian";
     private const string apiKey = "MkWBdAMR859mRs2vFJthA9kWMnUilNTf76DNUNCk"; // Replace with your actual API key
@@ -54,10 +56,33 @@ public class TmapRouteCalculator : MonoBehaviour
     GeoJSON geoData;
     int currentIdx = 0;
     double distanceNextPoint = 0, distanceNextNextPoint = 0;
+    List<Feature> points;
+    Vector3[] turnVectors;
 
     private IEnumerator Start()
     {
-        isGeoDataReady = false; 
+        isGeoDataReady = false;
+        points = new List<Feature>();
+        turnVectors = new Vector3[234];
+
+        //Initialize
+
+        turnVectors[11] = new Vector3(0, 0, 0);
+        turnVectors[12] = new Vector3(0, -90, 0);
+        turnVectors[13] = new Vector3(0, 90, 0);
+        turnVectors[14] = new Vector3(0, 180, 0);
+        turnVectors[16] = new Vector3(0, -135, 0);
+        turnVectors[17] = new Vector3(0, -45, 0);
+        turnVectors[18] = new Vector3(0, 45, 0);
+        turnVectors[19] = new Vector3(0, 135, 0);
+        turnVectors[211] = new Vector3(0, 0, 0);
+        turnVectors[212] = new Vector3(0, -90, 0);
+        turnVectors[213] = new Vector3(0, 90, 0);
+        turnVectors[214] = new Vector3(0, -135, 0);
+        turnVectors[215] = new Vector3(0, -45, 0);
+        turnVectors[216] = new Vector3(0, 45, 0);
+        turnVectors[217] = new Vector3(0, 135, 0);
+
         while (!locationModule.isLocationModuleReady)
         {
             Debug.Log("gogo");
@@ -112,6 +137,11 @@ public class TmapRouteCalculator : MonoBehaviour
         //Debug.Log(jsonResponse);
         geoData = JsonUtility.FromJson<GeoJSON>(jsonResponse);
         isGeoDataReady = true;
+        foreach (Feature feature in geoData.features)
+        {
+            if (feature.geometry.type.Equals("Point"))
+                points.Add(feature);
+        }
     }
 
     private void Update()
@@ -119,12 +149,6 @@ public class TmapRouteCalculator : MonoBehaviour
         if (!isGeoDataReady)
             return;
         navigationText.text = geoData.features[currentIdx].properties.description;
-        List<Feature> points = new List<Feature>();
-        foreach (Feature feature in geoData.features)
-        {
-            if (feature.geometry.type.Equals("Point"))
-                points.Add(feature);
-        }
 
         GPSData currGPS = new GPSData(locationModule.latitude, locationModule.longitude, 0);
         GPSData nextPoint = new GPSData(points[currentIdx + 1].geometry.coordinates[1], points[currentIdx + 1].geometry.coordinates[0], 0);
@@ -141,6 +165,16 @@ public class TmapRouteCalculator : MonoBehaviour
 
         distanceNextPoint = GPSUtils.CalculateDistance(currGPS, nextPoint);
         distanceNextNextPoint = GPSUtils.CalculateDistance(currGPS, nextNextPoint);
+
+        if (distanceNextPoint < 15)
+        {
+            arrow.SetActive(true);
+            arrow.transform.position = arCamera.transform.position + locationModule.GetDirectionVector() * (float)distanceNextPoint;
+            arrow.transform.rotation = Quaternion.Euler(turnVectors[points[currentIdx + 1].properties.turnType]);
+        }
+        else
+            arrow.SetActive(false);
+
         mapPin.Location = new LatLon(points[currentIdx + 1].geometry.coordinates[1], points[currentIdx + 1].geometry.coordinates[0]);
         distanceText.text = distanceNextPoint.ToString("0.0") + "m";
     }
