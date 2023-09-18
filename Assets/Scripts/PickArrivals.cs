@@ -1,74 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickArrivals : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer[] squares = new SpriteRenderer[5];
+    public Image [] images = new Image[5];
 
-    void Start()
+    private void Start()
     {
-        for (int i = 0; i < 5; i++)
+        foreach (Image image in images)
         {
-            squares[i] = GameObject.Find("Square" + (i + 1).ToString()).GetComponent<SpriteRenderer>();
-            squares[i].enabled = false;
+            image.color = new Color(0, 0, 0, 0);
         }
-
     }
 
     public void SetArrival(string arrival)
     {
-        Debug.Log("gogo0");
         if (arrival == "Gyeongbokgung Palace")
         {
-            Debug.Log("gogo1");
             PlayerPrefs.SetFloat("latitude", 37.575767f);
             PlayerPrefs.SetFloat("longitude", 126.976808f);
-            foreach (SpriteRenderer square in squares)
+            foreach (Image image in images)
             {
-                square.enabled = false;
+                image.color = new Color(0, 0, 0, 0);
             }
-            squares[0].enabled = true;      
+            images[0].color = new Color(0, 0, 1, 0.3f);      
         }
         else if (arrival == "Banpo Hangang Park")
         {
             PlayerPrefs.SetFloat("latitude", 37.510746f);
             PlayerPrefs.SetFloat("longitude", 126.996019f);
-            foreach (SpriteRenderer square in squares)
+            foreach (Image image in images)
             {
-                square.enabled = false;
+                image.color = new Color(0, 0, 0, 0);
             }
-            squares[1].enabled = true;
+            images[1].color = new Color(0, 0, 1, 0.3f);
         }
         else if (arrival == "Namsan Tower")
         {
             PlayerPrefs.SetFloat("latitude", 37.551560f);
             PlayerPrefs.SetFloat("longitude", 126.988110f);
-            foreach (SpriteRenderer square in squares)
+            foreach (Image image in images)
             {
-                square.enabled = false;
+                image.color = new Color(0, 0, 0, 0);
             }
-            squares[2].enabled = true;
+            images[2].color = new Color(0, 0, 1, 0.3f);
         }
         else if (arrival == "Cheonggyecheon")
         {
             PlayerPrefs.SetFloat("latitude", 37.569251f);
             PlayerPrefs.SetFloat("longitude", 126.978601f);
-            foreach (SpriteRenderer square in squares)
+            foreach (Image image in images)
             {
-                square.enabled = false;
+                image.color = new Color(0, 0, 0, 0);
             }
-            squares[3].enabled = true;
+            images[3].color = new Color(0, 0, 1, 0.3f);
         }
         else if (arrival == "Lotte World")
         {
             PlayerPrefs.SetFloat("latitude", 37.512934f);
             PlayerPrefs.SetFloat("longitude", 127.102192f);
-            foreach (SpriteRenderer square in squares)
+            foreach (Image image in images)
             {
-                square.enabled = false;
+                image.color = new Color(0, 0, 0, 0);
             }
-            squares[4].enabled = true;
+            images[4].color = new Color(0, 0, 1, 0.3f);
         }
     }
 
