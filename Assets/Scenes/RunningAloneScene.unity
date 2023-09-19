@@ -15556,8 +15556,8 @@ MonoBehaviour:
   _numElevationTileFallbackLods: 2
   _requestTilesAroundView: 1
   _center:
-    _latitude: 37.4885
-    _longitude: 127
+    _latitude: 37.510746
+    _longitude: 126.996019
   _zoomLevel: 16
   _minimumZoomLevel: 1
   _maximumZoomLevel: 20
@@ -18417,7 +18417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806213572}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19847,7 +19847,7 @@ MonoBehaviour:
   arrow: {fileID: 1396871608}
   arCamera: {fileID: 661078809}
   blueCircle: {fileID: 803482509021119196, guid: 91877c39687354c21ae1196db44a339d, type: 3}
-  mapByBing: {fileID: 59168366}
+  mapByBing: {fileID: 556357570}
 --- !u!1 &937566617
 GameObject:
   m_ObjectHideFlags: 0

@@ -167,7 +167,8 @@ public class TmapRouteCalculator : MonoBehaviour
 
         if (GPSUtils.CalculateDistance(currGPS, nextPoint) < 5 ||
             (GPSUtils.CalculateDistance(currGPS, nextPoint) - distanceNextPoint > 0 &&
-            GPSUtils.CalculateDistance(currGPS, nextNextPoint) - distanceNextNextPoint < 0))
+            GPSUtils.CalculateDistance(currGPS, nextNextPoint) - distanceNextNextPoint < 0) &&
+            GPSUtils.CalculateDistance(currGPS, nextPoint) < 20)
         {
             currentIdx++;
             navigationText.text = points[currentIdx].properties.description;
