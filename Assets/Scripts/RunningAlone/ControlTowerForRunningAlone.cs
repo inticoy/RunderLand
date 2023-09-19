@@ -33,6 +33,9 @@ public class ControlTowerForRunningAlone : MonoBehaviour
     public GameObject pauseIcon;
     public GameObject playIcon2;
 
+    public GameObject canvasPauseIcon;
+    public GameObject canvasPlayIcon2;
+
     // app
     // todo
 
@@ -57,11 +60,17 @@ public class ControlTowerForRunningAlone : MonoBehaviour
         {
             pauseIcon.SetActive(false);
             playIcon2.SetActive(true);
+
+            canvasPauseIcon.SetActive(false);
+            canvasPlayIcon2.SetActive(true);
         }
         else
         {
             pauseIcon.SetActive(true);
             playIcon2.SetActive(false);
+
+            canvasPauseIcon.SetActive(true);
+            canvasPlayIcon2.SetActive(false);
         }
     }
 
