@@ -22,7 +22,7 @@ public class PercentageScaler : MonoBehaviour
     {
         Vector3 rotatedVector = transform.parent.TransformDirection(originalPosition);
         targetPosition = transform.parent.position + rotatedVector + 0.15f * percentage * Vector3.Normalize(transform.parent.right);
-        targetScale = new Vector3(percentage, 0.1f, 1f);
+        targetScale = new Vector3(percentage, 0.1f, 0.05f);
         
 
         float t = Mathf.Clamp01(Time.deltaTime / moveDuration);
