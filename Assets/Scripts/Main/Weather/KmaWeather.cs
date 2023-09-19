@@ -71,6 +71,12 @@ public class KmaWeather : MonoBehaviour
     [SerializeField]
     TMP_Text weatherMainText;
 
+    [SerializeField]
+    TMP_Text canvasWeatherTempText;
+
+    [SerializeField]
+    TMP_Text canvasWeatherMainText;
+
     public string temparature;
     public string weather;
 
@@ -137,11 +143,17 @@ public class KmaWeather : MonoBehaviour
         {
             weatherTempText.text = temparature + "°C";
             weatherMainText.text = weather;
+
+            canvasWeatherMainText.text = weather;
+            canvasWeatherTempText.text = temparature + "°C";
         }
         else
         {
             weatherTempText.text = "날씨";
-            weatherMainText.text = "로딩 중";            
+            weatherMainText.text = "로딩 중";
+
+            canvasWeatherMainText.text = "날씨";
+            canvasWeatherTempText.text = "로딩 중";
         }
     }
 

@@ -12,6 +12,7 @@ public class DailyRunGetter : MonoBehaviour
 
     List<string> todayFiles;
     [SerializeField] TMP_Text dailyGoalText;
+    [SerializeField] TMP_Text dailyDistanceText;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,8 @@ public class DailyRunGetter : MonoBehaviour
                 todayFiles.Add(filePath);
         }
         dailyGoalText.text = (GetDailyRunDistance() / 1000).ToString("0.0") + " / 5km";
+        dailyDistanceText.text = (GetDailyRunDistance() / 1000).ToString("0.00");
+
         percentageScaler.percentage = (GetDailyRunDistance() / 5000);
         runnerGauge.percentage = percentageScaler.percentage;
     }
