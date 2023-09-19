@@ -4714,6 +4714,7 @@ GameObject:
   - component: {fileID: 433307876}
   - component: {fileID: 433307878}
   - component: {fileID: 433307877}
+  - component: {fileID: 433307879}
   m_Layer: 5
   m_Name: Area2Text
   m_TagString: Untagged
@@ -4739,7 +4740,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 48, y: 48}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &433307877
 MonoBehaviour:
@@ -4838,6 +4839,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433307875}
   m_CullTransparentMesh: 1
+--- !u!114 &433307879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433307875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &460103737
 GameObject:
   m_ObjectHideFlags: 0
@@ -30739,6 +30754,7 @@ GameObject:
   - component: {fileID: 2030463688}
   - component: {fileID: 2030463690}
   - component: {fileID: 2030463689}
+  - component: {fileID: 2030463691}
   m_Layer: 5
   m_Name: Area1Text
   m_TagString: Untagged
@@ -30764,7 +30780,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 48, y: 122}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2030463689
 MonoBehaviour:
@@ -30863,6 +30879,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030463687}
   m_CullTransparentMesh: 1
+--- !u!114 &2030463691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030463687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &2064256391
 GameObject:
   m_ObjectHideFlags: 0
