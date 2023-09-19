@@ -16,6 +16,7 @@ public class FileListManager : MonoBehaviour
     [SerializeField] MapPin startMapPin;
     [SerializeField] MapPin endMapPin;
     [SerializeField] Transform content;
+    [SerializeField] Transform content2;
     [SerializeField] GameObject logPrefab;
 
     private List<List<string>> logDataList;
@@ -37,11 +38,20 @@ public class FileListManager : MonoBehaviour
             logDataList.Add(getMetadata(filePath));
             GPSDatasList.Add(GPXReader.ReadGPXFile(filePath));
             GameObject button = Instantiate(logPrefab, content);
+            GameObject button2 = Instantiate(logPrefab, content2);
             TMP_Text[] texts = button.GetComponentsInChildren<TMP_Text>();
             texts[0].text = logDataList[^1][2];
             texts[1].text = logDataList[^1][3];
             texts[2].text = logDataList[^1][4];
             button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                UpdateLogInfo(index);
+            });
+            texts = button2.GetComponentsInChildren<TMP_Text>();
+            texts[0].text = logDataList[^1][2];
+            texts[1].text = logDataList[^1][3];
+            texts[2].text = logDataList[^1][4];
+            button2.GetComponent<Button>().onClick.AddListener(() =>
             {
                 UpdateLogInfo(index);
             });
@@ -136,6 +146,20 @@ public class FileListManager : MonoBehaviour
         }
         images[index].color = new Color(0.9216f, 0.5647f, 0, 0.3882f);
         TMP_Text[] innerSelectedTexts = images[index].GetComponentsInChildren<TMP_Text>();
+        foreach (TMP_Text innerText in innerSelectedTexts)
+            innerText.color = new Color(0, 0, 0);
+
+        images = content2.GetComponentsInChildren<Image>();
+
+        foreach (Image image in images)
+        {
+            image.color = new Color(0, 0, 0, 0.3882f);
+            TMP_Text[] innerTexts = image.GetComponentsInChildren<TMP_Text>();
+            foreach (TMP_Text innerText in innerTexts)
+                innerText.color = new Color(1, 1, 1);
+        }
+        images[index].color = new Color(0.9216f, 0.5647f, 0, 0.3882f);
+        innerSelectedTexts = images[index].GetComponentsInChildren<TMP_Text>();
         foreach (TMP_Text innerText in innerSelectedTexts)
             innerText.color = new Color(0, 0, 0);
 

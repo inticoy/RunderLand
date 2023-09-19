@@ -180,7 +180,7 @@ public class TmapRouteCalculator : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            circles[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, i/10.0f), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i/10.0f));
+            circles[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, 3 * i/(float)distanceNextPoint), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i/10.0f));
         }
 
         //if (distanceNextPoint < 15)
