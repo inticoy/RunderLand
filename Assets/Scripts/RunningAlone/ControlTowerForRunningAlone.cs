@@ -110,9 +110,18 @@ public class ControlTowerForRunningAlone : MonoBehaviour
             timeText.text = GetTimeInFormat(time);
             canvasTimeText.text = GetTimeInFormat(time);
 
-            paceText.text = ((time / player.GetTotalDist() * 1000) / 60).ToString("0") + "' "
+
+            if (player.GetTotalDist() < 0.1)
+            {
+                paceText.text = "계산 중";
+                canvasPaceText.text = paceText.text;
+            }
+            else
+            {
+                paceText.text = ((time / player.GetTotalDist() * 1000) / 60).ToString("0") + "' "
                                 + ((time / player.GetTotalDist() * 1000) % 60).ToString("0") + '"';
-            canvasPaceText.text = paceText.text;
+                canvasPaceText.text = paceText.text;
+            }
 
             caloriesText.text = (0.18958333333 * calorieTime).ToString("0.0");
             canvasCaloriesText.text = (0.18958333333 * calorieTime).ToString("0.0") + " kcal";
