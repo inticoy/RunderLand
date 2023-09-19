@@ -81,9 +81,7 @@ namespace QCHT.Samples.XRKeyboard
                             _keyboardInputsText.text = _keyboardInputsText.text.Substring(0, _keyboardInputsText.text.Length - 1);
                         break;
                     case KeySpecial.Enter:
-                        keyboard.SetActive(false);
-                        PlayerPrefs.SetString("playerName", _keyboardInputsText.text);
-                        SceneManager.LoadScene("MainScene");
+                        setPlayerName();
                         break;
                     case KeySpecial.Shift:
                         SetMaj(!_maj);
@@ -107,6 +105,13 @@ namespace QCHT.Samples.XRKeyboard
                     keyChar.SetMaj(maj);
             }
             _maj = maj;
+        }
+
+        public void setPlayerName()
+        {
+            keyboard.SetActive(false);
+            PlayerPrefs.SetString("playerName", _keyboardInputsText.text);
+            SceneManager.LoadScene("MainScene");
         }
     }
 }
