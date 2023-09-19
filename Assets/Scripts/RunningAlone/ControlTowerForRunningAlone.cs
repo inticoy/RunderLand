@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using static System.Net.Mime.MediaTypeNames;
+using Unity.VisualScripting;
 
 public class ControlTowerForRunningAlone : MonoBehaviour
 {
@@ -18,11 +20,22 @@ public class ControlTowerForRunningAlone : MonoBehaviour
     public PlayButton playButton;
     public LocationModule locationModule;
     public GPXLogger GPXLogger;
+
+    public TMP_Text canvasTimeText;
     public TMP_Text timeText;
+
     public TMP_Text paceText;
+    public TMP_Text canvasPaceText;
+
     public TMP_Text caloriesText;
+    public TMP_Text canvasCaloriesText;
+
     public GameObject pauseIcon;
     public GameObject playIcon2;
+
+    // app
+    // todo
+
 
     [SerializeField] private Animator avatarAnime;
     private float runningSpeed;
@@ -93,9 +106,16 @@ public class ControlTowerForRunningAlone : MonoBehaviour
                 runningInfo.ToggleIsPaused();
                 isPauseButtonPressed = false;
             }
+
             timeText.text = GetTimeInFormat(time);
-            paceText.text = (player.GetTotalDist() / time).ToString("0.0");
+            canvasTimeText.text = GetTimeInFormat(time);
+
+            paceText.text = ((time / player.GetTotalDist() * 1000) / 60).ToString("0") + "' "
+                                + ((time / player.GetTotalDist() * 1000) % 60).ToString("0") + '"';
+            canvasPaceText.text = paceText.text;
+
             caloriesText.text = (0.18958333333 * calorieTime).ToString("0.0");
+            canvasCaloriesText.text = (0.18958333333 * calorieTime).ToString("0.0") + " kcal";
         }
         else if (stateBar.GetIsCountDownGoing())
         {

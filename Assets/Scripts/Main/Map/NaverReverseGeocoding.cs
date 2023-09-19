@@ -103,6 +103,13 @@ public class NaverReverseGeocoding : MonoBehaviour
     TMP_Text area2Text;
 
     [SerializeField]
+    TMP_Text canvasArea1Text;
+
+    [SerializeField]
+    TMP_Text canvasArea2Text;
+
+
+    [SerializeField]
     LocationModuleForMain location;
 
     private Root response;
@@ -133,16 +140,25 @@ public class NaverReverseGeocoding : MonoBehaviour
         {
             area1Text.text = "위치";
             area2Text.text = "로딩 중";
+
+            canvasArea1Text.text = "위치";
+            canvasArea2Text.text = "로딩 중";
         }
         else if (status_code == 0)
         {
             area1Text.text = response.results[0].region.area1.name;
             area2Text.text = response.results[0].region.area2.name;
+
+            canvasArea1Text.text = response.results[0].region.area1.name;
+            canvasArea2Text.text = response.results[0].region.area2.name;
         }
         else if (status_code == 3)
         {
             area1Text.text = "검색 결과가";
             area2Text.text = "없습니다.";
+
+            canvasArea1Text.text = "검색 결과가";
+            canvasArea2Text.text = "없습니다.";
         }
     }
 

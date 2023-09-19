@@ -6,6 +6,7 @@ using System;
 public class StateBar : MonoBehaviour
 {
 	public TMP_Text distanceText;
+	public TMP_Text canvasDistanceText;
 	public TMP_Text unitText;	
 	public Image LoadingBar;
 	public Player player;
@@ -82,7 +83,7 @@ public class StateBar : MonoBehaviour
 			else if (Time.time < startTime)
 			{
 				distanceText.text = Mathf.Floor(startTime - Time.time + 1).ToString();
-				LoadingBar.fillAmount = 1 - (startTime - Time.time) + Mathf.Floor(startTime - Time.time);
+                LoadingBar.fillAmount = 1 - (startTime - Time.time) + Mathf.Floor(startTime - Time.time);
 
 				if (countdownText != null)
 				{
@@ -111,6 +112,7 @@ public class StateBar : MonoBehaviour
 				isCountDownEnd = true;				
 				distance = (float)player.GetTotalDist() * 0.001f;
                 distanceText.text = (distance).ToString("0.00");
+				canvasDistanceText.text = (distance).ToString("0.00") + " km";
                 LoadingBar.fillAmount = distance - (int)distance;
 				unitText.text = "kilometer";
 			}		
