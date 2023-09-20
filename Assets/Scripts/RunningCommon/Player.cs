@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
                 speedLine.SetActive(false);
 
 			///debug///
-            playertext.text = totalDist.ToString();
+            playertext.text = (totalDist / 1000f).ToString("0.00");
 			///////////            
 
 			//prevTotalDist = totalDist;		

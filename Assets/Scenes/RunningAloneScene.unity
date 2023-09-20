@@ -18798,7 +18798,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806213572}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &806213575
 Camera:
   m_ObjectHideFlags: 0
@@ -24736,7 +24736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1396871609
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29247,7 +29247,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878501822}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1878501824
 Camera:
   m_ObjectHideFlags: 0

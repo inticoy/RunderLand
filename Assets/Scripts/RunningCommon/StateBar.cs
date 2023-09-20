@@ -110,8 +110,6 @@ public class StateBar : MonoBehaviour
 				else
 					countdownText.text = "";
 				isCountDownEnd = true;				
-				distance = (float)player.GetTotalDist() * 0.001f;
-                distanceText.text = (distance).ToString("0.00");
 				canvasDistanceText.text = (distance).ToString("0.00") + " km";
                 LoadingBar.fillAmount = distance - (int)distance;
 				unitText.text = "kilometer";

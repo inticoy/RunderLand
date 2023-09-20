@@ -159,7 +159,7 @@ public class TmapRouteCalculator : MonoBehaviour
                 int pointCnt = (int) (distance / 5);
                 for (int j = 1; j <= pointCnt; j++)
                 {
-                    coordinates.Insert(i + j - 1, new Tuple<double, double>((double)Mathf.Lerp((float)prev.longitude, (float)next.longitude, (float)(j / distance)), (double)Mathf.Lerp((float)prev.latitude, (float)next.latitude, (float)(j / distance))));
+                    coordinates.Insert(i + j - 1, new Tuple<double, double>((double)Mathf.Lerp((float)prev.longitude, (float)next.longitude, (float)(5 * j / distance)), (double)Mathf.Lerp((float)prev.latitude, (float)next.latitude, (float)(5 * j / distance))));
                 }
                 i += pointCnt;
             }

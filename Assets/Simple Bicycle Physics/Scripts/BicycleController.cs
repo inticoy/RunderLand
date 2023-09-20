@@ -201,19 +201,19 @@ namespace SBPScripts
             if (currentSpeed < currentTopSpeed && rawCustomAccelerationAxis > 0)
                 rWheelRb.AddTorque(transform.right * torque * customAccelerationAxis);
 
-            if (currentSpeed < currentTopSpeed && rawCustomAccelerationAxis > 0 && !isAirborne && !isBunnyHopping)
+            //if (currentSpeed < currentTopSpeed && rawCustomAccelerationAxis > 0 && !isAirborne && !isBunnyHopping)
                 rb.AddForce(transform.forward * accelerationCurve.Evaluate(customAccelerationAxis));
 
-            if (currentSpeed < reversingSpeed && rawCustomAccelerationAxis < 0 && !isAirborne && !isBunnyHopping)
-                rb.AddForce(-transform.forward * accelerationCurve.Evaluate(customAccelerationAxis) * 0.5f);
+            //if (currentSpeed < reversingSpeed && rawCustomAccelerationAxis < 0 && !isAirborne && !isBunnyHopping)
+            //    rb.AddForce(-transform.forward * accelerationCurve.Evaluate(customAccelerationAxis) * 0.5f);
 
             if (transform.InverseTransformDirection(rb.velocity).z < 0)
                 isReversing = true;
             else
                 isReversing = false;
 
-            if (rawCustomAccelerationAxis < 0 && isReversing == false && !isAirborne && !isBunnyHopping)
-                rb.AddForce(-transform.forward * accelerationCurve.Evaluate(customAccelerationAxis) * 2);
+            //if (rawCustomAccelerationAxis < 0 && isReversing == false && !isAirborne && !isBunnyHopping)
+            //    rb.AddForce(-transform.forward * accelerationCurve.Evaluate(customAccelerationAxis) * 2);
 
             // Center of Mass handling
             if (stuntMode)
@@ -314,11 +314,11 @@ namespace SBPScripts
                 if (hit.distance > 2f || impactFrames > 0)
                 {
                     //isAirborne = true;
-                    //restingCrank = 100;
+                    restingCrank = 10;
                 }
                 else if (isBunnyHopping)
                 {
-                    restingCrank = 100;
+                    restingCrank = 10;
                 }
                 else
                 {
@@ -329,11 +329,11 @@ namespace SBPScripts
                 // 5f is the snap to ground distance
                 if (hit.distance > airTimeSettings.heightThreshold && airTimeSettings.freestyle)
                 {
-                    //stuntMode = true;
+                    stuntMode = true;
                     // Stunt + flips controls (Not available for Waypoint system as of yet)
                     // You may use Numpad Inputs as well.
-                    //rb.AddTorque(Vector3.up * customSteerAxis * 4 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
-                    //rb.AddTorque(transform.right * rawCustomAccelerationAxis * -3 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
+                    rb.AddTorque(Vector3.up * customSteerAxis * 4 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
+                    rb.AddTorque(transform.right * rawCustomAccelerationAxis * -3 * airTimeSettings.airTimeRotationSensitivity, ForceMode.Impulse);
                 }
                 else
                     stuntMode = false;
@@ -464,6 +464,7 @@ namespace SBPScripts
             if (isRaw)
             {
                 axis = 1;
+                Debug.Log(r);
             }
                 //axis = r;
             else
