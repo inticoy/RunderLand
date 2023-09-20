@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.Networking;
 using TMPro;
 using Microsoft.Maps.Unity;
 using Microsoft.Geospatial;
+using Newtonsoft.Json.Linq;
 
 
 [System.Serializable]
@@ -70,17 +72,6 @@ public class TmapRouteCalculator : MonoBehaviour
         points = new List<Feature>();
         circles = new();
         circlesAR = new();
-        for (int i = 0; i < 10; i++)
-        {
-            GameObject obj = Instantiate(blueCircle, mapByBing);
-            obj.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
-            GameObject objAR = Instantiate(blueCircle, mapByBingAR);
-            objAR.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
-            circles.Add(obj.GetComponent<MapPin>());
-            circlesAR.Add(objAR.GetComponent<MapPin>());
-        }
-
-        //Initialize
 
         while (!locationModule.isLocationModuleReady)
         {
@@ -141,6 +132,34 @@ public class TmapRouteCalculator : MonoBehaviour
             if (feature.geometry.type.Equals("Point"))
                 points.Add(feature);
         }
+
+        JObject jObject = JObject.Parse(jsonResponse);
+        var features = jObject["features"];
+        List<Tuple<double, double>> coordinates = new List<Tuple<double, double>>();
+
+        foreach (JObject obj in features)
+        {
+            if (obj["geometry"]["type"].ToString() == "LineString")
+            {
+                foreach (var coord in obj["geometry"]["coordinates"])
+                {
+                    coordinates.Add(new Tuple<double, double>(double.Parse(coord[0].ToString()), double.Parse(coord[1].ToString())));
+                }
+            }
+        }
+
+        foreach (Tuple<double, double> lonlat in coordinates)
+        {
+            GameObject obj = Instantiate(blueCircle, mapByBing);
+            obj.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
+            obj.GetComponent<MapPin>().Location = new LatLon(lonlat.Item2, lonlat.Item1);
+            GameObject objAR = Instantiate(blueCircle, mapByBingAR);
+            objAR.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
+            objAR.GetComponent<MapPin>().Location = new LatLon(lonlat.Item2, lonlat.Item1);
+            circles.Add(obj.GetComponent<MapPin>());
+            circlesAR.Add(objAR.GetComponent<MapPin>());
+        }
+
     }
 
     private void Update()
@@ -166,11 +185,11 @@ public class TmapRouteCalculator : MonoBehaviour
         distanceNextPoint = GPSUtils.CalculateDistance(currGPS, nextPoint);
         distanceNextNextPoint = GPSUtils.CalculateDistance(currGPS, nextNextPoint);
 
-        for (int i = 0; i < 10; i++)
-        {
-            circles[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, 10 * i/(float)distanceNextPoint), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i/10.0f));
-            circlesAR[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, 10 * i/(float)distanceNextPoint), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i/10.0f));
-        }
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    circles[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, 10 * i/(float)distanceNextPoint), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i/10.0f));
+        //    circlesAR[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, 10 * i/(float)distanceNextPoint), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i/10.0f));
+        //}
 
         mapPin.Location = new LatLon(points[currentIdx + 1].geometry.coordinates[1], points[currentIdx + 1].geometry.coordinates[0]);
         distanceText.text = distanceNextPoint.ToString("0.0") + "m";
