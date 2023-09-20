@@ -51,6 +51,7 @@ public class TmapRouteCalculator : MonoBehaviour
     [SerializeField] Camera arCamera;
     [SerializeField] GameObject blueCircle;
     [SerializeField] Transform mapByBing;
+    [SerializeField] Transform mapByBingAR;
 
     private const string baseUrl = "https://apis.openapi.sk.com/tmap/routes/pedestrian";
     private const string apiKey = "MkWBdAMR859mRs2vFJthA9kWMnUilNTf76DNUNCk"; // Replace with your actual API key
@@ -59,40 +60,27 @@ public class TmapRouteCalculator : MonoBehaviour
     int currentIdx = 0;
     double distanceNextPoint = 0, distanceNextNextPoint = 0;
     List<Feature> points;
-    Vector3[] turnVectors;
 
     List<MapPin> circles;
+    List<MapPin> circlesAR;
 
     private IEnumerator Start()
     {
         isGeoDataReady = false;
         points = new List<Feature>();
-        turnVectors = new Vector3[234];
         circles = new();
+        circlesAR = new();
         for (int i = 0; i < 10; i++)
         {
             GameObject obj = Instantiate(blueCircle, mapByBing);
-            obj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
+            obj.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
+            GameObject objAR = Instantiate(blueCircle, mapByBingAR);
+            objAR.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
             circles.Add(obj.GetComponent<MapPin>());
+            circlesAR.Add(objAR.GetComponent<MapPin>());
         }
 
         //Initialize
-
-        turnVectors[11] = new Vector3(0, 0, 0);
-        turnVectors[12] = new Vector3(0, -90, 0);
-        turnVectors[13] = new Vector3(0, 90, 0);
-        turnVectors[14] = new Vector3(0, 180, 0);
-        turnVectors[16] = new Vector3(0, -135, 0);
-        turnVectors[17] = new Vector3(0, -45, 0);
-        turnVectors[18] = new Vector3(0, 45, 0);
-        turnVectors[19] = new Vector3(0, 135, 0);
-        turnVectors[211] = new Vector3(0, 0, 0);
-        turnVectors[212] = new Vector3(0, -90, 0);
-        turnVectors[213] = new Vector3(0, 90, 0);
-        turnVectors[214] = new Vector3(0, -135, 0);
-        turnVectors[215] = new Vector3(0, -45, 0);
-        turnVectors[216] = new Vector3(0, 45, 0);
-        turnVectors[217] = new Vector3(0, 135, 0);
 
         while (!locationModule.isLocationModuleReady)
         {
@@ -159,7 +147,7 @@ public class TmapRouteCalculator : MonoBehaviour
     {
         if (!isGeoDataReady)
             return;
-        navigationText.text = geoData.features[currentIdx].properties.description;
+        navigationText.text = points[currentIdx].properties.description;
 
         GPSData currGPS = new GPSData(locationModule.latitude, locationModule.longitude, 0);
         GPSData nextPoint = new GPSData(points[currentIdx + 1].geometry.coordinates[1], points[currentIdx + 1].geometry.coordinates[0], 0);
@@ -180,17 +168,9 @@ public class TmapRouteCalculator : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            circles[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, 3 * i/(float)distanceNextPoint), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i/10.0f));
+            circles[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, 10 * i/(float)distanceNextPoint), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i/10.0f));
+            circlesAR[i].Location = new LatLon(Mathf.Lerp((float)currGPS.latitude, (float)nextPoint.latitude, 10 * i/(float)distanceNextPoint), Mathf.Lerp((float)currGPS.longitude, (float)nextPoint.longitude, i/10.0f));
         }
-
-        //if (distanceNextPoint < 15)
-        //{
-            //arrow.SetActive(true);
-            arrow.transform.position = arCamera.transform.position + locationModule.GetDirectionVector() * (float)distanceNextPoint;
-            arrow.transform.rotation = Quaternion.Euler(turnVectors[points[currentIdx + 1].properties.turnType]);
-        //}
-        //else
-        //    arrow.SetActive(false);
 
         mapPin.Location = new LatLon(points[currentIdx + 1].geometry.coordinates[1], points[currentIdx + 1].geometry.coordinates[0]);
         distanceText.text = distanceNextPoint.ToString("0.0") + "m";

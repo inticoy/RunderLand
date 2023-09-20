@@ -19907,6 +19907,7 @@ MonoBehaviour:
   arCamera: {fileID: 661078809}
   blueCircle: {fileID: 803482509021119196, guid: 91877c39687354c21ae1196db44a339d, type: 3}
   mapByBing: {fileID: 556357570}
+  mapByBingAR: {fileID: 59168366}
 --- !u!1 &937566617
 GameObject:
   m_ObjectHideFlags: 0
