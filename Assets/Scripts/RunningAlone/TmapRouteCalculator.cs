@@ -148,6 +148,23 @@ public class TmapRouteCalculator : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < coordinates.Count - 1; i++)
+        {
+            GPSData prev = new(coordinates[i].Item2, coordinates[i].Item1, 0);
+            GPSData next = new(coordinates[i + 1].Item2, coordinates[i + 1].Item1, 0);
+
+            double distance = GPSUtils.CalculateDistance(prev, next);
+            if (distance > 5)
+            {
+                int pointCnt = (int) (distance / 5);
+                for (int j = 1; j <= pointCnt; j++)
+                {
+                    coordinates.Insert(i + j - 1, new Tuple<double, double>((double)Mathf.Lerp((float)prev.longitude, (float)next.longitude, (float)(j / distance)), (double)Mathf.Lerp((float)prev.latitude, (float)next.latitude, (float)(j / distance))));
+                }
+                i += pointCnt;
+            }
+        }
+
         foreach (Tuple<double, double> lonlat in coordinates)
         {
             GameObject obj = Instantiate(blueCircle, mapByBing);
