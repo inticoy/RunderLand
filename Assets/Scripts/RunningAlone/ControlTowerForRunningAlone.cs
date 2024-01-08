@@ -2,154 +2,83 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
-using static System.Net.Mime.MediaTypeNames;
-using Unity.VisualScripting;
 
 public class ControlTowerForRunningAlone : MonoBehaviour
 {
-    public Toggle avatarToggle;
-    public Toggle infoToggle;
-    public Toggle effectToggle;
-    public Slider slider;
-    public Player player;
-    public RunningInfo runningInfo;
-    public GameObject optionedInfo;
-    public AvatarAlone avatarAlone;
-    public StateBar stateBar;
-    public Camera arCamera;
-    public PlayButton playButton;
-    public LocationModule locationModule;
-    public GPXLogger GPXLogger;
-
-    public TMP_Text canvasTimeText;
-    public TMP_Text timeText;
-
-    public TMP_Text paceText;
-    public TMP_Text canvasPaceText;
-
-    public TMP_Text caloriesText;
-    public TMP_Text canvasCaloriesText;
-
-    public GameObject pauseIcon;
-    public GameObject playIcon2;
-
-    public GameObject canvasPauseIcon;
-    public GameObject canvasPlayIcon2;
-
-    // app
-    // todo
-
-
+    [SerializeField] private Toggle avatarToggle;
+    [SerializeField] private Toggle infoToggle;
+    [SerializeField] private Toggle effectToggle;
+    [SerializeField] private Slider slider;
+    [SerializeField] private Player player;
+    [SerializeField] private RunningInfo runningInfo;
+    [SerializeField] private GameObject optionedInfo;
+    [SerializeField] private AvatarAlone avatarAlone;
+    [SerializeField] private StateBar stateBar;
+    [SerializeField] private Camera arCamera;
+    [SerializeField] private PlayButton playButton;
+    [SerializeField] private LocationModule locationModule;
+    [SerializeField] private GPXLogger GPXLogger;
     [SerializeField] private Animator avatarAnime;
-    private float runningSpeed;
-    private bool avatarToggleValue;
-    private bool infoToggleValue;
-    private bool effectToggleValue;
-    private bool isPaused;
-    private bool isPauseButtonPressed;
-    private float time;
-    private float calorieTime;
-    private float preTime;
 
-    public void ToggleIsPaused()
-    {
-        isPaused = !isPaused;
-        isPauseButtonPressed = true;
-        SetAvatarAnime();
-        if (isPaused)
-        {
-            pauseIcon.SetActive(false);
-            playIcon2.SetActive(true);
+    private float   runningSpeed;
+    private bool    avatarToggleValue;
+    private bool    infoToggleValue;
+    private bool    effectToggleValue;
+    private bool    isPaused;
+    private bool    isStart;
+    private float   time;
+    private float   preTime;
+    private float   calorieTime;
 
-            canvasPauseIcon.SetActive(false);
-            canvasPlayIcon2.SetActive(true);
-        }
-        else
-        {
-            pauseIcon.SetActive(true);
-            playIcon2.SetActive(false);
-
-            canvasPauseIcon.SetActive(true);
-            canvasPlayIcon2.SetActive(false);
-        }
-    }
 
     void Start()
     {
         if (PlayerPrefs.GetString("avatar") != "BicycleMan")
-            avatarAnime = GameObject.Find(PlayerPrefs.GetString("avatar") + "(Clone)").GetComponent<Animator>();
-        
+            avatarAnime = GameObject.Find(PlayerPrefs.GetString("avatar") + "(Clone)").GetComponent<Animator>();     
         avatarToggleValue = true;
         infoToggleValue = true;
         effectToggleValue = true;
         isPaused = true;
-        isPauseButtonPressed = false;
+        isStart = false;
         time = 0;
         preTime = 0;
     }
 
     void Update()
     {
-        //avatarAnime = GameObject.Find("AnimeMan(Clone)").GetComponent<Animator>();
-        CheckOption();
-        SetAvatarAnime();        
-        if (stateBar.GetIsCountDownEnd())
+        CheckOption(); // avatar speed, effect etc.
+        SetAvatarAnime(); // According to avatar speed, change animation of avatar.
+        if (isStart)
         {
-            if (time == 0)
+            if (!isPaused)
+                time += Time.deltaTime;
+            if (locationModule.GetIsValidMovement())
+                calorieTime += Time.deltaTime;
+            runningInfo.InfoUpdate(time, player.GetTotalDist(), calorieTime);
+        }
+        else
+        {
+            ShowReadyScene();
+            if (stateBar.GetIsStart())
             {
                 isPaused = false;
+                isStart = true;
                 player.enabled = true;
                 avatarAlone.enabled = true;
                 GPXLogger.enabled = true;
                 runningInfo.ToggleIsPaused();
                 locationModule.InitializeQueue();
             }
-            if (!isPaused)
-                time += Time.deltaTime;
-            if (locationModule.GetIsValidMovement())
-                calorieTime += Time.deltaTime;
-            if (isPauseButtonPressed)
-            {
-                player.ToggleIsPaused();
-                avatarAlone.ToggleIsPaused();
-                runningInfo.ToggleIsPaused();
-                isPauseButtonPressed = false;
-            }
+        }  
+    }
 
-            timeText.text = GetTimeInFormat(time);
-            canvasTimeText.text = GetTimeInFormat(time);
-
-
-            if (player.GetTotalDist() < 0.1)
-            {
-                paceText.text = "계산 중";
-                canvasPaceText.text = paceText.text;
-            }
-            else
-            {
-                paceText.text = ((time / player.GetTotalDist() * 1000) / 60).ToString("0") + "' "
-                                + ((time / player.GetTotalDist() * 1000) % 60).ToString("0") + '"';
-                canvasPaceText.text = paceText.text;
-            }
-
-            caloriesText.text = (0.18958333333 * calorieTime).ToString("0.0");
-            canvasCaloriesText.text = (0.18958333333 * calorieTime).ToString("0.0") + " kcal";
-        }
-        else if (stateBar.GetIsCountDownGoing())
-        {
-            if (avatarAnime != null)
-            {
-                avatarAnime.SetBool("isRun", true);
-                avatarAnime.SetBool("isIdle", false);
-            }
-            preTime += Time.deltaTime;
-            avatarAlone.ComeAvatar(preTime);
-        }
-        else
-        {            
-            avatarAlone.FixAvatar();
-            runningInfo.FixInfo();
-        }
+    public void PressPauseButton()
+    {
+        isPaused = !isPaused;
+        SetAvatarAnime();
+        player.ToggleIsPaused();
+        avatarAlone.ToggleIsPaused();
+        runningInfo.ToggleIsPaused();
     }
 
     public void SetAvatarAnime()
@@ -203,6 +132,27 @@ public class ControlTowerForRunningAlone : MonoBehaviour
                 arCamera.cullingMask |= 1 << LayerMask.NameToLayer("Effect");
             else
                 arCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Effect"));
+        }
+    }
+
+    public void ShowReadyScene()
+    {
+        // Start button pressed, Count down 3, 2, 1
+        if (stateBar.GetIsCountDownGoing())
+        {
+            if (avatarAnime != null)
+            {
+                avatarAnime.SetBool("isRun", true);
+                avatarAnime.SetBool("isIdle", false);
+            }
+            preTime += Time.deltaTime;
+            avatarAlone.ComeAvatar(preTime);
+        }
+        // Start button not pressed, all component fixed
+        else
+        {
+            avatarAlone.FixAvatar();
+            runningInfo.FixInfoPanel();
         }
     }
 

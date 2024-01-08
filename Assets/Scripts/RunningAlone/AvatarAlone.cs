@@ -1,15 +1,14 @@
 using UnityEngine;
-using System.Collections.Generic;
 using TMPro;
 
 public class AvatarAlone : MonoBehaviour
 {
-    public Camera arCamera;    
-    public LocationModule locationModule;
-    public StateBar stateBar;
-    public Player player;
-    public TMP_Text distDiffText;
-    public GameObject avatarPointer;
+    [SerializeField] private Camera arCamera;    
+    [SerializeField] private LocationModule locationModule;
+    [SerializeField] private StateBar stateBar;
+    [SerializeField] private Player player;
+    [SerializeField] private TMP_Text distDiffText;
+    [SerializeField] private GameObject avatarPointer;
 
     private Vector3 pos;
     private Vector3 directionVector;

@@ -167,8 +167,9 @@ public class NaverReverseGeocoding : MonoBehaviour
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {
-            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", "wnapo1j7yy");
-            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY", "WD2NPl4SffTzHK1G8vyLlHUjOtAm3jYQUKqpjPsa");
+            // naver geo api key
+            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", "(ID)");
+            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY", "(key))");
 
             yield return webRequest.SendWebRequest();
 

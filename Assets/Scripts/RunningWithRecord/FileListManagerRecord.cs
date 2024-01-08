@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-//using Qualcomm.Snapdragon.Spaces.Samples;
 using System;
 using Microsoft.Maps.Unity;
 using Microsoft.Geospatial;

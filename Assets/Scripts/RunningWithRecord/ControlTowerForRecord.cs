@@ -3,92 +3,83 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 
-/*
- * Avatar Anime control in the avatar script  
- * No Speed Control
- * 
-*/
-
 public class ControlTowerForRecord: MonoBehaviour
 {
-    public Toggle avatarToggle;
-    public Toggle infoToggle;
-    public Toggle effectToggle;
-    public Player player;
-    public RunningInfo runningInfo;
-    public GameObject optionedInfo;
-    public AvatarWithRecord avatarWithRecord;
-    public Animator avatarAnime;
-    public StateBar stateBar;
-    public Camera arCamera;
-    public PlayButton playButton;
-    public LocationModule locationModule;
-    public GPXLogger GPXLogger;
-    public TMP_Text timeText;
-    public TMP_Text paceText;
-    public TMP_Text caloriesText;
+    [SerializeField] private Toggle avatarToggle;
+    [SerializeField] private Toggle infoToggle;
+    [SerializeField] private Toggle effectToggle;
+    [SerializeField] private Player player;
+    [SerializeField] private RunningInfo runningInfo;
+    [SerializeField] private GameObject optionedInfo;
+    [SerializeField] private AvatarWithRecord avatarWithRecord;
+    [SerializeField] private Animator avatarAnime;
+    [SerializeField] private StateBar stateBar;
+    [SerializeField] private Camera arCamera;
+    [SerializeField] private PlayButton playButton;
+    [SerializeField] private LocationModule locationModule;
+    [SerializeField] private GPXLogger GPXLogger;
 
-    private float runningSpeed;
+    private bool isStart;
     private bool avatarToggleValue;
     private bool infoToggleValue;
     private bool effectToggleValue;
-    private bool isPaused;
-    private bool isPauseButtonPressed;
+    private bool isPaused;    
     private float time;
     private float calorieTime;
     private float preTime;
 
     public void ToggleIsPaused()
     {
-        isPaused = !isPaused;
-        isPauseButtonPressed = true;
+        isPaused = !isPaused;        
         SetAvatarAnime();
+        player.ToggleIsPaused();
+        avatarWithRecord.ToggleIsPaused();
+        runningInfo.ToggleIsPaused();
     }
 
     void Start()
     {
+        if (PlayerPrefs.GetString("avatar") != "BicycleMan")
+            avatarAnime = GameObject.Find(PlayerPrefs.GetString("avatar") + "(Clone)").GetComponent<Animator>();
         avatarToggleValue = true;
         infoToggleValue = true;
         effectToggleValue = true;
-        isPaused = true;
-        isPauseButtonPressed = false;
+        isPaused = true;        
         time = 0;
         preTime = 0;
     }
 
     void Update()
     {
-        if (PlayerPrefs.GetString("avatar") != "BicycleMan")
-            avatarAnime = GameObject.Find(PlayerPrefs.GetString("avatar") + "(Clone)").GetComponent<Animator>();
         CheckOption();
         SetAvatarAnime();
-        if (stateBar.GetIsCountDownEnd())
+        if (isStart)
         {
-            if (time == 0)
+            if (!isPaused)
+                time += Time.deltaTime;
+            if (locationModule.GetIsValidMovement())
+                calorieTime += Time.deltaTime;
+            runningInfo.InfoUpdate(time, player.GetTotalDist(), calorieTime);
+        }
+        else
+        {
+            ShowReadyScene();
+            if (stateBar.GetIsStart())
             {
                 isPaused = false;
+                isStart = true;
                 player.enabled = true;
                 avatarWithRecord.enabled = true;
                 GPXLogger.enabled = true;
                 runningInfo.ToggleIsPaused();
                 locationModule.InitializeQueue();
             }
-            if (!isPaused)
-                time += Time.deltaTime;
-            if (locationModule.GetIsValidMovement())
-                calorieTime += Time.deltaTime;
-            if (isPauseButtonPressed)
-            {
-                player.ToggleIsPaused();
-                avatarWithRecord.ToggleIsPaused();
-                runningInfo.ToggleIsPaused();
-                isPauseButtonPressed = false;
-            }
-            timeText.text = GetTimeInFormat(time);
-            paceText.text = (player.GetTotalDist() / time).ToString("0.0");
-            caloriesText.text = (0.18958333333 * calorieTime).ToString("0.0");
-        }
-        else if (stateBar.GetIsCountDownGoing())
+        }       
+    }
+
+    public void ShowReadyScene()
+    {
+        if (stateBar.GetIsCountDownGoing())
         {
             if (avatarAnime != null)
             {
@@ -101,9 +92,10 @@ public class ControlTowerForRecord: MonoBehaviour
         else
         {
             avatarWithRecord.FixAvatar();
-            runningInfo.FixInfo();
+            runningInfo.FixInfoPanel();
         }
     }
+
 
     public void SetAvatarAnime()
     {

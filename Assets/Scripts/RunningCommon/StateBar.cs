@@ -20,11 +20,11 @@ public class StateBar : MonoBehaviour
 	private int fadeMode;
 	private bool isLoadingEnd;
 	private bool isCountDownGoing;
-	private bool isCountDownEnd;
+	private bool isStart;
 
-	public bool GetIsCountDownEnd()
+	public bool GetIsStart()
     {
-		return (isCountDownEnd);
+		return (isStart);
     }
 
 	public bool GetIsLoadingEnd()
@@ -37,17 +37,15 @@ public class StateBar : MonoBehaviour
 		return (isCountDownGoing);
 	}
 
-	// Start is called before the first frame update
 	void Start()
     {
 		unitText.text = "";
-		isCountDownEnd = false;
+		isStart = false;
 		isLoadingEnd = false;
 		isCountDownGoing = false;
 		startTime = -1;
     }
 
-    // Update is called once per frame
     void Update()
     {		
 		// Loading State
@@ -109,7 +107,7 @@ public class StateBar : MonoBehaviour
 				}
 				else
 					countdownText.text = "";
-				isCountDownEnd = true;				
+				isStart = true;				
 				canvasDistanceText.text = (distance).ToString("0.00") + " km";
                 LoadingBar.fillAmount = distance - (int)distance;
 				unitText.text = "kilometer";

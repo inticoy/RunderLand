@@ -2232,9 +2232,6 @@ MonoBehaviour:
   playButton: {fileID: 1404985375}
   locationModule: {fileID: 1664857984}
   GPXLogger: {fileID: 382435050}
-  timeText: {fileID: 586862073}
-  paceText: {fileID: 1104409132}
-  caloriesText: {fileID: 1878730319}
 --- !u!1 &382435049
 GameObject:
   m_ObjectHideFlags: 0
@@ -12530,6 +12527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceText: {fileID: 1853516485}
+  canvasDistanceText: {fileID: 0}
   unitText: {fileID: 121487521}
   LoadingBar: {fileID: 1161245404}
   player: {fileID: 1114343426}
@@ -18769,6 +18767,16 @@ MonoBehaviour:
   locationModule: {fileID: 1664857984}
   arCamera: {fileID: 1527115220}
   stateBar: {fileID: 1632055265}
+  timeText: {fileID: 586862073}
+  paceText: {fileID: 1104409132}
+  caloriesText: {fileID: 1878730319}
+  canvasTimeText: {fileID: 586862073}
+  canvasPaceText: {fileID: 1104409132}
+  canvasCaloriesText: {fileID: 1878730319}
+  pauseIcon: {fileID: 2145773751}
+  playIcon2: {fileID: 505082175}
+  canvasPauseIcon: {fileID: 2145773751}
+  canvasPlayIcon2: {fileID: 505082175}
 --- !u!114 &1972857719
 MonoBehaviour:
   m_ObjectHideFlags: 0

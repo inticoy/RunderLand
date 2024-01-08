@@ -58,7 +58,7 @@ public class ControlTowerForFriend: MonoBehaviour
     {
         CheckOption();
         SetAvatarAnime();
-        if (stateBar.GetIsCountDownEnd())
+        if (stateBar.GetIsStart())
         {
             if (time == 0)
             {
@@ -92,7 +92,7 @@ public class ControlTowerForFriend: MonoBehaviour
         else
         {
             avatarWithFriend.FixAvatar();
-            runningInfo.FixInfo();
+            runningInfo.FixInfoPanel();
         }
     }
 

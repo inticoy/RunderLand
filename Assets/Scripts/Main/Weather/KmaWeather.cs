@@ -104,7 +104,8 @@ public class KmaWeather : MonoBehaviour
         temparature = "0";
         weather = "날씨 없음";
 
-        url += "?ServiceKey=vbmTlE%2BsLjBdCH3Y3IFYxG8aAetC7ML6Vu8nppsbK5Ot650NkTjxiZ3Xg18hfP8ZW4VWtageGek%2BougB5Qma5g%3D%3D";
+        // korea kma service key
+        url += "?ServiceKey=(Your key)";
         url += "&pageNo=1";
         url += "&numOfRows=1000";
         url += "&dataType=JSON";

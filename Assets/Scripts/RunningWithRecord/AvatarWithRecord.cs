@@ -1,20 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using System.IO;
 using TMPro;
 
 public class AvatarWithRecord : MonoBehaviour
 {
-    public Camera arCamera;
-    public LocationModule locationModule;
-    public StateBar stateBar;
-    public Player player;
-    public TMP_Text avatarDistText;
-    public TMP_Text distDiffText;
-    public TMP_Text gameEndText;
-    public GameObject avatarPointer;
-    public GameObject lightEffect;
+    [SerializeField] private Camera arCamera;
+    [SerializeField] private LocationModule locationModule;
+    [SerializeField] private StateBar stateBar;
+    [SerializeField] private Player player;
+    [SerializeField] private TMP_Text avatarDistText;
+    [SerializeField] private TMP_Text distDiffText;
+    [SerializeField] private TMP_Text gameEndText;
+    [SerializeField] private GameObject avatarPointer;
+    [SerializeField] private GameObject lightEffect;
 
     private int time;
     private Vector3 pos;
@@ -114,8 +113,7 @@ public class AvatarWithRecord : MonoBehaviour
     }
 
     public void FixedUpdate()
-    {
-        //List<Tuple<GPSData, double, Vector3>> route = player.route;
+    {        
         playerTotalDist = player.GetTotalDist();
 
         if (IsOutOfRange())

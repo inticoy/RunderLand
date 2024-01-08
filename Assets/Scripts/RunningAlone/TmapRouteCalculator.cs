@@ -56,7 +56,7 @@ public class TmapRouteCalculator : MonoBehaviour
     [SerializeField] Transform mapByBingAR;
 
     private const string baseUrl = "https://apis.openapi.sk.com/tmap/routes/pedestrian";
-    private const string apiKey = "MkWBdAMR859mRs2vFJthA9kWMnUilNTf76DNUNCk"; // Replace with your actual API key
+    private const string apiKey = "(key)"; // Replace with your actual API key
     bool isGeoDataReady = false;
     GeoJSON geoData;
     int currentIdx = 0;
@@ -88,6 +88,10 @@ public class TmapRouteCalculator : MonoBehaviour
         string startY = locationModule.latitude.ToString();
         string endX = PlayerPrefs.GetFloat("longitude").ToString();
         string endY = PlayerPrefs.GetFloat("latitude").ToString();
+        //string startY = "37.465260";
+        //string startX = "126.957745";
+        //string endX = "126.968487";
+        //string endY = "37.475331";
         Debug.Log(endX + ", " + endY);
         string reqCoordType = "WGS84GEO";
         string resCoordType = "WGS84GEO";

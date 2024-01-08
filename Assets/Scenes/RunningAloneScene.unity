@@ -1688,7 +1688,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 107887209}
         m_TargetAssemblyTypeName: ControlTowerForRunningAlone, Assembly-CSharp
-        m_MethodName: ToggleIsPaused
+        m_MethodName: PressPauseButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1831,16 +1831,6 @@ MonoBehaviour:
   playButton: {fileID: 1879308502}
   locationModule: {fileID: 979290811}
   GPXLogger: {fileID: 451453256}
-  canvasTimeText: {fileID: 625396993}
-  timeText: {fileID: 1708040204}
-  paceText: {fileID: 1355253916}
-  canvasPaceText: {fileID: 2123275866}
-  caloriesText: {fileID: 931455823}
-  canvasCaloriesText: {fileID: 235229818}
-  pauseIcon: {fileID: 669700225}
-  playIcon2: {fileID: 1238249869}
-  canvasPauseIcon: {fileID: 1883941255}
-  canvasPlayIcon2: {fileID: 43404511}
   avatarAnime: {fileID: 0}
 --- !u!1 &108179866
 GameObject:
@@ -15509,7 +15499,7 @@ GameObject:
   - component: {fileID: 556357559}
   - component: {fileID: 556357558}
   m_Layer: 0
-  m_Name: MapByBing2
+  m_Name: ---MapByBing2---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16750,6 +16740,16 @@ MonoBehaviour:
   locationModule: {fileID: 979290811}
   arCamera: {fileID: 661078809}
   stateBar: {fileID: 1807722781}
+  timeText: {fileID: 1708040204}
+  paceText: {fileID: 1355253916}
+  caloriesText: {fileID: 931455823}
+  canvasTimeText: {fileID: 625396993}
+  canvasPaceText: {fileID: 2123275866}
+  canvasCaloriesText: {fileID: 235229818}
+  pauseIcon: {fileID: 669700225}
+  playIcon2: {fileID: 1238249869}
+  canvasPauseIcon: {fileID: 1883941255}
+  canvasPlayIcon2: {fileID: 43404511}
 --- !u!114 &667409258
 MonoBehaviour:
   m_ObjectHideFlags: 0

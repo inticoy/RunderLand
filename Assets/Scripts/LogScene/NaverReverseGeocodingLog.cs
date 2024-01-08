@@ -74,8 +74,9 @@ public class NaverReverseGeocodingLog : MonoBehaviour
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get(srcurl))
         {
-            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", "wnapo1j7yy");
-            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY", "WD2NPl4SffTzHK1G8vyLlHUjOtAm3jYQUKqpjPsa");
+            // naver geo api key
+            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", "(ID)");
+            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY", "(key)");
 
             yield return webRequest.SendWebRequest();
 
@@ -101,8 +102,9 @@ public class NaverReverseGeocodingLog : MonoBehaviour
         desturl += "&orders=legalcode&output=json";
         using (UnityWebRequest webRequest = UnityWebRequest.Get(desturl))
         {
-            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", "wnapo1j7yy");
-            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY", "WD2NPl4SffTzHK1G8vyLlHUjOtAm3jYQUKqpjPsa");
+            // naver geo api key
+            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY-ID", "(ID)");
+            webRequest.SetRequestHeader("X-NCP-APIGW-API-KEY", "(key))");
 
             yield return webRequest.SendWebRequest();
 
